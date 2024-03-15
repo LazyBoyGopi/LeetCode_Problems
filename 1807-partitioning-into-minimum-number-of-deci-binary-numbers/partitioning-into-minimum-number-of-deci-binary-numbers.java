@@ -3,8 +3,8 @@ class Solution {
         char max = '0';
         for(int i=0;i<n.length();i++)
         {
-            // char cur = ;
-            if(n.charAt(i) > max) max = n.charAt(i);
+            char cur = n.charAt(i);
+            if(cur > max) max = cur;
         }
         return Integer.parseInt(max+"");
     }
