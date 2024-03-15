@@ -4,7 +4,7 @@ class Solution {
         for(int i=0;i<n.length();i++)
         {
             int cur = Integer.parseInt(n.charAt(i)+"");
-            max = Math.max(cur,max);
+            if(cur > max) max = cur;
         }
         return max;
     }
