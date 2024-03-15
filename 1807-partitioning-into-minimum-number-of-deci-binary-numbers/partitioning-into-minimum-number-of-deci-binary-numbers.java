@@ -1,11 +1,11 @@
 class Solution {
     public int minPartitions(String n) {
-        int max = 0;
+        char max = '0';
         for(int i=0;i<n.length();i++)
         {
-            int cur = Integer.parseInt(n.charAt(i)+"");
+            char cur = n.charAt(i);
             if(cur > max) max = cur;
         }
-        return max;
+        return Integer.parseInt(max+"");
     }
 }
