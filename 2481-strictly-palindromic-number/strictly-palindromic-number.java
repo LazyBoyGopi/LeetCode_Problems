@@ -9,7 +9,6 @@ class Solution {
             cur /= base;
         }
         sb.append(cur);
-        System.out.println(sb.reverse());
         return sb.reverse().toString();
     }
     boolean isPalindrome(String s)
