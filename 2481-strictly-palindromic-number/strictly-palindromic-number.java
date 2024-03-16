@@ -23,10 +23,10 @@ class Solution {
         return true;
     }
     public boolean isStrictlyPalindromic(int n) {
-        for(int i=2;i<=n-2;i++)
-        {
-            if(!isPalindrome(baseSystem(n,i))) return false;
-        }
-        return true;
+        // for(int i=2;i<=n-2;i++)
+        // {
+        //     if(!isPalindrome(baseSystem(n,i))) return false;
+        // }
+        return false;
     }
 }
