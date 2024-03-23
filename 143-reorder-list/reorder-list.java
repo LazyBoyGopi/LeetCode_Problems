@@ -9,9 +9,9 @@
  * }
  */
 class Solution {
-    ListNode reOrderList(ListNode head,ListNode cur)
+    public static ListNode reOrderList(ListNode head, ListNode cur)
     {
-        ListNode temp ;
+        ListNode temp;
         if(cur.next != null) temp = reOrderList(head,cur.next);
         else temp = head;
         if(temp == null) return null;
