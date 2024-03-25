@@ -1,6 +1,6 @@
 class Solution {
     public List<Integer> findDuplicates(int[] nums) {
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new TreeSet<>();
         List<Integer> list = new LinkedList<>();
         for(int i : nums)
         {
