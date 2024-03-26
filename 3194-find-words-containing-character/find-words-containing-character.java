@@ -3,9 +3,10 @@ class Solution {
         List<Integer> list = new LinkedList<Integer>();
         for(int i=0;i<words.length;i++)
         {
-            inner : for(char ch : words[i].toCharArray())
+            String str = words[i];
+            inner : for(int j=0;j<str.length();j++)
             {
-                if(ch == x){
+                if(str.charAt(j) == x){
                      list.add(i);
                      break inner;
                 }
