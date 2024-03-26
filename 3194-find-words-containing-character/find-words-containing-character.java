@@ -3,7 +3,13 @@ class Solution {
         List<Integer> list = new LinkedList<Integer>();
         for(int i=0;i<words.length;i++)
         {
-            if(words[i].indexOf(x) != -1) list.add(i);
+            inner : for(char ch : words[i].toCharArray())
+            {
+                if(ch == x){
+                     list.add(i);
+                     break inner;
+                }
+            }
         }
         return list;
     }
