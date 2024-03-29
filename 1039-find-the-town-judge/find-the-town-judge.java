@@ -1,7 +1,7 @@
 class Solution {
     public int findJudge(int n, int[][] trust) {
-        boolean [] freq = new boolean[n+1];
-        for(int[] ar : trust)
+        boolean[] freq = new boolean[n+1];
+        for(int[]ar : trust)
         {
             freq[ar[0]] = true;
         }
@@ -11,7 +11,7 @@ class Solution {
             if(!freq[i]) letJudge = i;
         }
         Arrays.fill(freq,false);
-        for(int[] ar : trust)
+        for(int ar[]:trust)
         {
             if(ar[1] == letJudge) freq[ar[0]] = true;
         }
