@@ -14,7 +14,7 @@ class Solution {
     public int maxVowels(String s, int k) {
         int low = 0  , high = 0;
         int vowelsCount = 0 , maxLen = 0;
-        while(high < s.length() && low <s.length()){
+        while(high < s.length()){
             if(isVowel(s.charAt(high))){
                 vowelsCount++;
             }
