@@ -51,17 +51,16 @@ class Solution {
     public int maxOperations(int[] nums, int k) {
         Map<Integer,Integer>map = new HashMap<>();
         int count = 0;
-        for(int i=0;i<nums.length;i++)
+        for(int ele : nums)
         {
-            int comp = k-nums[i];
+            int comp = k-ele;
             if(map.containsKey(comp))
             {
-                count++;
                 if(map.get(comp) == 1) map.remove(comp);
-                else
-                map.put(comp,map.get(comp)-1);
+                else map.put(comp,map.get(comp)-1);
+                count++;
             }
-            else map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+            else map.put(ele,map.getOrDefault(ele,0)+1);
         }
         return count;
     }
