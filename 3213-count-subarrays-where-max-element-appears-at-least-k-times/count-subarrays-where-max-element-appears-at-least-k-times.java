@@ -9,20 +9,16 @@ class Solution {
         long subarrayCount = 0;
         int countOfMaxEle = 0;
         int low = 0 , high = 0;
-        while(high < nums.length && low < nums.length)
+        while(high < nums.length)
         {
-            while(countOfMaxEle >= k && low < nums.length)
+            if(nums[high] == maxEle) countOfMaxEle++;
+            while(countOfMaxEle >= k && low <= high)
             {
-                subarrayCount += nums.length-high+1;
+                subarrayCount += nums.length-high;
                if(nums[low++] == maxEle) countOfMaxEle--;
             }
-            if(nums[high++] == maxEle) countOfMaxEle++;
+            high++;
         }
-        while(low < nums.length && countOfMaxEle >= k)
-            {
-                subarrayCount += nums.length-high+1;
-               if(nums[low++] == maxEle) countOfMaxEle--;
-            }
         return subarrayCount;
     }
 }
