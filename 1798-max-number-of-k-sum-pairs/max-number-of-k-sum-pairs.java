@@ -48,7 +48,8 @@ class Solution {
         }
         return count;
     }
-    public int maxOperations(int[] nums, int k) {
+    private int getAnswer2(int[]nums,int k)
+    {
         Map<Integer,Integer>map = new HashMap<>();
         int count = 0;
         for(int ele : nums)
@@ -61,6 +62,23 @@ class Solution {
                 count++;
             }
             else map.put(ele,map.getOrDefault(ele,0)+1);
+        }
+        return count;
+    }
+    public int maxOperations(int[] nums, int k) {
+        Arrays.sort(nums);
+        int count = 0;
+        int st = 0 , end = nums.length-1;
+        while(st < end)
+        {
+            int sum = nums[st] + nums[end];
+            if(sum == k) {
+                st++;
+                end--;
+                count++;
+            }
+            else if(sum > k) end--;
+            else st++;
         }
         return count;
     }
