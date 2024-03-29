@@ -67,8 +67,13 @@ class Solution {
     }
     public int maxOperations(int[] nums, int k) {
         Arrays.sort(nums);
+        int end;
+        for(end=nums.length-1;end>=0;end--)
+        {
+            if(!(nums[end] > k)) break;
+        }
         int count = 0;
-        int st = 0 , end = nums.length-1;
+        int st = 0 ;
         while(st < end)
         {
             int sum = nums[st] + nums[end];
