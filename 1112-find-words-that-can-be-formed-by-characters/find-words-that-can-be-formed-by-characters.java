@@ -14,7 +14,7 @@ class Solution {
             {
                 if(ar[ch-97] <= 0) {
                     isPossible = false;
-                    continue;
+                    break;
                 }
                 else ar[ch - 97]--;
             }
