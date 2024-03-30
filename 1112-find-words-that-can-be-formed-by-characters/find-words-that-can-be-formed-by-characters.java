@@ -8,16 +8,16 @@ class Solution {
         }
         for(String word : words)
         {
-            int[] ar = Arrays.copyOf(freq,freq.length);
+            int[] ar =new int[26];
             boolean isPossible = true;
             for(int i=0;i<word.length();i++)
             {
-                char ch = word.charAt(i);
-                if(ar[ch-97] <= 0) {
+                int idx = word.charAt(i)-97;
+                ar[idx]++;
+                if(ar[idx] > freq[idx]) {
                     isPossible = false;
                     break;
                 }
-                else ar[ch - 97]--;
             }
             if(isPossible) len += word.length();
         }
