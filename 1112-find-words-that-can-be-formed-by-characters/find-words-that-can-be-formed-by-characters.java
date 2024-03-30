@@ -2,16 +2,17 @@ class Solution {
     public int countCharacters(String[] words, String chars) {
         int len = 0;
         int[] freq = new int[26];
-        for(char ch : chars.toCharArray())
+        for(int i=0;i<chars.length();i++)
         {
-            freq[ch-97]++;
+            freq[chars.charAt(i)-97]++;
         }
         for(String word : words)
         {
             int[] ar = Arrays.copyOf(freq,freq.length);
             boolean isPossible = true;
-            for(char ch : word.toCharArray())
+            for(int i=0;i<word.length();i++)
             {
+                char ch = word.charAt(i);
                 if(ar[ch-97] <= 0) {
                     isPossible = false;
                     break;
