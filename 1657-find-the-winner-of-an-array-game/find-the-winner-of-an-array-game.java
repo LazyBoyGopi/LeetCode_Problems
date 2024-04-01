@@ -1,13 +1,18 @@
 class Solution {
     public int getWinner(int[] arr, int k) {
-        int max = 0;
+        if(k >= arr.length)
+        {
+            int max = 0;
+            for(int ele : arr)
+            {
+                if(max < ele) max = ele;
+            }
+            return max;
+        }
         List<Integer> q = new LinkedList<>();
         for(int ele : arr) {
             q.add(ele);
-            max = Math.max(max,ele);
         }
-        if(k >= arr.length)
-        return max;
         int lastEle = 0;
         int countOfWins = 0;
         while(true)
