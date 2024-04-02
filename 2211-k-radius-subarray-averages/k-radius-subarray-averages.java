@@ -20,7 +20,6 @@ class Solution {
         }
         for(int i=k;i<len-k;i++)
         {
-            System.out.println(sum);
             ans[i] =(int) (sum/range);
             if(i < len-k-1)
             {
