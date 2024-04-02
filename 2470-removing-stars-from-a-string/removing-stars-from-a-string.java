@@ -1,15 +1,19 @@
 class Solution {
-    private String backSpace(String s)
-    {
-        StringBuilder sb = new StringBuilder();
-        for(char ch : s.toCharArray())
-        {
-            if(ch != '*') sb.append(ch);
-            else sb.deleteCharAt(sb.length()-1);
-        }
-        return sb.toString();
-    }
     public String removeStars(String s) {
-        return backSpace(s);
+       Stack<Character> stack = new Stack<>();
+       for(char ch : s.toCharArray())
+       {
+        if(ch == '*')
+        {
+            stack.pop();
+        }
+        else stack.push(ch);
+       }
+       StringBuilder sb = new StringBuilder();
+       while(!stack.isEmpty())
+       {
+        sb.append(stack.pop());
+       }
+       return sb.reverse().toString();
     }
 }
