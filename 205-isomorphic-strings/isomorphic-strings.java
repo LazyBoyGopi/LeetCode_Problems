@@ -1,7 +1,6 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
         Map<Character,Character> map = new HashMap<>();
-        // StringBuilder sb = new StringBuilder();
         for(int i=0;i<t.length();i++)
         {
             if(!map.containsKey(t.charAt(i)))
@@ -12,15 +11,15 @@ class Solution {
                 if(map.get(t.charAt(i)) != s.charAt(i)) return false;
             }
         }
-        Map<Character,Character> map1 = new HashMap<>();
+        map.clear();
         for(int i=0;i<s.length();i++)
         {
-            if(!map1.containsKey(s.charAt(i)))
+            if(!map.containsKey(s.charAt(i)))
             {
-                map1.put(s.charAt(i),t.charAt(i));
+                map.put(s.charAt(i),t.charAt(i));
             }
             else {
-                if(map1.get(s.charAt(i)) != t.charAt(i)) return false;
+                if(map.get(s.charAt(i)) != t.charAt(i)) return false;
             }
         }
         return true;
