@@ -8,7 +8,7 @@ class Solution {
         }
     }
     public List<Integer> findKDistantIndices(int[] nums, int key, int k) {
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set = new TreeSet<>();
         int cur = 0 , findTarget = 0 , nextIdx = 0;
         while(findTarget < nums.length)
         {
