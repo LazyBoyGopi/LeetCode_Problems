@@ -19,7 +19,7 @@ class Solution {
             findTarget++;
         }
         LinkedList list = new LinkedList<>(set);
-        Collections.sort(list);
+        // Collections.sort(list);
         return list;
     }
 }
