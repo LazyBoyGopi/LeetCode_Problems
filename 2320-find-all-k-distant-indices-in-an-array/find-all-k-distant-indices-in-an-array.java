@@ -1,11 +1,10 @@
 class Solution {
     private void getCombinations(int findTarget,int[]nums,int k,Set<Integer>set)
     {
-        for(int i=0;i< nums.length;i++)
+        for(int i=findTarget-k;i<=findTarget+k && i< nums.length;i++)
         {
-            if(Math.abs(findTarget-i) <= k) {
-                set.add(i);
-            }
+            if(i >= 0)
+            set.add(i);
         }
     }
     public List<Integer> findKDistantIndices(int[] nums, int key, int k) {
