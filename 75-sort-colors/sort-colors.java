@@ -1,21 +1,26 @@
 class Solution {
-    private void fillArray(int st,int end,int ele,int []nums)
+    void swap(int i,int j,int nums[])
     {
-        for(int i=st;i<=end;i++)
-        {
-            nums[i] = ele;
-        }
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
     public void sortColors(int[] nums) {
-        int countOfOnes = 0 , countOfZeroes = 0 , countOfTwos = 0;
-        for(int ele : nums)
+        int low = 0 , mid = 0 , high = nums.length-1;
+        while(mid <= high)
         {
-            if(ele == 0) countOfZeroes++;
-            else if(ele == 1) countOfOnes++;
-            else countOfTwos++;
+            if(nums[mid] == 0)
+            {
+                swap(low,mid,nums);
+                mid++;
+                low++;
+            }
+            else if(nums[mid] == 2)
+            {
+                swap(mid,high,nums);
+                high--;
+            }
+            else mid++;
         }
-        fillArray(0,countOfZeroes-1,0,nums);
-        fillArray(countOfZeroes,countOfZeroes+countOfOnes-1,1,nums);
-        fillArray(countOfOnes+countOfZeroes,countOfZeroes+countOfOnes+countOfTwos-1,2,nums);
     }
 }
