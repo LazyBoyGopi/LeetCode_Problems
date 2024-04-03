@@ -11,25 +11,21 @@ class Solution {
                     if (i < board.length-1 ) {
                         if(checkNext(board,word,i+1,j,curIdx+1,false)) 
                         {
-                            System.out.println("i+1"+" "+(i+1)+" "+j);
                             return true;
                         }
                     }
                     if (i > 0) {
                         if(checkNext(board,word,i-1,j,curIdx+1,false)) {
-                            System.out.println("i-1"+" "+(i-1)+" "+j);
                             return true;
                         }
                     }
                     if (j < board[i].length-1 ) {
                         if(checkNext(board,word,i,j+1,curIdx+1,false)) {
-                            System.out.println("j+1"+" "+i+" "+(j+1));
                             return true;
                         }
                     }
                     if (j > 0) {
                         if(checkNext(board,word,i,j-1,curIdx+1,false)) {
-                            System.out.println("j-1"+" "+i+" "+(j-1));
                             return true;
                         }
                     }
