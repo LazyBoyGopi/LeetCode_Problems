@@ -9,18 +9,12 @@ class Solution {
         int low = 0 , mid = 0 , high = nums.length-1;
         while(mid <= high)
         {
-            if(nums[mid] == 0)
+            switch(nums[mid])
             {
-                swap(low,mid,nums);
-                mid++;
-                low++;
+                case 0 -> swap(low++,mid++,nums);
+                case 1 -> mid++;
+                case 2 -> swap(mid,high--,nums);
             }
-            else if(nums[mid] == 2)
-            {
-                swap(mid,high,nums);
-                high--;
-            }
-            else mid++;
         }
     }
 }
