@@ -10,8 +10,7 @@ class Solution {
             {
                 ar[i] = ar[i-1]+1;
             }
-            max = Math.max(max,ar[i]);
         }
-        return max;
+        return ar[ar.length-1];
     }
 }
