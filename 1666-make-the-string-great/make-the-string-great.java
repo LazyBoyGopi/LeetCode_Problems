@@ -1,5 +1,6 @@
 class Solution {
     public String makeGood(String s) {
+    if(s.length() <= 0) return s;
       StringBuilder sb = new StringBuilder();
       for(char ch : s.toCharArray())
       {
