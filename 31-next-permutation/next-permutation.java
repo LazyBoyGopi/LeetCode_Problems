@@ -27,7 +27,6 @@ class Solution {
         }
         else{
             int j = nums.length-1;
-            System.out.println(idx);
             while(j >= idx)
             {
              if(nums[j] > nums[idx])
@@ -39,7 +38,6 @@ class Solution {
              }   
              j--;
             }
-            System.out.println(Arrays.toString(nums));
             reverse(nums,idx+1,nums.length-1);
             return;
         }
