@@ -34,7 +34,7 @@ class Solution {
        int pivot = getPivot(nums);
        if(pivot == -1) return isTargetPresent(nums,0,nums.length-1,target);
        if(nums[pivot] == target) return true;
-       if(isTargetPresent(nums,0,pivot,target)) return true;
+       if(nums[0] <= target )return isTargetPresent(nums,0,pivot,target);
        return isTargetPresent(nums,pivot+1,nums.length-1,target);
     }
 }
