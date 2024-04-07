@@ -32,7 +32,6 @@ class Solution {
     }
     public boolean search(int[] nums, int target) {
        int pivot = getPivot(nums);
-       System.out.println(pivot);
        if(pivot == -1) return isTargetPresent(nums,0,nums.length-1,target);
        if(nums[pivot] == target) return true;
        if(isTargetPresent(nums,0,pivot,target)) return true;
