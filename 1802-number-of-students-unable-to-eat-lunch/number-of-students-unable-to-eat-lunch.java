@@ -1,6 +1,6 @@
 class Solution {
     public int countStudents(int[] students, int[] sandwiches) {
-        Queue<Integer> stu = new ArrayDeque<>();
+        Queue<Integer> stu = new LinkedList<>();
         for(int ele : students) stu.offer(ele);
         int idx = 0;
         while(idx < sandwiches.length && stu.size() > 0)
@@ -8,11 +8,11 @@ class Solution {
             if(sandwiches[idx] == stu.peek())
             {
                 idx++;
-                stu.remove();
+                stu.poll();
             }
             else{
                 int rotationCount = 0;
-                while(stu.size() > 0 && rotationCount <= stu.size() && stu.peek() != sandwiches[idx])
+                while(rotationCount <= stu.size() && stu.peek() != sandwiches[idx])
                 {
                     rotationCount++;
                     stu.add(stu.poll());
