@@ -1,37 +1,24 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        int low = 0, sum = 0, count = 0;
+        int preSum [] = new int[nums.length];
+        int count = 0;
+        preSum[0] = nums[0];
+        for(int i=1;i<nums.length;i++)
+        {
+            preSum[i] = preSum[i-1]+nums[i];
+        }
         for(int i=0;i<nums.length;i++)
         {
-            sum = 0;
-            for(int j=i;j<nums.length;j++)
+            if(preSum[i] == k) count++;
+            int idx = i-1;
+            while(idx >=0)
             {
-                sum += nums[j];
-                if(sum == k) count++;
+                if(preSum[i]-preSum[idx] == k) count++;
+                // else if(preSum[i] - preSum[idx] > k) break;
+                idx--;
+
             }
         }
         return count;
-        // for (int i = 0; i < nums.length; i++) {
-        //     sum += nums[i];
-        //     if (sum == k)
-        //         count++;
-        //     if (sum > k) {
-        //         while (sum > k) {
-        //             sum -= nums[low];
-        //             if (sum == k && i - low > 0)
-        //                 count++;
-        //             low++;
-        //         }
-        //     }
-        //     else if(k > sum){
-        //         while (sum > k) {
-        //             sum -= nums[low];
-        //             if (sum == k && i - low > 0)
-        //                 count++;
-        //             low++;
-        //         }
-        //     }
-        // }
-        // return count;
     }
 }
