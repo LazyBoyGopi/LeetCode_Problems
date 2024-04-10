@@ -28,8 +28,6 @@ class Solution {
                 }
             }
         }
-        System.out.println(Arrays.toString(col));
-        System.out.println(Arrays.toString(row));
         for(int i=0;i<col.length;i++)
         {
             if(col[i] == 1)
