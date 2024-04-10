@@ -10,7 +10,6 @@ class Solution {
     {
         for(int i=0;i<matrix[0].length;i++)
         {
-            System.out.println(row);
             matrix[row][i] = 0;
         }
     }
