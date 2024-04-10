@@ -27,19 +27,29 @@ class Solution {
                 }
             }
         }
-        for(int i=0;i<col.length;i++)
+        for(int i=0;i<matrix.length;i++)
         {
-            if(col[i] == 1)
+            for(int j=0;j<matrix[i].length;j++)
             {
-                setZeroesAtCol(matrix,i);
+                if(row[i] == 1 || col[j] == 1)
+                {
+                    matrix[i][j] = 0;
+                }
             }
         }
-        for(int i=0;i<row.length;i++)
-        {
-            if(row[i] == 1)
-            {
-                setZeroesAtRow(matrix,i);
-            }
-        }
+        // for(int i=0;i<col.length;i++)
+        // {
+        //     if(col[i] == 1)
+        //     {
+        //         setZeroesAtCol(matrix,i);
+        //     }
+        // }
+        // for(int i=0;i<row.length;i++)
+        // {
+        //     if(row[i] == 1)
+        //     {
+        //         setZeroesAtRow(matrix,i);
+        //     }
+        // }
     }
 }
