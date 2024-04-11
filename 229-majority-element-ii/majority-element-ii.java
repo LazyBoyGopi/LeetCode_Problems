@@ -7,6 +7,7 @@ class Solution {
         {
             map.put(ele,map.getOrDefault(ele,0)+1);
             if(map.get(ele) == three) list.add(ele);
+            if(list.size() >= three+1) break;
         }
         return list;
     }
