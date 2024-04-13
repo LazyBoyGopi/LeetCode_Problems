@@ -3,7 +3,7 @@ class Solution {
         int totalMatches = 0;
         while(n != 1)
         {
-            if(n == 2) return ++totalMatches;
+            // if(n == 2) return ++totalMatches;
             if(n % 2 == 0){
                 totalMatches += n/2;
                 n /=2;
