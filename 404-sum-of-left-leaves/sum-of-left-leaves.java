@@ -1,35 +1,25 @@
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 class Solution {
-    private int sum(TreeNode root)
-    {
+    public int sumOfLeftLeaves(TreeNode root) {
         if(root == null) return 0;
         int sum = 0;
-         sum += sum(root.right);
-
-        if(root.left != null && root.left.left == null && root.left.right == null)
-        {
-            sum += root.left.val;
-        }
-        sum += sum(root.left);
-        
-       
+        sum += sumOfLeftLeaves(root.right);
+        if(root.left != null && root.left.left == null && root.left.right == null) return sum + root.left.val;
+        sum += sumOfLeftLeaves(root.left);
         return sum;
-    }
-    public int sumOfLeftLeaves(TreeNode root) {
-        return sum(root);
     }
 }
