@@ -9,13 +9,16 @@ class Solution {
                 List<Integer>temp = new LinkedList<>(Arrays.asList(intervals[i][0],intervals[i][1]));
                 list.add(temp);
             }
-            // else continue;
+            int ele = list.get(list.size()-1).get(1);
             for(int j=i;j<intervals.length;j++)
             {
-                if(list.get(list.size()-1).get(1) >= intervals[j][0])
+                if(ele >= intervals[j][0])
                 {
-                    if(list.get(list.size()-1).get(1) < intervals[j][1])
+                    if(ele < intervals[j][1])
+                    {
                     list.get(list.size()-1).set(1,intervals[j][1]);
+                    ele = intervals[j][1];
+                    }
                 }
                 else {
                     i=j-1;
