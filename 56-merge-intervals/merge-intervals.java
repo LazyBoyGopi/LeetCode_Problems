@@ -9,7 +9,7 @@ class Solution {
                 List<Integer>temp = new LinkedList<>(Arrays.asList(intervals[i][0],intervals[i][1]));
                 list.add(temp);
             }
-            else continue;
+            // else continue;
             for(int j=i;j<intervals.length;j++)
             {
                 if(list.get(list.size()-1).get(1) >= intervals[j][0])
