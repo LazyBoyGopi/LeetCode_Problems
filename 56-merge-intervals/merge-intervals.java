@@ -17,7 +17,10 @@ class Solution {
                     if(list.get(list.size()-1).get(1) < intervals[j][1])
                     list.get(list.size()-1).set(1,intervals[j][1]);
                 }
-                else break;
+                else {
+                    i=j-1;
+                    break;
+                }
             }
         }
         int[][]ans = new int[list.size()][2];
