@@ -11,10 +11,10 @@
 class Solution {
     private ListNode reverseListFromMid(ListNode mid)
     {
-        ListNode pre = null , cur = mid;
+        ListNode pre = null , cur = mid , next = null;
         while(cur != null)
         {
-            ListNode next = cur.next;
+            next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
@@ -22,23 +22,19 @@ class Solution {
         return pre;
     }
     public boolean isPalindrome(ListNode head) {
-        ListNode slow = head , fast = head;
-        int count =0;
+        ListNode fast = head , slow = head;
         while(fast != null && fast.next != null)
         {
             fast = fast.next.next;
             slow = slow.next;
-            count++;
         }
-        ListNode mid = reverseListFromMid(slow);
+        ListNode end = reverseListFromMid(slow);
         slow = head;
-        int tempCount = 0;
-        while(tempCount < count && mid != null )
+        while(slow != null && end != null)
         {
-            if(mid.val != slow.val) return false;
-            mid = mid.next;
+            if(slow.val != end.val) return false;
             slow = slow.next;
-            tempCount++;
+            end = end.next;
         }
         return true;
     }
