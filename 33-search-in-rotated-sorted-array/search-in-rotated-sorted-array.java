@@ -26,7 +26,6 @@ class Solution {
     }
     public int search(int[] nums, int target) {
         int idx = getPivot(nums,target);
-        System.out.println(idx);
         if(idx == nums.length || idx == 0) return binarySearch(nums,target,0,nums.length-1);
         if(target == nums[idx]) return idx;
         if(target >= nums[0] && target <= nums[idx-1]) return binarySearch(nums,target,0,idx-1);
