@@ -1,36 +1,51 @@
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
+ * int val;
+ * ListNode next;
+ * ListNode(int x) {
+ * val = x;
+ * next = null;
+ * }
  * }
  */
 public class Solution {
-    private void fillStack(Stack<ListNode>s, ListNode head)
-    {
+    private int getLength(ListNode head) {
         ListNode temp = head;
-        while(temp != null)
-        {
-            s.push(temp);
+        int len = 0;
+        while (temp != null) {
             temp = temp.next;
+            len++;
         }
+        return len;
     }
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        Stack<ListNode>s1 = new Stack<>();
-        Stack<ListNode>s2 = new Stack<>();
-        fillStack(s1,headA);
-        fillStack(s2,headB);
-        ListNode ans = null;
-        while(!s1.isEmpty() && !s2.isEmpty())
-        {
-            if(s1.peek() != s2.peek()) return ans;
-            ans = s1.pop();
-            s2.pop();
+
+    private ListNode moveCur(ListNode head, int diff) {
+        while (diff > 0 && head != null) {
+            head = head.next;
+            diff--;
         }
-        return ans;
+        return head;
+    }
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lenA = getLength(headA);
+        int lenB = getLength(headB);
+        int diff = lenA - lenB;
+        ListNode temp1 = headA, temp2 = headB;
+        if (diff == 0)
+            ;
+        else if (diff > 0) {
+            temp1 = moveCur(temp1, diff);
+        } else {
+            temp2 = moveCur(temp2, Math.abs(diff));
+        }
+        while (temp1 != null && temp2 != null) {
+            if (temp1 == temp2)
+                return temp1;
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        return null;
     }
 }
