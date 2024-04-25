@@ -10,27 +10,18 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
-        Queue<ListNode> stack = new ArrayDeque<>();
-        ListNode ans = new ListNode();
-        ListNode org = ans;
-        head = head;
-        while(head != null)
+        if(head == null || head.next == null) return head;
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode orgEven = even;
+        while(odd != null && even != null && odd.next != null && even.next != null)
         {
-            ans.next = head;
-            ans = head;
-            head = head.next;
-            if(head != null)
-            {
-                stack.add(head);
-                head = head.next;
-            }
+            odd.next = odd.next.next;
+            odd = odd.next;
+            even.next = even.next.next;
+            even = even.next;
         }
-        while(!stack.isEmpty())
-        {
-           ans.next =  stack.poll();
-           ans = ans.next;
-        }
-        ans.next = null;
-        return org.next;
+        odd.next = orgEven;
+        return head;
     }
 }
