@@ -20,25 +20,24 @@ public class Solution {
         return len;
     }
 
-    private ListNode moveCur(ListNode head, int diff) {
-        while (diff > 0 && head != null) {
-            head = head.next;
-            diff--;
-        }
-        return head;
-    }
-
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         int lenA = getLength(headA);
         int lenB = getLength(headB);
-        int diff = lenA - lenB;
-        ListNode temp1 = headA, temp2 = headB;
-        if (diff == 0)
-            ;
-        else if (diff > 0) {
-            temp1 = moveCur(temp1, diff);
+        int diff = 0;
+        ListNode temp1 = null, temp2 = null;
+       if (lenA > lenB) {
+            temp1 = headA;
+            temp2 = headB;
+            diff = lenA-lenB;
         } else {
-            temp2 = moveCur(temp2, Math.abs(diff));
+            temp1 = headB;
+            temp2 = headA;
+            diff = lenB-lenA;
+        }
+        while(diff > 0 && temp1 != null)
+        {
+            temp1 = temp1.next;
+            diff--;
         }
         while (temp1 != null && temp2 != null) {
             if (temp1 == temp2)
