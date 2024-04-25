@@ -1,40 +1,28 @@
 class Solution {
-    private int getPivot(int[]ar)
+    private int getIdx(int[]nums,int target,int st ,int end)
     {
-        int st = 0 , end = ar.length-1;
         while(st <= end)
         {
             int mid = st+(end-st)/2;
-            if(mid > 0 && ar[mid-1] > ar[mid]) return mid-1;
-            if(mid < ar.length-1 && ar[mid+1] < ar[mid]) return mid;
-            if(ar[st] == ar[mid] && ar[end] == ar[mid])
-            {
-                if(st < ar.length-1 && ar[st] > ar[st+1]) return st;
+            if(nums[mid] == target) return mid;
+            if(nums[st] == nums[mid] && nums[mid] == nums[end]) {
                 st++;
-                if(end > 0 && ar[end-1] > ar[end]) return end;
                 end--;
+                continue;
             }
-            else if(ar[st] < ar[mid] || ar[st] == ar[mid] && ar[mid] > ar[end]) st = mid+1;
-            else end = mid-1;
+            if(nums[st] <= nums[mid])
+            {
+                if(nums[st] <= target && target <= nums[mid]) end = mid-1;
+                else st = mid+1;
+            }
+            else{
+                if(nums[mid] <= target && target <= nums[end]) st = mid+1;
+               else end = mid-1;
+            }
         }
         return -1;
     }
-    private boolean isTargetPresent(int[]ar,int st,int end,int target)
-    {
-        while(st <= end)
-        {
-            int mid = st+(end-st)/2;
-            if(ar[mid] == target) return true;
-            if(ar[mid] > target) end = mid-1;
-            else st = mid+1;
-        }
-        return false;
-    }
     public boolean search(int[] nums, int target) {
-       int pivot = getPivot(nums);
-       if(pivot == -1) return isTargetPresent(nums,0,nums.length-1,target);
-       if(nums[pivot] == target) return true;
-       if(nums[0] <= target )return isTargetPresent(nums,0,pivot,target);
-       return isTargetPresent(nums,pivot+1,nums.length-1,target);
+        return getIdx(nums,target,0,nums.length-1) != -1 ? true : false;
     }
 }
