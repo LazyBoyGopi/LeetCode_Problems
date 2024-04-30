@@ -9,7 +9,11 @@ class Solution {
         return hours;
     }
     public int minEatingSpeed(int[] piles, int h) {
-        int low = 1 , high = Integer.MAX_VALUE , ans = 0;
+        int low = 1 , high =  Integer.MIN_VALUE, ans = 0;
+        for(int ele : piles)
+        {
+            if(high < ele)  high = ele;
+        }
         while(low <= high)
         {
             int mid = low+(high-low)/2;
