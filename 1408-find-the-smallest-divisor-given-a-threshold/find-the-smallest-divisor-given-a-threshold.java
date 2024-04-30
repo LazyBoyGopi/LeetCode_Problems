@@ -11,6 +11,7 @@ class Solution {
         for(int ele : nums)
         {
             sum += Math.ceil(ele*1.0/mid);
+            if(threshold < sum) return false;
         }
         return threshold >= sum;
     }
