@@ -1,14 +1,20 @@
+import java.util.*;
 class Solution {
     public int firstUniqChar(String s) {
-        Map<Character,Integer> map = new HashMap<>();
+        Map<Character,Integer> map = new LinkedHashMap<>();
         for(int i=0;i<s.length();i++)
         {
             char ele = s.charAt(i);
-            map.put(ele , map.getOrDefault(ele,0)+1);
+           if(map.containsKey(ele))
+           {
+            map.put(ele,-1);
+           }
+           else map.put(ele,i);
         }
-        for(int i=0;i<s.length();i++)
+        Collection<Integer>values = map.values();
+        for(Integer value : values)
         {
-            if(map.get(s.charAt(i)) == 1) return i;
+            if(value != -1) return value;
         }
         return -1;
     }
