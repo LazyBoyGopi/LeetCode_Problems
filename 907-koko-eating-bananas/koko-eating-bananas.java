@@ -1,5 +1,5 @@
 class Solution {
-    private int getHours(int[]piles,int numberOfBananas)
+    private int getHours(int[]piles , int numberOfBananas)
     {
         int hours = 0;
         for(int ele : piles)
@@ -9,7 +9,7 @@ class Solution {
         return hours;
     }
     public int minEatingSpeed(int[] piles, int h) {
-        int low = 1 , high =  Integer.MIN_VALUE, ans = 0;
+        int low = 1 , high =  Integer.MIN_VALUE;
         for(int ele : piles)
         {
             if(high < ele)  high = ele;
@@ -20,11 +20,10 @@ class Solution {
             int hours = getHours(piles,mid);
             if(hours <= h)
             {
-                ans = mid;
                 high = mid-1;
             }
             else low = mid+1;
         }
-        return ans;
+        return low;
     }
 }
