@@ -1,10 +1,4 @@
 class Solution {
-    private long getSum(int[]nums)
-    {
-        long sum = 0;
-        for(int ele : nums) sum += ele;
-        return sum;
-    }
     private boolean isPalindrome(int num)
     {
         if(num < 10) return true;
@@ -37,7 +31,6 @@ class Solution {
             }
             else avg1++;
         }
-        System.out.println(avg+" "+avg1);
         long total = 0L , total1 = 0L;
         for(int ele : nums)
         {
