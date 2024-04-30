@@ -31,6 +31,7 @@ class Solution {
         return bouquets <= 0;
     }
     public int minDays(int[] bloomDay, int m, int k) {
+        if(bloomDay.length < (m*k)) return -1;
         int low = 0 , high = findMax(bloomDay);
         int ans = -1;
         while(low <= high)
