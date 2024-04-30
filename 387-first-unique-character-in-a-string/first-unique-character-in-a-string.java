@@ -11,8 +11,8 @@ class Solution {
            }
            else map.put(ele,i);
         }
-        Collection<Integer>values = map.values();
-        for(Integer value : values)
+        
+        for(Integer value : map.values())
         {
             if(value != -1) return value;
         }
