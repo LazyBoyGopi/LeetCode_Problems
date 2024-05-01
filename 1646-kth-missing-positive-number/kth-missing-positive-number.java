@@ -11,8 +11,8 @@ class Solution {
             }
             else end = mid-1;
         }
-        // return end+1+k;
-        return st+k;
+        return end+1+k;
+        // return st+k;
         // return (k-arr[end]-(end+1))+arr[end];
     }
 }
