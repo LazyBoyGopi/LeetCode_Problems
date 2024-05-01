@@ -6,9 +6,10 @@ class Solution {
         while(right < s.length())
         {
             char ch = s.charAt(right);
-            if(map.containsKey(ch)){
+            if(map.containsKey(ch))
+            {
                 int idx = map.get(ch);
-                if(!(left > idx)) left = idx+1;
+                if(idx >= left) left = idx+1;
             }
             map.put(ch,right);
             max = Math.max(max,right-left+1);
