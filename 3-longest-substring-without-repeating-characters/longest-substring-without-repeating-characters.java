@@ -1,7 +1,7 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if(s == null) return 0;
-        int[]hash = new int[256];
+        int[]hash = new int[128];
         Arrays.fill(hash,-1);
         int left = 0 , right = 0 , max = 0 , len = s.length();
         while(right < len)
