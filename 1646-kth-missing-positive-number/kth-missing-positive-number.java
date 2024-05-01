@@ -4,12 +4,15 @@ class Solution {
         while(st <= end)
         {
             int mid = st+(end-st)/2;
-            if((arr[mid]-(mid+1)) >= k) end = mid-1;
-            else st = mid+1;
+            int missing = arr[mid]-(mid+1);
+            if(missing < k)
+            {
+                st = mid+1;
+            }
+            else end = mid-1;
         }
-        // int ele = (k-(arr[end] - (end+1))) + arr[end];
-        // int ele = end+1+k;
-        int ele = st+k;
-        return ele;
+        // return end+1+k;
+        return st+k;
+        // return (k-arr[end]-(end+1))+arr[end];
     }
 }
