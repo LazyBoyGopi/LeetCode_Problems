@@ -1,24 +1,19 @@
 class Solution {
-    private void getAllSubsets(int[]nums,int idx,Set<List<Integer>> list ,List<Integer>temp)
+    private void getAllSubsets(int[]nums,int idx,List<List<Integer>> list ,List<Integer>temp)
     {
-        if(idx == nums.length){
-            list.add(new LinkedList<>(temp));
-            return;
+        list.add(new LinkedList<>(temp));
+        for(int i=idx;i<nums.length;i++)
+        {
+            if(i > idx && nums[i] == nums[i-1]) continue;
+            temp.add(nums[i]);
+            getAllSubsets(nums,i+1,list,temp);
+            temp.remove(temp.size()-1);
         }
-        temp.add(nums[idx]);
-        getAllSubsets(nums,idx+1,list,temp);
-        temp.remove(temp.size()-1);
-        getAllSubsets(nums,idx+1,list,temp);
     }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
-        Set<List<Integer>> list = new HashSet<>();
+        List<List<Integer>> list = new LinkedList<>();
         getAllSubsets(nums,0,list,new LinkedList<>());
-        List<List<Integer>> ans = new ArrayList<>(list.size());
-        for(List<Integer> l : list)
-        {
-            ans.add(l);
-        }
-        return ans;
+        return list;
     }
 }
