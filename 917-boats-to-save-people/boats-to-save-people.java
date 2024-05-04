@@ -4,12 +4,9 @@ class Solution {
         int low = 0 , high = people.length-1 , count = 0;
         while(low < high)
         {
+            if(people[low] + people[high] <= limit) low++;
+            high--;
             count++;
-            if(people[low] + people[high] <= limit){
-                low++;
-                high--;
-            }
-            else high--;
         }
         return low == high ? ++count : count;
     }
