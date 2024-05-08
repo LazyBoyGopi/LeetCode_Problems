@@ -1,26 +1,39 @@
 class Solution {
     public String[] findRelativeRanks(int[] score) {
         int len = score.length;
-       int[]copy = new int[len];
-       String[]ans = new String[len];
-       for(int i=0;i<len;i++)
-       {
-        copy[i] = score[i];
-       } 
-       Arrays.sort(copy);
-        for(int i=len-1;i>=0;i--)
+        String[]ans = new String[len];
+        int max = Integer.MAX_VALUE;
+        int count = 0;
+        for(int i=0;i<len;i++)
         {
-            int j;
-            for(j=0;j<len;j++)
+            int curMax = Integer.MIN_VALUE;
+            int idx = -1;
+            count++;
+            for(int j=0;j<len;j++)
             {
-                if(copy[i] == score[j]) break;
+                if(score[j] < max)
+                {
+                   if(curMax < score[j]){
+                    curMax = score[j];
+                    idx = j;
+                   }
+                }
             }
-            if(i == len-1) ans[j] = "Gold Medal";
-            else if(i == len-2) ans[j] = "Silver Medal";
-            else if(i == len-3) ans[j] = "Bronze Medal";
+            if(count == 1){
+                ans[idx] = "Gold Medal";
+            }
+            else if(count == 2)
+            {
+                ans[idx] = "Silver Medal";
+            }
+            else if(count == 3)
+            {
+                ans[idx] = "Bronze Medal";
+            }
             else{
-                ans[j] = Integer.toString((len-i));
+                ans[idx] = Integer.toString(count);
             }
+            max = curMax;
         }
         return ans;
     }
