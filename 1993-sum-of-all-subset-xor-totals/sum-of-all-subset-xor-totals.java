@@ -1,16 +1,17 @@
 class Solution {
-    int sum = 0;
-    private void getSubsets(int[]nums,int xor,int idx){
+    private int getSubsets(int[]nums,int xor,int idx){
+        int sum = 0;
         if(idx == nums.length){
             sum += xor;
-            return;
+            return sum ;
         }
-        getSubsets(nums,xor,idx+1);
+        sum += getSubsets(nums,xor,idx+1);
         xor ^= nums[idx];
-        getSubsets(nums,xor,idx+1);
+        sum += getSubsets(nums,xor,idx+1);
+        return sum;
     }
     public int subsetXORSum(int[] nums) {
-        getSubsets(nums,0,0);
-        return sum;
+        
+        return getSubsets(nums,0,0);
     }
 }
