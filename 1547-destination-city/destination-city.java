@@ -1,14 +1,11 @@
 class Solution {
     public String destCity(List<List<String>> paths) {
-        for(int i=0;i<paths.size();i++){
-             boolean found = true;
-            for(int j=0;j<paths.size();j++){
-                if(paths.get(i).get(1).equals(paths.get(j).get(0))){
-                    found = false;
-                    break;
-                }
-            }
-            if(found) return paths.get(i).get(1);
+        Set<String>set = new HashSet<>();
+        for(List<String> list : paths){
+            set.add(list.get(0));
+        }
+        for(List<String>list : paths){
+            if(!set.contains(list.get(1))) return list.get(1);
         }
         return "";
     }
