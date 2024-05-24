@@ -15,7 +15,6 @@ class Solution {
         int num = isPossible(words[idx],map,score);
         if(num != -1){
             curScore += num;
-            remove(words[idx],map);
             backTrack(words,score,map,idx+1,curScore);
             curScore -= num;
             add(words[idx],map);
@@ -23,32 +22,29 @@ class Solution {
         backTrack(words,score,map,idx+1,curScore);
     }
     private int isPossible(String str,Map<Character,Integer>map,int[]score){
-        Map<Character,Integer> tempMap = new HashMap(map);
+        List<Character>list = new LinkedList<>();
         int curScore = 0;
         for(int i=0;i<str.length();i++){
             char ch = str.charAt(i);
-            if(tempMap.containsKey(ch)){
+            if(map.containsKey(ch)){
                 curScore += score[ch-'a'];
-                int count = tempMap.get(ch);
+                int count = map.get(ch);
                 if(count > 1){
-                    tempMap.put(ch,tempMap.get(ch)-1);
+                    map.put(ch,map.get(ch)-1);
                 }
-                else tempMap.remove(ch);
+                else map.remove(ch);
+                list.add(ch);
             }
-            else return -1;
+            else {
+                add(list,map);
+                return -1;
+            }
         }
         return curScore;
     }
-    private void remove(String str,Map<Character,Integer>map){
-        for(char ch : str.toCharArray()){
-            if(map.containsKey(ch))
-            {
-                int count = map.get(ch);
-                if(count > 1)
-                    map.put(ch,map.get(ch)-1);
-                else
-                    map.remove(ch);
-            }
+    private void add(List<Character>list,Map<Character,Integer>map){
+        for(char ch : list){
+            map.put(ch,map.getOrDefault(ch,0)+1);
         }
     }
     private void add(String str,Map<Character,Integer>map){
