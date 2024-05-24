@@ -4,6 +4,7 @@ class Solution {
         for(int[] ar : matrix){
             Set<Integer> set = new HashSet<>();
             for(int ele : ar){
+                if(set.contains(ele)) return false;
                 set.add(ele);
             }
             if(set.size() != len) return false;
@@ -15,7 +16,9 @@ class Solution {
         for(int i=0;i<matrix.length;i++){
             Set<Integer>set = new HashSet<>();
             for(int j=0;j<matrix.length;j++){
-                set.add(matrix[j][i]);
+                int num = matrix[j][i];
+                if(set.contains(num)) return false;
+                set.add(num);
             }
             if(set.size() != len) return false;
         }
