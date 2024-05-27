@@ -1,11 +1,11 @@
 class Solution {
     public int minimumOperations(int[] nums) {
         Arrays.sort(nums);
-        int count = 0 , decreased = 0;
+        int decreased = 0 , count = 0;
         for(int ele : nums){
-            if(ele-decreased <= 0) continue;
+            if(ele - decreased <= 0) continue;
             count++;
-            decreased += (ele-decreased);
+            decreased = ele;
         }
         return count;
     }
