@@ -1,1 +1,1 @@
-<h2>word-pattern Notes</h2><hr>[ Time taken: 10 m 51 s ]
+<h2>word-pattern Notes</h2><hr>[ Time taken: 3 m 13 s ]
