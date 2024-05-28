@@ -10,6 +10,7 @@
  */
 class Solution {
     List<Integer>list;
+    static Random random = new Random();
     int size = 0;
     public Solution(ListNode head) {
         ListNode temp = head;
@@ -22,7 +23,7 @@ class Solution {
     }
     
     public int getRandom() {
-        return list.get(new Random().nextInt(size));
+        return list.get(random.nextInt(size));
     }
 }
 
