@@ -7,7 +7,7 @@ class Solution {
         }
         Arrays.sort(freq);
         int len = arr.length/2 , count =0 ,i;
-        for(i=freq.length-1;i>=0 && freq[i] != 0 ; i--){
+        for(i=freq.length-1;i>=0; i--){
             if(count >= len) return freq.length-1-i; 
             count += freq[i];
         }
