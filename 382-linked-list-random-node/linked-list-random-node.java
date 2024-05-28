@@ -14,7 +14,7 @@ class Solution {
     int size = 0;
     public Solution(ListNode head) {
         ListNode temp = head;
-        list = new LinkedList();
+        list = new ArrayList();
         while(temp != null){
             list.add(temp.val);
             temp = temp.next;
