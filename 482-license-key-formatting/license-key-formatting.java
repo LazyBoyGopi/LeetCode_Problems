@@ -3,15 +3,17 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         int count = 0;
         for(int i=s.length()-1;i>=0;i--){
-            char ch = s.charAt(i);
-            if(ch == '-') continue;
             if(count == k){
-                sb.insert(0,'-');
+                sb.append('-');
                 count = 0;
             }
-            sb.insert(0,(ch>='a' && ch <= 'z') ? (char)(ch-32) : ch);
+            char ch = s.charAt(i);
+            if(ch == '-') continue;
+            
+            sb.append(Character.toUpperCase(ch));
             count++;
         }
-        return sb.toString();
+        if(sb.length() != 0 && sb.charAt(sb.length()-1) == '-') sb.setLength(sb.length()-1); 
+        return sb.reverse().toString();
     }
 }
