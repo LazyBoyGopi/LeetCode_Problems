@@ -5,7 +5,7 @@ class Solution {
         int res = 0 , carry = 0;
         for(int i=s.length()-1;i>0;i--){
             res++;
-            if(Integer.parseInt(s.charAt(i)+"") + carry == 1) {
+            if(s.charAt(i)-'0' + carry == 1) {
                 carry = 1;
                 res++;
             }
