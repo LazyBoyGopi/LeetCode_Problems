@@ -2,13 +2,14 @@ import java.math.BigInteger;
 
 class Solution {
     public int numSteps(String s) {
-        BigInteger num = new BigInteger(s,2);
-        int steps = 0;
-        while(!num.equals(BigInteger.ONE)){
-            if(num.mod(BigInteger.TWO).equals(BigInteger.ZERO)) num = num.divide(BigInteger.TWO);
-            else num = num.add(BigInteger.ONE);
-            steps++;
+        int res = 0 , carry = 0;
+        for(int i=s.length()-1;i>0;i--){
+            res++;
+            if(s.charAt(i)-'0' + carry == 1) {
+                carry = 1;
+                res++;
+            }
         }
-        return steps;
+        return res+carry;
     }
 }
