@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+
 class Solution {
     public int numSteps(String s) {
         BigInteger num = new BigInteger(s,2);
