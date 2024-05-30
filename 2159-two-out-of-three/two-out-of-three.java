@@ -1,8 +1,13 @@
 class Solution {
     private void getNumber(int[]nums,int[]freq){
         Set<Integer> set = new HashSet<>();
-        for(int ele : nums) set.add(ele);
-        for(int ele : set) freq[ele]++;
+        for(int ele : nums) {
+            if(!set.contains(ele))
+            {
+                freq[ele]++;
+                set.add(ele);
+            }
+        }
     }
     public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
         int[]freq = new int[101];
