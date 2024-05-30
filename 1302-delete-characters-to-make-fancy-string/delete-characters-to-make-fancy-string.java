@@ -1,12 +1,21 @@
 class Solution {
     public String makeFancyString(String s) {
+        char last = ' ' , preLast = ' ';
         StringBuilder sb = new StringBuilder();
         for(char ch : s.toCharArray()){
-            if(sb.length() < 2) sb.append(ch);
-            else{
-                if(!(sb.charAt(sb.length()-1) == ch && sb.charAt(sb.length()-2) == ch)){
-                    sb.append(ch);
-                }
+            if(preLast == ' ' && last == ' '){
+                sb.append(ch);
+                last = ch;
+            }
+            else if(preLast == ' '){
+                sb.append(ch);
+                preLast = last;
+                last = ch;
+            }
+            else if(!(ch == last && ch == preLast)){
+                sb.append(ch);
+                preLast = last;
+                last = ch;
             }
         }
         return sb.toString();
