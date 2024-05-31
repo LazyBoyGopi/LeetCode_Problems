@@ -1,9 +1,40 @@
 class Solution {
     public int[] numMovesStones(int a, int b, int c) {
-
-        int []ar = {a,b,c};
-        Arrays.sort(ar);
-        int gap1 = ar[1]-ar[0]-1 , gap2 = ar[2]-ar[1]-1;
+        int x ,y,z;
+        if(a > b && a > c){
+            x = a;
+            if(b > c) {
+                y = b;
+                z = c;
+            }
+            else {
+                y = c;
+                z = b;
+            }
+        }
+        else if(b > c && b > a){
+            x = b;
+            if(c > a){
+                y = c;
+                z = a;
+            }
+            else{
+                z = c;
+                y = a;
+            }
+        }
+        else{
+            x = c;
+            if(a > b){
+                y = a;
+                z = b;
+            }
+            else{
+                y = b;
+                z = a;
+            }
+        }
+        int gap1 = y-z-1 , gap2 = x-y-1;
         int minmoves;
         if(gap1 == 0 && gap2 == 0){
             minmoves = 0;
