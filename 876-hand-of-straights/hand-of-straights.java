@@ -43,7 +43,6 @@ class Solution {
                 }
             }
         }
-        System.out.println(Arrays.deepToString(ar));
         for(int [] group : ar){
             if(group[1] != groupSize) return false;
             count += groupSize;
