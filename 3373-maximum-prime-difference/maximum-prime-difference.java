@@ -18,7 +18,6 @@ class Solution {
                 maxIdx = Math.max(maxIdx,i);
             }
         }
-        System.out.println(minIdx+" "+maxIdx);
         if(minIdx == -1 || maxIdx == -1) return 0;
         return maxIdx-minIdx;
     }
