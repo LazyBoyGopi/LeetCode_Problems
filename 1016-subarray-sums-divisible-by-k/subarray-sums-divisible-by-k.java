@@ -3,7 +3,8 @@ class Solution {
         Map<Integer,Integer> map = new HashMap<>();
         int sum = 0 , count = 0;
         map.put(0,1);
-        for(int ele : nums){
+        for(int i=0;i<nums.length;i++){
+            int ele = nums[i];
             sum += ele;
             int rem = sum%k;
             if(rem < 0) rem += k;
