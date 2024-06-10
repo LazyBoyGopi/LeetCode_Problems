@@ -1,9 +1,13 @@
 class Solution {
-    public List<Integer> findPeaks(int[] mountain) {
-        List<Integer>list = new LinkedList<>();
-        for(int i=1;i<mountain.length-1;i++){
-            if(mountain[i] > mountain[i-1] && mountain[i] > mountain[i+1]) list.add(i);
+    public List<Integer> findPeaks(int[] mount) {
+        ArrayList <Integer> arr1=new ArrayList();
+       for(int i=1;i<=mount.length-2;i++)
+       {
+        if(mount[i-1]<mount[i] && mount[i]>mount[i+1])
+        {
+            arr1.add(i);
         }
-        return list;
+       }
+       return arr1; 
     }
 }
