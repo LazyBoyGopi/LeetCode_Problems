@@ -8,10 +8,11 @@ class Solution {
             idx += k;
         }
         if (idx < len) {
-            ar[arIdx] = s.substring(idx);
-            while (ar[arIdx].length() < k) {
-                ar[arIdx] = ar[arIdx].concat(fill+"");
+            StringBuilder sb = new StringBuilder(s.substring(idx));
+            while (sb.length() < k) {
+                sb.append(fill);
             }
+            ar[ar.length-1] = sb.toString();
         }
         return ar;
     }
