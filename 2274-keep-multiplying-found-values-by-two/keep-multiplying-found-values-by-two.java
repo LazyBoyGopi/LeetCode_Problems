@@ -1,9 +1,9 @@
 class Solution {
     public int findFinalValue(int[] nums, int original) {
-        Set<Integer>set = new HashSet();
-        for(int ele : nums) set.add(ele);
+        boolean []check = new boolean[1001];
+        for(int ele : nums) check[ele] = true;
 
-        while(set.contains(original)) original *= 2;
+        while(original <= 1000 && check[original]) original *=2;
         return original;
     }
 }
