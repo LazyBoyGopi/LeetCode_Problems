@@ -11,19 +11,15 @@ class Solution {
         };
     }
     public int romanToInt(String s) {
-        int ans = 0;
-        int last = convert(s.charAt(0));
-        for(int i=1;i<s.length();i++){
+        int ans = 0, last = convert(s.charAt(0)) , n = s.length();
+        for(int i=1;i<n;i++){
             int cur = convert(s.charAt(i));
             if(last >= cur){
                 ans += last;
             }
-            else{
-                ans -= last;;
-            }
+            else ans -= last;
             last = cur;
         }
-        ans += last;
-        return ans;
+        return ans+last;
     }
 }
