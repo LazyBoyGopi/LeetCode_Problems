@@ -10,6 +10,7 @@ class Solution {
                 if(nums[i] < nums[j]){
                     bigger = true;
                 }
+                if(bigger && smaller) break;
            }
            if(smaller && bigger) count++;
         }
