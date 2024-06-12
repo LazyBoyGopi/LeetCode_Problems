@@ -50,10 +50,9 @@
 class Solution {
     private boolean recu(TreeNode left,TreeNode right){
         if(left == null && right == null) return true;
-        if((left == null && right != null) || (left != null && right == null)) return false;
-        if(!recu(left.left,right.right)) return false;
+        if((left == null || right == null)) return false;
         if(left.val != right.val) return false;
-        return recu(left.right,right.left);
+        return recu(left.left,right.right) && recu(left.right,right.left) ;
     }
     public boolean isSymmetric(TreeNode root) {
         return recu(root.left,root.right);
