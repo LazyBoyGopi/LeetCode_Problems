@@ -12,8 +12,7 @@ class Solution {
         int st = 0 , end = s.length()-1;
         while(st<=end){
             if(s.charAt(st) != s.charAt(end)){
-                if(isPalindrome(st+1,end,s) || isPalindrome(st,end-1,s)) return true; 
-                else return false;
+                return isPalindrome(st+1,end,s) || isPalindrome(st,end-1,s); 
             }
             st++;
             end--;
