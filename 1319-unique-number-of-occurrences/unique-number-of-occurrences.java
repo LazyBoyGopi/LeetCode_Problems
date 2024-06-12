@@ -1,6 +1,6 @@
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
-        boolean freq[] = new boolean[2001];
+        boolean freq[] = new boolean[1001];
         Arrays.sort(arr);
         int count = 1;
         int last = arr[0];
