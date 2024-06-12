@@ -25,7 +25,6 @@ class Solution {
                 preLast.next = last;
                 preLast = preLast.next;
             } 
-            System.out.println(last.val);
             last = head;
             found = false;
             if(head != null)
