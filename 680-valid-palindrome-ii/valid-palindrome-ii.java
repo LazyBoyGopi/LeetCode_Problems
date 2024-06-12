@@ -1,17 +1,24 @@
 class Solution {
-    private boolean recu(int st,int end,String s,int count)
+    private boolean isPalindrome(int st,int end,String s)
     {
-        if(st > end) return true;
-        if(s.charAt(st) == s.charAt(end)){
-            return recu(st+1,end-1,s,count);
+        while(st <= end){
+            if(s.charAt(st) != s.charAt(end)) return false;
+            st++;
+            end--;
         }
-        else if(count == 0){
-            if(recu(st+1,end,s,count+1) || recu(st,end-1,s,count+1)) return true;
-            else return false;
-        }
-        else return false;
+        return true;
     }
     public boolean validPalindrome(String s) {
-        return recu(0,s.length()-1,s,0);
+        int st = 0 , end = s.length()-1;
+        while(st<=end){
+            if(s.charAt(st) != s.charAt(end)){
+                if(isPalindrome(st+1,end,s) || isPalindrome(st,end-1,s)) return true; 
+                else return false;
+            }
+            st++;
+            end--;
+    }
+        return true;
+
     }
 }
