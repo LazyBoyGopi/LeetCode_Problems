@@ -1,11 +1,10 @@
 class Solution {
     public boolean checkString(String s) {
-        int firstBIdx = s.indexOf("b");
+        int firstBIdx = s.indexOf("b") , len = s.length();
         if(firstBIdx == -1) return true;
-        int aIdx = 0;
-        while(aIdx != -1){
-            aIdx = s.indexOf("a",aIdx+1);
-            if(aIdx > firstBIdx) return false;
+
+        for(int i=0;i<len;i++){
+            if(s.charAt(i) == 'a' && i > firstBIdx) return false;
         }
         return true;
     }
