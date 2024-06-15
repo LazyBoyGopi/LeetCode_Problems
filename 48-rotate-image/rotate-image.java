@@ -1,22 +1,18 @@
 class Solution {
     public void rotate(int[][] matrix) {
-        int[][]ans = new int[matrix.length][matrix.length];
-        int col = matrix.length-1;
-        for(int i=0;i<matrix.length;i++)
-        {
-            int row = 0;
-            for(int j=0;j<matrix[i].length;j++)
-            {
-                ans[row][col] = matrix[i][j];
-                row++;
+        for(int i=0;i<matrix.length;i++){
+            for(int j=i;j<matrix.length;j++){
+                int temp = matrix[i][j] ;
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
             }
-            col--;
         }
-        for(int i=0;i<matrix.length;i++)
-        {
-            for(int j=0;j<matrix.length;j++)
-            {
-                matrix[i][j] = ans[i][j];
+        for(int i=0;i<matrix.length;i++){
+            int st = 0 , end = matrix.length-1;
+            while(st <= end){
+                int temp = matrix[i][st];
+                matrix[i][st++] = matrix[i][end];
+                matrix[i][end--] = temp;
             }
         }
     }
