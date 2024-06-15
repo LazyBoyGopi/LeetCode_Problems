@@ -1,7 +1,7 @@
 class Solution {
     public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
-        PriorityQueue<int[]> minCapitalHeap = new PriorityQueue<>((a,b) ->(a[0]-b[0]));
-        PriorityQueue<Integer>maxProfitHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+        Queue<int[]> minCapitalHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        Queue<Integer> maxProfitHeap = new PriorityQueue(Collections.reverseOrder());
         
         for(int i=0;i<profits.length;i++){
             minCapitalHeap.add(new int[]{capital[i],profits[i]});
