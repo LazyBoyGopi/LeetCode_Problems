@@ -10,7 +10,6 @@ class Solution {
                 count++;
                 sum += (sum+1);
             }
-            System.out.println(sum);
         }
         return count;
     }
