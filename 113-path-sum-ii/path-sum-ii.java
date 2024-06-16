@@ -22,11 +22,11 @@ class Solution {
             if(curSum == targetSum){
                 list.add(new ArrayList<>(tempList));
             }
+            tempList.remove(tempList.size()-1);
+            return;
         }
-        else{
             recu(root.left,targetSum,curSum,list,tempList);
             recu(root.right,targetSum,curSum,list,tempList);
-        }
         tempList.remove(tempList.size()-1);
     }
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
