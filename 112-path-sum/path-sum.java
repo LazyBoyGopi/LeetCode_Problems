@@ -24,7 +24,6 @@ class Solution {
         return recu(root.right,targetSum,sum);
     }
     public boolean hasPathSum(TreeNode root, int targetSum) {
-        if(root == null) return false;
         return recu(root,targetSum,0);
     }
 }
