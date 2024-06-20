@@ -1,14 +1,15 @@
 class Solution {
     private boolean isPossible(int[]position,int m,int dis){
-        int last = 0;
+        int last = position[0];
+        m--;
         for(int i=1;i<position.length;i++){
-            if(Math.abs(position[last]-position[i]) >= dis) {
+            if(position[i]-last>= dis) {
                 m--;
-                if(m-1 == 0) return true;
-                last = i;
+                if(m == 0) return true;
+                last = position[i];
             }
         }
-        return m-1 <= 0;
+        return m <= 0;
     }
     public int maxDistance(int[] position, int m) {
         Arrays.sort(position);
