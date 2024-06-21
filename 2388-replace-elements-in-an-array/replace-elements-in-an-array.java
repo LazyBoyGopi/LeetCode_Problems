@@ -4,11 +4,11 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             map.put(nums[i],i);
         }
-        for(int [] ar : operations){
-            int idx = map.get(ar[0]);
-            nums[idx] = ar[1];
-            // map.remove(ar[0]);
-            map.put(ar[1],idx);
+        for(int i=0;i<operations.length;i++){
+            int idx = map.get(operations[i][0]);
+            int ele = operations[i][1];
+            nums[idx] = ele;
+            map.put(ele,idx);
         }
         return nums;
     }
