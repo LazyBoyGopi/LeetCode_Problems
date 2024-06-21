@@ -43,7 +43,6 @@ class Solution {
     }
     public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
         int[]idx = getIdxForRange(customers,grumpy,minutes);
-        System.out.println(Arrays.toString(idx));
         return getAns(customers,grumpy,idx);
     }
 }
