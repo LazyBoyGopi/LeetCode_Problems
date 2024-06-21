@@ -7,7 +7,7 @@ class Solution {
         }
 
         int len = freq.length , sum = 0 , count = 0;
-        for(int i=1;i<=n && i<len ;i++){
+        for(int i=1;i<=n;i++){
             if(!freq[i]) {
                 if((sum+i) <= maxSum){
                     sum += i;
