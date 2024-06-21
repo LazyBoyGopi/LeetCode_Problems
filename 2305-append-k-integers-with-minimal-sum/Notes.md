@@ -1,1 +1,1 @@
-<h2>append-k-integers-with-minimal-sum Notes</h2><hr>[ Time taken: 16 m 28 s ]
+<h2>append-k-integers-with-minimal-sum Notes</h2><hr>[ Time taken: 37 m 20 s ]
