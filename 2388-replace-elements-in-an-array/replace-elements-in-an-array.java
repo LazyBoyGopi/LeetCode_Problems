@@ -7,7 +7,7 @@ class Solution {
         for(int [] ar : operations){
             int idx = map.get(ar[0]);
             nums[idx] = ar[1];
-            map.remove(ar[0]);
+            // map.remove(ar[0]);
             map.put(ar[1],idx);
         }
         return nums;
