@@ -1,23 +1,17 @@
 class Solution {
     public long countSubarrays(int[] nums, int k) {
-        int maxEle = 1;
-        for(int ele : nums){
-            if(ele > maxEle){
-                 maxEle = ele;
+        int max = 1;
+        for(int i=0;i<nums.length;i++) max = Math.max(max,nums[i]);
+
+        int left = 0 , right = 0 , len = nums.length ;
+        long subarrayCount = 0 ,highEle = 0;
+        while(right < len){
+            if(nums[right] == max) highEle++;
+            while(highEle >= k){
+                subarrayCount += len-right;
+                if(nums[left++] == max) highEle--; 
             }
-        }
-        long subarrayCount = 0;
-        int countOfMaxEle = 0;
-        int low = 0 , high = 0;
-        while(high < nums.length)
-        {
-            if(nums[high] == maxEle) countOfMaxEle++;
-            while(countOfMaxEle >= k && low <= high)
-            {
-                subarrayCount += nums.length-high;
-               if(nums[low++] == maxEle) countOfMaxEle--;
-            }
-            high++;
+            right++;
         }
         return subarrayCount;
     }
