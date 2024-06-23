@@ -1,6 +1,6 @@
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
-        List<Integer>idx = new LinkedList<>();
+        List<String>idx = new LinkedList<>();
         int min = 2000;
         Map<String,Integer>map  = new HashMap<>();
         for(int i=0;i<list1.length;i++){
@@ -13,16 +13,12 @@ class Solution {
                 if(sum < min){
                     min = sum;
                     idx.clear();
-                    idx.add(i);
+                    idx.add(str);
                 }else if(min == sum){
-                    idx.add(i);
+                    idx.add(str);
                 }
             }
         }
-        String[]ans = new String[idx.size()];
-        for(int i=0;i<idx.size();i++){
-            ans[i] = list2[idx.get(i)];
-        }
-        return ans;
+        return idx.toArray(new String[idx.size()]);
     }
 }
