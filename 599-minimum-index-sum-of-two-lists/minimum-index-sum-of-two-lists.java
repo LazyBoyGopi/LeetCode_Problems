@@ -1,26 +1,27 @@
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
-        Map<Integer,List<String>>map = new HashMap<>();
+        List<Integer>idx = new LinkedList<>();
+        int min = 2000;
+        Map<String,Integer>map  = new HashMap<>();
         for(int i=0;i<list1.length;i++){
-            String str = list1[i];
-            for(int j=0;j<list2.length;j++){
-                if(str.equals(list2[j])){
-                    if(map.containsKey(i+j)){
-                        map.get(i+j).add(str);
-                    }else{
-                        map.put(i+j,new LinkedList(Arrays.asList(str)));
-                    }
+            map.put(list1[i],i);
+        }
+        for(int i=0;i<list2.length;i++){
+            String str = list2[i];
+            if(map.containsKey(str)){
+                int sum = map.get(str)+i;
+                if(sum < min){
+                    min = sum;
+                    idx.clear();
+                    idx.add(i);
+                }else if(min == sum){
+                    idx.add(i);
                 }
             }
         }
-        int min = Integer.MAX_VALUE;
-        for(Integer key : map.keySet()){
-            min = Math.min(min,key);
-        }
-        List<String>list = map.get(min);
-        String[]ans = new String[list.size()];
-        for(int i=0;i<ans.length;i++){
-            ans[i] = list.get(i);
+        String[]ans = new String[idx.size()];
+        for(int i=0;i<idx.size();i++){
+            ans[i] = list2[idx.get(i)];
         }
         return ans;
     }
