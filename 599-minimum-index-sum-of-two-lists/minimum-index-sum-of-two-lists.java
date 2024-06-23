@@ -6,7 +6,7 @@ class Solution {
         for(int i=0;i<list1.length;i++){
             map.put(list1[i],i);
         }
-        for(int i=0;i<list2.length;i++){
+        for(int i=0;i<list2.length && i<= min;i++){
             String str = list2[i];
             if(map.containsKey(str)){
                 int sum = map.get(str)+i;
