@@ -6,9 +6,7 @@ class Solution {
             for(int j=0;j<list2.length;j++){
                 if(str.equals(list2[j])){
                     if(map.containsKey(i+j)){
-                        List<String>l = map.get(i+j);
-                        l.add(str);
-                        map.put(i+j,l);
+                        map.get(i+j).add(str);
                     }else{
                         map.put(i+j,new LinkedList(Arrays.asList(str)));
                     }
