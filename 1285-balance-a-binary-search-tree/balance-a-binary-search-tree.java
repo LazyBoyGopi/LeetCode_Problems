@@ -14,28 +14,23 @@
  * }
  */
 class Solution {
-    private void getAllElements(TreeNode root,List<Integer>list){
+    private void inorder(TreeNode root,List<Integer>list){
         if(root == null) return;
-        if(root.left == null && root.right == null){
-            list.add(root.val);
-            return;
-        }
-        getAllElements(root.left,list);
+        inorder(root.left,list);
         list.add(root.val);
-        getAllElements(root.right,list);
+        inorder(root.right,list);
     }
-    private TreeNode buildTree(List<Integer>list,TreeNode root,int st ,int end){
+    private TreeNode buildTree(List<Integer>list,int st,int end){
         if(st > end) return null;
         int mid = (st+end) >> 1;
-        root = new TreeNode(list.get(mid));
-        root.left = buildTree(list,root.left,st,mid-1);
-        root.right = buildTree(list,root.right,mid+1,end);
+        TreeNode root = new TreeNode(list.get(mid));
+        root.left = buildTree(list,st,mid-1);
+        root.right = buildTree(list,mid+1,end);
         return root;
     }
     public TreeNode balanceBST(TreeNode root) {
         List<Integer>list = new LinkedList<>();
-        getAllElements(root,list);
-        TreeNode ans = new TreeNode() , org = ans;
-        return buildTree(list,ans,0,list.size()-1);
+        inorder(root,list);
+        return buildTree(list,0,list.size()-1);
     }
 }
