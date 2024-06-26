@@ -1,13 +1,16 @@
 class Solution {
     public List<String> stringMatching(String[] words) {
-        Set<String>list = new HashSet<>();
+        List<String>list = new LinkedList<>();
         int len = words.length;
         for(int i=0;i<len;i++){
-            for(int j=0;j<len;j++){
-                if(i == j) continue;
-                if(words[i].contains(words[j])) list.add(words[j]);
-            }
+            if(isSubString(words,i)) list.add(words[i]);
         }
-        return new LinkedList<>(list);
+        return list;
+    }
+    private boolean isSubString(String[]words,int j){
+        for(int i=0;i<words.length;i++){
+            if(j != i && words[i].contains(words[j])) return true;
+        }
+        return false;
     }
 }
