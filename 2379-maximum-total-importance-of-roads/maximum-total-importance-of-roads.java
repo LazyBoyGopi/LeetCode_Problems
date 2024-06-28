@@ -1,17 +1,10 @@
-import java.util.*;
-
 class Solution {
     public long maximumImportance(int n, int[][] roads) {
-        Map<Integer,Integer>map = new HashMap<>();
-        for(int [] ar : roads){
-            map.put(ar[0],map.getOrDefault(ar[0],0)+1);
-            map.put(ar[1],map.getOrDefault(ar[1],0)+1);
-        }
-        Collection<Integer> c = map.values();
-        int[]ar = new int[c.size()];
-        int idx = 0;
-        for(int ele : c){
-            ar[idx++] = ele;
+        int[]ar = new int[5*(int)1e4];
+        int len = roads.length;
+        for(int i=0;i<len;i++){
+            ar[roads[i][0]]++;
+            ar[roads[i][1]]++;
         }
         Arrays.sort(ar);
         long ans = 0l;
