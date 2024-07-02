@@ -1,19 +1,20 @@
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        int idx1 = 0 , idx2 = 0 , len1 = nums1.length , len2 = nums2.length;
-        List<Integer>list = new ArrayList<>();
-        while(idx1 < len1 && idx2 < len2){
-            if(nums1[idx1] == nums2[idx2]) {
-                list.add(nums1[idx1]);
-                idx1++;
-                idx2++;
+        Map<Integer,Integer>map = new HashMap<>();
+        for(int i=0;i<nums1.length;i++){
+            map.put(nums1[i],map.getOrDefault(nums1[i],0)+1);
+        }
+        List<Integer>list = new LinkedList<>();
+        for(int i=0;i<nums2.length;i++){
+            if(map.containsKey(nums2[i])){
+                int count = map.get(nums2[i]);
+                if(count > 1)
+                    map.put(nums2[i],count-1);
+                else 
+                    map.remove(nums2[i]);
+
+                list.add(nums2[i]);
             }
-            else if(nums1[idx1] > nums2[idx2]){
-                idx2++;
-            }
-            else idx1++;
         }
         int[]ar = new int[list.size()];
         for(int i=0;i<ar.length;i++){
