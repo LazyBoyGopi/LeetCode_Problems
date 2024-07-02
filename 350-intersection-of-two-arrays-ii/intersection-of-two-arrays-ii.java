@@ -1,25 +1,17 @@
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        Map<Integer,Integer>map = new HashMap<>();
+        int[]ar = new int[1001];
+        int[]ans = new int[1000];
         for(int i=0;i<nums1.length;i++){
-            map.put(nums1[i],map.getOrDefault(nums1[i],0)+1);
+            ar[nums1[i]]++;
         }
-        List<Integer>list = new LinkedList<>();
+        int idx = 0;
         for(int i=0;i<nums2.length;i++){
-            if(map.containsKey(nums2[i])){
-                int count = map.get(nums2[i]);
-                if(count > 1)
-                    map.put(nums2[i],count-1);
-                else 
-                    map.remove(nums2[i]);
-
-                list.add(nums2[i]);
+            if(ar[nums2[i]] > 0){
+                ans[idx++] = nums2[i];
+                ar[nums2[i]]--;
             }
         }
-        int[]ar = new int[list.size()];
-        for(int i=0;i<ar.length;i++){
-            ar[i] = list.get(i);
-        }
-        return ar;
+        return Arrays.copyOfRange(ans,0,idx);
     }
 }
