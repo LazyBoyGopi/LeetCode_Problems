@@ -5,7 +5,6 @@ class Solution {
             int a1 = a%2;
             int b1 = b%2;
             int c1 = c%2;
-            System.out.println(a1+" "+b1+" "+c1);
             if((a1 | b1) != c1){
                 if(c1 == 0){
                     if(a1 == 1){
@@ -21,7 +20,6 @@ class Solution {
             a >>= 1;
             b >>= 1;
             c >>= 1;
-            System.out.println(a+" "+b+" "+c);
         }
         return count;
     }
