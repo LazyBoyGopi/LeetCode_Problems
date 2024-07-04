@@ -1,6 +1,5 @@
 class Solution {
     private void recu(int n,int k,int idx,List<Integer>temp,List<List<Integer>>list){
-        if(temp.size() > k) return;
         if(temp.size() == k){
             list.add(new ArrayList<>(temp));
             return;
