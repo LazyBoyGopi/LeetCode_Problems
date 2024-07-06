@@ -1,9 +1,9 @@
 class Solution {
     public int passThePillow(int n, int time) {
-        int times = time/(n-1);
-        if(times % 2 == 0){
-            return (time%(n-1)+1);
-        }
-        else return n-(time%(n-1));
+        int rounds = time/(n-1);
+        int rem = time%(n-1);
+        if((rounds & 1) == 0)
+            return rem+1;
+        return n-rem;
     }
 }
