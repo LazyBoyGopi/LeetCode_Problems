@@ -14,7 +14,7 @@ class Solution {
                 }
             } 
             stIdx = (removeIdx == list.size()-1) ? 0 : removeIdx;
-            System.out.println(list.remove(removeIdx)+" "+stIdx);
+            list.remove(removeIdx);
         }
         return list.get(0);
     }
