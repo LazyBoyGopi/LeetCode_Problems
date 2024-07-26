@@ -22,8 +22,6 @@ class Solution {
         helperQuickSort(nums,pivot+1,end);
     }
 
-
-
     private void conquer(int[]nums,int st,int mid,int end){
         int[]ar = new int[end-st+1];
         int idx1 = st , idx2 = mid+1 , idx = 0;
@@ -43,9 +41,16 @@ class Solution {
         mergeSort(nums,mid+1,end);
         conquer(nums,st,mid,end);
     }
+
     public int[] sortArray(int[] nums) {
         // helperQuickSort(nums,0,nums.length-1);
-        mergeSort(nums,0,nums.length-1);
+        // mergeSort(nums,0,nums.length-1);
+        Queue<Integer> q = new PriorityQueue();
+        for(int ele : nums) q.add(ele);
+        int idx = 0;
+        while(!q.isEmpty()){
+            nums[idx++] = q.poll();
+        }
         return nums;
     }
 }
