@@ -1,13 +1,14 @@
+import java.util.OptionalInt;
+
 class Solution {
     public boolean canBeEqual(int[] target, int[] arr) {
-        Map<Integer,Integer> map = new HashMap<>();
-        for(int ele : target) map.put(ele,map.getOrDefault(ele,0)+1);
-        for(int ele : arr){
-            int times = map.containsKey(ele) ? map.get(ele) : 0;
-            times--;
-            map.put(ele,times);
-        }
-        for(int value : map.values()) if(value != 0) return false;
+        OptionalInt max1 = Arrays.stream(target).max();
+        OptionalInt max2 = Arrays.stream(arr).max();
+        int max = Math.max(max1.getAsInt(),max2.getAsInt());
+        int[]count = new int[max+1];
+        for(int ele : target) count[ele]++;
+        for(int ele : arr) count[ele]--;
+        for(int ele : count) if(ele != 0) return false;
         return true;
     }
 }
