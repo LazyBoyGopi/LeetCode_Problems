@@ -19,7 +19,6 @@ class Solution {
                 list.add(entry.getKey());
             }
         }
-        System.out.println(list+"\n"+map);
         if(list.size() == 1) return list.get(0);
         Collections.sort(list);
         return list.get(list.size()-1);
