@@ -1,17 +1,12 @@
 class Solution {
     public String kthDistinct(String[] arr, int k) {
-        int count = 0;
-        for(int i=0;i<arr.length;i++){
-            boolean isFound = false;
-            for(int j=0;j<arr.length;j++){
-                if(j == i) continue;
-                if(arr[i].equals(arr[j])){
-                    isFound = true;
-                    break;
-                }
-            }
-            if(!isFound) count++;
-            if(count == k) return arr[i];
+        Map<String,Integer> map = new HashMap<>();
+        for(String str: arr){
+            map.put(str,map.getOrDefault(str,0)+1);
+        }
+        for(String str : arr){
+            if(map.get(str) == 1) k--;
+            if(k == 0) return str;
         }
         return "";
     }
