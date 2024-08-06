@@ -1,22 +1,18 @@
-import java.util.Collection;
-import java.util.Collections;
 class Solution {
     public int minimumPushes(String word) {
-        Map<Character,Integer>map = new HashMap<>();
+        int[]ar = new int[26];
         for(char ch : word.toCharArray()){
-            map.put(ch,map.getOrDefault(ch,0)+1);
+            ar[ch-'a']++;
         }
+        Arrays.sort(ar);
         int totalCount = 0;
         int setCount = 1 , count = 0;
-        List<Integer> values = new LinkedList<>(map.values());
-        Collections.sort(values);
-        for(int i=values.size()-1;i>=0;i--){
-            int value = values.get(i);
-            totalCount += (value * setCount);
+        for(int i=ar.length-1;i>=0;i--){
+            totalCount += (ar[i]*setCount);
             count++;
             if(count == 8){
-                count = 0;
                 setCount++;
+                count = 0;
             }
         }
         return totalCount;
