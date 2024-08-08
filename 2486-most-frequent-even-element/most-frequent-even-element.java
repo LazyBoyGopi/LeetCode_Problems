@@ -1,7 +1,7 @@
 class Solution {
     private int getMax(int[]nums){
         int max = -1;
-        for(int ele : nums) max = Math.max(max,ele);
+        for(int ele : nums) if(ele > max) max = ele;
         return max;
     }
     public int mostFrequentEven(int[] nums) {
