@@ -5,7 +5,7 @@ class Solution {
         return max;
     }
     public int maxSubArray(int[] nums) {
-        int sum = 0 , max = getMax(nums);
+        int sum = 0 , max = Integer.MIN_VALUE;
         int idx = 0 , len = nums.length;
         while(idx < len){
             while(idx < len && sum+nums[idx] >= 0){
@@ -15,6 +15,6 @@ class Solution {
             sum = 0;
             idx++;
         }
-        return max;
+        return max >= 0 ? max : getMax(nums);
     }
 }
