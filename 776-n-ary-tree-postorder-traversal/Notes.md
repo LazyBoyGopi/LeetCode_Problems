@@ -1,1 +1,1 @@
-<h2>n-ary-tree-postorder-traversal Notes</h2><hr>[ Time taken: 17 m 3 s ]
+<h2>n-ary-tree-postorder-traversal Notes</h2><hr>[ Time taken: 1 m 47 s ]
