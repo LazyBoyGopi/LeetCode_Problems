@@ -27,7 +27,7 @@ class Solution {
         }
     }
     public List<Integer> postorder(Node root) {
-        List<Integer>list = new LinkedList<>();
+        List<Integer>list = new LinkedList();
         getList(root,list);
         if(root != null) list.add(root.val);
         return list;
