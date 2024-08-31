@@ -16,7 +16,6 @@ public class Solution {
             int curMin=Check(nums,i);
             if(curMin != 0){
                 min = Math.Min(min,curMin+nums[i]);
-                Console.WriteLine(i);
             }
         }
         return min != 151 ? min : -1;
