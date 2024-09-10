@@ -1,1 +1,1 @@
-<h2>insert-greatest-common-divisors-in-linked-list Notes</h2><hr>[ Time taken: 35 m 41 s ]
+<h2>insert-greatest-common-divisors-in-linked-list Notes</h2><hr>[ Time taken: 8 m 6 s ]
