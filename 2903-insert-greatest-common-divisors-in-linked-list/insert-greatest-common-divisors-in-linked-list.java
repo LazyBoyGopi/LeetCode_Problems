@@ -1,43 +1,33 @@
 /**
  * Definition for singly-linked list.
  * public class ListNode {
- * int val;
- * ListNode next;
- * ListNode() {}
- * ListNode(int val) { this.val = val; }
- * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
 class Solution {
-    private int getGCD(int a, int b) {
-        while(b != 0)
-        {
-            int temp = b;
-            b = a%b;
-            a = temp;
+    private int getLargestCommonDivisor(int a,int b)
+    {
+        if(a > b) return getLargestCommonDivisor(b,a);
+        for(int i=a;i>=1;i--){
+            if(b % i== 0 && a%i == 0) return i;
         }
-        return a;
+        return 1;
     }
-
     public ListNode insertGreatestCommonDivisors(ListNode head) {
-        if(head == null || head.next == null) return head;
-        ListNode ans = new ListNode();
-        ListNode org = ans;
-        int lastVal = head.val;
-        ans.next = head;
-        ans = ans.next;
-        head = head.next;
-        while (head != null) {
-            int temp = getGCD(lastVal,head.val);
-            ans.next = new ListNode(temp);
-            ans = ans.next;
-            ans.next = head;
-            ans = ans.next;
-            lastVal = head.val;
-            head = head.next;
+        ListNode dup = head;
+        while(dup != null && dup.next != null){
+            int last = dup.val, next = dup.next.val;
+            int x = getLargestCommonDivisor(last,next);
+            ListNode nextNode = dup.next;
+            dup.next = new ListNode(x);
+            dup = dup.next;
+            dup.next = nextNode;
+            dup = dup.next;
         }
-        if(ans != null)
-        ans.next = null;
-        return org.next;
+        return head;
     }
 }
