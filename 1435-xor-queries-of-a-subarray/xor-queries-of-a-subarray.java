@@ -8,8 +8,6 @@ class Solution {
             xor[i] = xor[i-1] ^ arr[i];
         }
 
-        System.out.println(Arrays.toString(xor));
-
         for(int i=0;i<queries.length;i++){
             int st = queries[i][0];
             int end = queries[i][1];
