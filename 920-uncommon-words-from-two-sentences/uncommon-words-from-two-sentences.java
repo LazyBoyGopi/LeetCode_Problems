@@ -11,7 +11,7 @@ class Solution {
             map2.put(str,map2.getOrDefault(str,0)+1);
         }
 
-        Set<String>list = new HashSet();
+        List<String>list = new LinkedList();
 
         for(Map.Entry<String,Integer>entry : map.entrySet()){
             if(entry.getValue()==1 && !map2.containsKey(entry.getKey())){
