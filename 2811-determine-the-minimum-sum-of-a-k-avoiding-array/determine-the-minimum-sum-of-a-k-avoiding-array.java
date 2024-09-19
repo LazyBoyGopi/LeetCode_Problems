@@ -1,5 +1,8 @@
 class Solution {
     public int minimumSum(int n, int k) {
+        int sumTillN = (n*(n+1)/2);
+        if(sumTillN < k) return sumTillN;
+
         Set<Integer>set = new HashSet<>();
         int sum = 0, count = 0;
         for(int i=1;count < n;i++){
