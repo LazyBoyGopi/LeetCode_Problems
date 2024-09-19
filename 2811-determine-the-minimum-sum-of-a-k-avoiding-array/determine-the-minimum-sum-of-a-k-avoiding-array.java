@@ -1,18 +1,10 @@
 class Solution {
     public int minimumSum(int n, int k) {
-        int sumTillN = (n+n-1);
-        if(sumTillN < k) return (n*(n+1)/2);
-
-        Set<Integer>set = new HashSet<>();
-        int sum = 0, count = 0;
-        for(int i=1;count < n;i++){
-            int comp = k-i;
-            if(!set.contains(comp)){
-                set.add(i);
-                sum += i;
-                count++;
-            }
-        }
-        return sum;
+       if(n+n-1 < k || k == 1 || k == 2) return (n*(n+1))/2;
+       int half = k/2;
+       int firstHalf = (half*(half+1))/2;
+       int i = k, j = k+(n-half-1);
+       int secondHalf = ((i+j) *(j-i+1))/2;
+       return firstHalf + secondHalf;
     }
 }
