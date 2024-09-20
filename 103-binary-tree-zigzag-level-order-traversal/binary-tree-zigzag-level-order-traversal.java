@@ -14,38 +14,33 @@
  * }
  */
 class Solution {
-    private void getElementsByLevel(TreeNode root,Map<Integer,List<Integer>>map,int level){
+    private void getAns(List<List<Integer>>ans,TreeNode root,int level){
         if(root == null) return;
-        if(map.containsKey(level)){
-            map.get(level).add(root.val);
+        if(level %2 == 0){
+           if(ans.size() > level){
+                List<Integer> list = ans.get(level);
+                list.add(root.val);
+           }else{
+                 List<Integer> list = new LinkedList();
+                 list.add(root.val);
+                 ans.add(list);
+           }
         }else{
-            List<Integer> list = new LinkedList();
-            list.add(root.val);
-            map.put(level,list);
+            if(ans.size() > level){
+                List<Integer> list = ans.get(level);
+                list.add(0,root.val);
+           }else{
+                 List<Integer> list = new LinkedList();
+                 list.add(root.val);
+                 ans.add(list);
+           }
         }
-        getElementsByLevel(root.left,map,level+1);
-        getElementsByLevel(root.right,map,level+1);
+        getAns(ans,root.left,level+1);
+        getAns(ans,root.right,level+1);
     }
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        Map<Integer,List<Integer>>map = new HashMap();
-        getElementsByLevel(root,map,0);
-        List<List<Integer>> ans = new LinkedList();
-        int level = 0;
-        while(map.containsKey(level)){
-            List<Integer> list = new LinkedList();
-            List<Integer> curList = map.get(level);
-            if(level % 2 == 0){
-                for(int i=0;i<curList.size();i++){
-                    list.add(curList.get(i));
-                }
-            }else{
-                for(int i=curList.size()-1;i>=0;i--){
-                    list.add(curList.get(i));
-                }
-            }
-            ans.add(list);
-            level++;
-        }
-        return ans;
+        List<List<Integer>> list = new LinkedList();
+        getAns(list,root,0);
+        return list;
     }
 }
