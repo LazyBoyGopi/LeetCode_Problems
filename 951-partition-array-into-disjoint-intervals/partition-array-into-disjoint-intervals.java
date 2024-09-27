@@ -4,7 +4,7 @@ class Solution {
         for(int i=1;i<len;i++){
             if(nums[i] < maxEle) {
                 minIdx = i;
-                maxEle = Math.max(maxTillNow,maxEle);
+                maxEle = maxTillNow;
             }
             else {
                 maxTillNow = Math.max(maxTillNow,nums[i]);
