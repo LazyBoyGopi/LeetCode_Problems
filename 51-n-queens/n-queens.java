@@ -22,9 +22,6 @@ class Solution {
                 if(mat[r][c] == 1) continue outer;
             }
 
-            for(int r=curRow,c=curCol; r<n && c<n; r++,c++){
-                if(mat[r][c] == 1) continue outer;
-            }
 
             for(int r=curRow,c=curCol; r<n && c>=0; r++,c--){
                 if(mat[r][c] == 1) continue outer;
