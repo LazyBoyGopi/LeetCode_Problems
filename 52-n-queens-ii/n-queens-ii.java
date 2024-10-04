@@ -10,12 +10,7 @@ class Solution {
 
             int curCol = j;
 
-            for (int i = 0; i < n; i++) {
-                if (mat[curRow][i] == 1)
-                    continue outer;
-            }
-
-            for (int i = 0; i < n; i++) {
+           for (int i = 0; i < n; i++) {
                 if (mat[i][curCol] == 1)
                      continue outer;
             }
@@ -24,18 +19,9 @@ class Solution {
                 if(mat[r][c] == 1) continue outer;
             }
 
-            for(int r=curRow,c=curCol; r<n && c<n; r++,c++){
-                if(mat[r][c] == 1) continue outer;
-            }
-
-            for(int r=curRow,c=curCol; r<n && c>=0; r++,c--){
-                if(mat[r][c] == 1) continue outer;
-            }
-
             for(int r=curRow,c=curCol; r>=0 && c<n; r--,c++){
                 if(mat[r][c] == 1) continue outer;
             }
-
 
             mat[curRow][curCol] = 1;
             canWePlaceNQueens(n, mat, curRow + 1);
