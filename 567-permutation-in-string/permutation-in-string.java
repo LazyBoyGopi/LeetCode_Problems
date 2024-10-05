@@ -17,7 +17,6 @@ class Solution {
             windowCharacters[s2.charAt(i)-'a']++;
         }
         do{
-            System.out.println(Arrays.toString(windowCharacters));
             int i=0;
             for(;i<26;i++){
                 if(freqOfS1[i] != windowCharacters[i]){
