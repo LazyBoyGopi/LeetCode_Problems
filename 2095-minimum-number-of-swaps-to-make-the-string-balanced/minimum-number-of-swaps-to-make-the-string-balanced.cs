@@ -1,8 +1,8 @@
 public class Solution {
     public int MinSwaps(string s) {
         int brackets = 0;
-        foreach(char ch in s.ToCharArray()){
-            if(ch == ']' && brackets > 0){
+        for(int i=0;i<s.Length;i++){
+            if(s[i] == ']' && brackets > 0){
                 brackets--;
             }else brackets++;
         }
