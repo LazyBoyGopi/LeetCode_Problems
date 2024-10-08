@@ -10,7 +10,6 @@ public class Solution {
                 opening++;
             }
         }
-        Console.WriteLine($"{opening},{closing}");
         return opening+closing;
     }
 }
