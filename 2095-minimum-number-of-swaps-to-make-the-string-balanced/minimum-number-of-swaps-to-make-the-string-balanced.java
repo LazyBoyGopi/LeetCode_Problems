@@ -1,16 +1,11 @@
 class Solution {
     public int minSwaps(String s) {
-        int opening = 0, closing = 0, len = s.length();
-        for(int i=0;i<len;i++){
-            char ch = s.charAt(i);
-            if(ch == ']'){
-                if(opening > 0)
-                    opening--;
-                else closing++;
-            }else{
-                opening++;
-            }
+        int brackets = 0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i) == ']' && brackets > 0){
+                brackets--;
+            }else brackets++;
         }
-        return (opening+1)/2;
+        return (brackets+1)/2;
     }
 }
