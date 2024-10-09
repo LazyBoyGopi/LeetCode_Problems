@@ -12,16 +12,9 @@ class Solution {
     }
     private Set<String> getAllSubStrOfLenK(String s,int k){
         Set<String>set = new HashSet();
-        StringBuilder sb = new StringBuilder();
         int len = s.length();
-        for(int i=0;i<k && i<len;i++){
-            sb.append(s.charAt(i));
-        }
-        set.add(sb.toString());
-        for(int i=k;i<len;i++){
-            sb.deleteCharAt(0);
-            sb.append(s.charAt(i));
-            set.add(sb.toString());
+        for(int i=0;i+k<=len;i++){
+            set.add(s.substring(i,i+k));
         }
         return set;
     }
