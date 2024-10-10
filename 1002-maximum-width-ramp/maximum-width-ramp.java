@@ -11,7 +11,7 @@ class Solution {
             }
         }
         int maxRamp = 0;
-        for(int i=len-1;i>=0;i--){
+        for(int i=len-1;i>=0 && idx >=0;i--){
             while(idx >= 0 && nums[list.get(idx)] <= nums[i]){
                 maxRamp = Math.max(maxRamp,i-list.get(idx));
                 idx--; 
