@@ -10,8 +10,10 @@ class Solution {
             }else{
                 int idx = stack.size()-1;
                 while(idx >= 0 && nums[stack.get(idx)] <= eleAtI){
-                    maxRamp = Math.max(maxRamp,i-stack.get(idx--));
+                    idx--;
                 }
+                maxRamp = Math.max(maxRamp,i-stack.get(idx+1));
+
             }
         }
         return maxRamp;
