@@ -24,6 +24,7 @@ class Solution {
             }
 
             leavingTime.add(new int[]{time[1],curChair});
+            
             if(targetFrndArriveTime == arriveTime) return curChair;
         }
         return -1;
