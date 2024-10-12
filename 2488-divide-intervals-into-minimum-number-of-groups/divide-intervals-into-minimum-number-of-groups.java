@@ -2,10 +2,11 @@ class Solution {
     public int minGroups(int[][] intervals) {
         int len = intervals.length;
         Arrays.sort(intervals,(a,b)->Integer.compare(a[0],b[0]));
-        int maxNumTillNow = (int)10e6;
+        int maxNumTillNow = intervals[0][1];
+        int minNumTillNow = intervals[0][0];
         List<int[]>nonOverlapingIntervals = new ArrayList();
         nonOverlapingIntervals.add(new int[]{intervals[0][0],intervals[0][1]});
-        maxNumTillNow = intervals[0][1];
+        
         for(int i=1;i<len;i++){
             int[] interval = intervals[i];
             if(interval[0] <= maxNumTillNow){
@@ -20,12 +21,12 @@ class Solution {
                     }
                 }
                 if(!isThere){
-                nonOverlapingIntervals.add(new int[]{interval[0],interval[1]});
-
+                    nonOverlapingIntervals.add(new int[]{interval[0],interval[1]});
                 }
                 
             }
                 maxNumTillNow = Math.min(maxNumTillNow,interval[1]);
+                minNumTillNow = Math.max(minNumTillNow,interval[0]);
             // System.out.println(i);
 
             //     for(int k=0;k<nonOverlapingIntervals.size();k++){
