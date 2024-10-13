@@ -1,42 +1,47 @@
 class Solution {
 
     public int[] smallestRange(List<List<Integer>> nums) {
-        int k = nums.size();
-        // Stores the current index of each list
-        int[] indices = new int[k];
-        // To track the smallest range
-        int[] range = new int[] { 0, Integer.MAX_VALUE };
+        List<int[]> merged = new ArrayList<>();
 
-        while (true) {
-            int curMin = Integer.MAX_VALUE, curMax =
-                Integer.MIN_VALUE, minListIndex = 0;
-
-            // Find the current minimum and maximum values across the lists
-            for (int i = 0; i < k; i++) {
-                int currentElement = nums.get(i).get(indices[i]);
-
-                // Update the current minimum
-                if (currentElement < curMin) {
-                    curMin = currentElement;
-                    minListIndex = i;
-                }
-
-                // Update the current maximum
-                if (currentElement > curMax) {
-                    curMax = currentElement;
-                }
+        // Merge all lists with their list index
+        for (int i = 0; i < nums.size(); i++) {
+            for (int num : nums.get(i)) {
+                merged.add(new int[] { num, i });
             }
-
-            // Update the range if a smaller one is found
-            if (curMax - curMin < range[1] - range[0]) {
-                range[0] = curMin;
-                range[1] = curMax;
-            }
-
-            // Move to the next element in the list that had the minimum value
-            if (++indices[minListIndex] == nums.get(minListIndex).size()) break;
         }
 
-        return range;
+        // Sort the merged list
+        merged.sort(Comparator.comparingInt(a -> a[0]));
+
+        // Two pointers to track the smallest range
+        Map<Integer, Integer> freq = new HashMap<>();
+        int left = 0, count = 0;
+        int rangeStart = 0, rangeEnd = Integer.MAX_VALUE;
+
+        for (int right = 0; right < merged.size(); right++) {
+            freq.put(
+                merged.get(right)[1],
+                freq.getOrDefault(merged.get(right)[1], 0) + 1
+            );
+            if (freq.get(merged.get(right)[1]) == 1) count++;
+
+            // When all lists are represented, try to shrink the window
+            while (count == nums.size()) {
+                int curRange = merged.get(right)[0] - merged.get(left)[0];
+                if (curRange < rangeEnd - rangeStart) {
+                    rangeStart = merged.get(left)[0];
+                    rangeEnd = merged.get(right)[0];
+                }
+
+                freq.put(
+                    merged.get(left)[1],
+                    freq.get(merged.get(left)[1]) - 1
+                );
+                if (freq.get(merged.get(left)[1]) == 0) count--;
+                left++;
+            }
+        }
+
+        return new int[] { rangeStart, rangeEnd };
     }
 }
