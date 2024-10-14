@@ -2,7 +2,7 @@ class Solution {
     public long maxKelements(int[] nums, int k) {
         PriorityQueue<Integer>queue = new PriorityQueue(Comparator.reverseOrder());
         int len = nums.length;
-        for(int i=0;i<len;i++) queue.offer(nums[i]);
+        for(int ele : nums) queue.offer(ele);
         long score = 0;
         while(k > 0){
             int curScore = queue.poll();
