@@ -5,21 +5,18 @@ class Solution {
         ar[j] = temp;
     }
     public long minimumSteps(String s) {
-        long minSwaps = 0;
-        int right = s.length()-1;
-        int left = right;
-        char []ar = s.toCharArray();
-        while(left >= 0){
-            while(right >= 0 && ar[right] == '1') right--;
-            if(left >= right){
-                left = right-1;
-            }
-            while(left >= 0 && ar[left] == '0') left--;
-            if(left >= 0){
+        long minSwaps = 0l;
+        char[]ar = s.toCharArray();
+        int left = 0, right = s.length()-1;
+        while(left < right){
+            while(left < right && ar[left] == '0') left++;
+            while(left < right && ar[right] == '1') right--;
+            if(left < right){
+                minSwaps += (right-left);
                 swap(ar,left,right);
-                minSwaps += right-left;
+                left++;
+                right--;
             }
-            --right;
         }
         return minSwaps;
     }
