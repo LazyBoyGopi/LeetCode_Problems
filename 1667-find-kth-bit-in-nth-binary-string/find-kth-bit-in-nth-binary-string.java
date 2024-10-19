@@ -12,13 +12,18 @@ class Solution {
     }
     public char findKthBit(int n, int k) {
         StringBuilder cur = new StringBuilder("0");
-        if(ar[n] != null) cur = ar[n];
-        while(n > 1){
+        for(int i=n; i>=0;i--){
+            if(ar[n] != null){
+                cur = ar[n];
+                n = i;
+                break;
+            }
+        }
+        while(n > 1 && cur.length() <= k){
             StringBuilder inverted = invert(cur);
             cur.append('1').append(reverse(inverted));
             ar[n] = cur;
             n--;
-            if(cur.length() > k) break;
         }
         return cur.charAt(k-1);
     }
