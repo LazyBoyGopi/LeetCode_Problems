@@ -22,7 +22,7 @@ class Solution {
             StringBuilder inverted = invert(cur);
             cur.append('1').append(reverse(inverted));
             ar[n] = cur;
-            lastIdx++;
+            lastIdx = n;
             n--;
         }
         return cur.charAt(k-1);
