@@ -14,7 +14,6 @@ class Solution {
         while(n > 1){
             StringBuilder inverted = invert(cur);
             cur.append('1').append(reverse(inverted));
-            System.out.println(cur);
             n--;
             if(cur.length() > k) break;
         }
