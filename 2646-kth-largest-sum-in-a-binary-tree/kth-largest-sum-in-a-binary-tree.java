@@ -25,7 +25,15 @@ class Solution {
         List<Long>sums = new ArrayList<>();
         getAllSums(root,sums,0);
         if(sums.size() < k) return -1;
-        Collections.sort(sums,Collections.reverseOrder());
-        return sums.get(k-1);
+        Queue<Long> queue = new PriorityQueue();
+        for(Long sum : sums){
+            if(queue.size() < k){
+                queue.offer(sum);
+            }else if(queue.peek() < sum){
+                queue.poll();
+                queue.offer(sum);
+            }
+        }
+        return queue.poll();
     }
 }
