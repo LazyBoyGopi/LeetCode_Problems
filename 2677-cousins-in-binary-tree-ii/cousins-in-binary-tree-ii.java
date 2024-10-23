@@ -26,7 +26,6 @@ class Solution {
         int curSum = 0;
         if(root.left != null) curSum += root.left.val;
         if(root.right != null) curSum += root.right.val;
-        System.out.println(curLevel+" "+curSum);
         int tSum = list.get(curLevel+1);
         if(root.left != null){
             root.left.val = tSum-curSum;
