@@ -41,7 +41,6 @@ class Solution {
         getLevelSums(root,list,0);
         getAns(root,list,0);
         root.val = 0;
-        System.out.println(list);
         return root;
     }
 }
