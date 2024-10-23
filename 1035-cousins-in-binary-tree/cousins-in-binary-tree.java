@@ -41,7 +41,6 @@ class Solution {
         ar[0] = 0;
         ar[1] = 0;
         getAns(root,x,y,0);
-        System.out.println(ar[0]+" "+ar[1]);
 
         if((ar[0] == 0 || ar[1] == 0) || (ar[0] == -2 || ar[1] == -2)) return false;
         return ar[0] == ar[1];
