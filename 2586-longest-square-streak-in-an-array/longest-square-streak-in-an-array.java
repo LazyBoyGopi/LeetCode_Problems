@@ -16,7 +16,7 @@ class Solution {
         }
         for(int ele : nums){
             longestStreak = Math.max(longestStreak,getLongestForCurrentEle(set,(long)ele));
-            if(longestStreak >= half) return longestStreak;
+            if(longestStreak == 5) return 5;
         }
         return longestStreak == 0 ? -1 : longestStreak;
     }
