@@ -9,12 +9,13 @@ class Solution {
         return longest == 1 ? 0 : longest;
     }
     public int longestSquareStreak(int[] nums) {
-        int longestStreak = 0, half = (nums.length+1)/2;
+        int longestStreak = 0;
         HashSet<Integer> set = new HashSet();
         for(int ele : nums){
             set.add(ele);
         }
-        for(int ele : nums){
+        for(int i=nums.length-1;i>=0;i--){
+            int ele = nums[i];
             longestStreak = Math.max(longestStreak,getLongestForCurrentEle(set,(long)ele));
             if(longestStreak == 5) return 5;
         }
