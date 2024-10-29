@@ -4,13 +4,16 @@ class Solution {
             return dp[row][col];
         }
         int maxMoves = 0;
-        if(row < grid.length-1 && col < grid[0].length-1 && grid[row+1][col+1] > grid[row][col]){
+        int curEle = grid[row][col];
+        int m = grid.length;
+        int n = grid[0].length;
+        if(row < m-1 && col < n-1 && grid[row+1][col+1] > curEle){
             maxMoves = Math.max(maxMoves,1+check(grid,row+1,col+1,dp));
         }
-        if(col < grid[0].length-1 && grid[row][col+1] > grid[row][col]){
+        if(col < n-1 && grid[row][col+1] > curEle){
             maxMoves = Math.max(maxMoves,1+check(grid,row,col+1,dp));
         }
-        if(row > 0 && col < grid[0].length-1 && grid[row-1][col+1] > grid[row][col]){
+        if(row > 0 && col < n-1 && grid[row-1][col+1] > curEle){
             maxMoves = Math.max(maxMoves,1+check(grid,row-1,col+1,dp));
         }
         return dp[row][col] = maxMoves;
@@ -25,9 +28,6 @@ class Solution {
         for(int i=0;i<m;i++){
             maxMoves = Math.max(maxMoves,check(grid,i,0,dp));
         }
-        for(int[]ar : dp){
-            System.out.println(Arrays.toString(ar));
-        }   
         return maxMoves;     
     }
 }
