@@ -6,7 +6,6 @@ class Solution {
         char firstCh = goal.charAt(0);
         do{
             i = s.indexOf(firstCh,i+1);
-            System.out.println(i);
             if(i == -1) return false;
             String s1 = s.substring(0,i);
             String s2 = s.substring(i);
