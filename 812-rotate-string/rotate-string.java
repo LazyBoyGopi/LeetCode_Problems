@@ -16,7 +16,6 @@ class Solution {
         while(i != -1);
         return false; */
         if(s.length() != goal.length()) return false;
-        String str = s+s;
-        return str.contains(goal);
+        return (s+s).contains(goal);
     }
 }
