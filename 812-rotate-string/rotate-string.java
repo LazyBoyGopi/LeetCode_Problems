@@ -1,6 +1,6 @@
 class Solution {
     public boolean rotateString(String s, String goal) {
-        int l1 = s.length() , l2 = goal.length();
+       /* int l1 = s.length() , l2 = goal.length();
         if(l1 != l2) return false;
         int i=-1;
         char firstCh = goal.charAt(0);
@@ -14,6 +14,9 @@ class Solution {
             if(s2.equals(g1) && s1.equals(g2)) return true;
         }
         while(i != -1);
-        return false;
+        return false; */
+        if(s.length() != goal.length()) return false;
+        String str = s+s;
+        return str.contains(goal);
     }
 }
