@@ -1,14 +1,14 @@
 class Solution {
     public int partitionString(String s) {
-        Set<Character>set = new HashSet();
+        boolean[]ar = new boolean[26];
         int count = 0, len = s.length();
         for(int i=0;i<len;i++){
-            char ch = s.charAt(i);
-            if(set.contains(ch)){
+            int ch = s.charAt(i)-'a';
+            if(ar[ch]){
                 count++;
-                set.clear();
+                ar = new boolean[26];
             }
-            set.add(ch);
+            ar[ch] = true;
         }
         return count+1;
     }
