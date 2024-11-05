@@ -33,12 +33,13 @@ class Solution {
         }
         return output;
     }
-    private boolean isValid(Transaction trans,List<Transaction>list){
-        if(trans.amount > 1000){
+    private boolean isValid(Transaction t,List<Transaction>list){
+        if(t.amount > 1000){
             return false;
         }
         for(Transaction l : list){
-            if(!l.city.equals(trans.city) && Math.abs(l.time-trans.time) <= 60) return false;
+             if(Math.abs(t.time -l.time)<=60 && !(t.city.equals(l.city)))
+                return false;
         }
         return true;
     }
