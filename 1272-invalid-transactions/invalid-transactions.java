@@ -22,21 +22,19 @@ class Solution {
         }
         List<String>output = new ArrayList();
         for(String t : transactions){
-            String[]split = t.split(",");
-            if(!isValid(split,map.get(split[0]))){
+            Transaction trans = new Transaction(t);
+            if(!isValid(trans,map.get(trans.name))){
                 output.add(t);
             }
         }
         return output;
     }
-    private boolean isValid(String []split,List<Transaction>list){
-        if(Integer.parseInt(split[2]) > 1000){
+    private boolean isValid(Transaction trans,List<Transaction>list){
+        if(trans.amount > 1000){
             return false;
         }
-        String city = split[3];
-        int time = Integer.parseInt(split[1]);
         for(Transaction l : list){
-            if(!l.city.equals(city) && Math.abs(l.time-time) <= 60) return false;
+            if(!l.city.equals(trans.city) && Math.abs(l.time-trans.time) <= 60) return false;
         }
         return true;
     }
