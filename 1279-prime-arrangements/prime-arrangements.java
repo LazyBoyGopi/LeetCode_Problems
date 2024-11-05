@@ -1,26 +1,26 @@
 class Solution {
-    int[]ar = new int[101];
     final int MOD = 1_000_000_007;
 
     public int numPrimeArrangements(int n) {
-        if(ar[2] != 1) getAllPrimeNumbers();
-        return (int) (factorial(ar[n]) * (factorial(n-ar[n])) % MOD);
+        int c = getAllPrimeNumbers(n);
+        return (int) (factorial(c) * (factorial(n-c)) % MOD);
     }
-    private void getAllPrimeNumbers(){
-        ar[2] = 1;
-
-        long tillNow = 2;
-        for(int i=3;i<=100;i++){
-            ar[i] = ar[i-1] + checkPrime(i);
+    private int getAllPrimeNumbers(int n){
+        int count = 0;
+        for(int i=2;i<=n;i++){
+            if(checkPrime(i)) count++;
         }
+        return count;
     }
-    private int checkPrime(int n){
+    private boolean checkPrime(int n){
+        if(n == 1) return false;
+        if(n == 2) return true;
         int sqrt = (int)Math.sqrt(n);
-        if(n % 2 == 0) return 0;
+        if(n % 2 == 0) return false;
         for(int i=3;i<=sqrt;i+=2){
-            if(n%i == 0) return 0;
+            if(n%i == 0) return false;
         }
-        return 1;
+        return true;
     }
     private long factorial(int n){
         long fac = 1;
