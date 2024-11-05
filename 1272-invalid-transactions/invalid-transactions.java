@@ -1,38 +1,43 @@
 class Solution {
     static class Transaction{
         String name;
-        int amount;
         int time;
+        int amount;
         String city;
 
-        public String toString(){
-            return name +","+time+","+amount+","+city;
+        Transaction(String transaction){
+            String[]split = transaction.split(",");
+            name = split[0];
+            time = Integer.parseInt(split[1]);
+            amount = Integer.parseInt(split[2]);
+            city = split[3];
         }
     }
     public List<String> invalidTransactions(String[] transactions) {
-        Transaction[]trans = new Transaction[transactions.length];
-        List<String> output = new ArrayList();
-        for(int i=0;i<transactions.length;i++){
-            String[]data = transactions[i].split(",");
-            trans[i] = new Transaction();
-            trans[i].name = data[0];
-            trans[i].time = Integer.parseInt(data[1]);
-            trans[i].amount = Integer.parseInt(data[2]);
-            trans[i].city = data[3];
+        Map<String,List<Transaction>>map = new HashMap();
+        for(String t : transactions){
+            Transaction trans = new Transaction(t);
+            map.putIfAbsent(trans.name,new ArrayList());
+            map.get(trans.name).add(trans);
         }
-        for(int i=0;i<trans.length;i++){
-            for(int j=0;j<trans.length;j++){
-                if(i == j) continue;
-                if(trans[i].name.equals(trans[j].name) &&
-                    !trans[i].city.equals(trans[j].city) && Math.abs(trans[i].time - trans[j].time) <= 60){
-                        output.add(trans[i].toString());
-                        break;
-                }else if(trans[i].amount >= 1000){
-                    output.add(trans[i].toString());
-                    break;
-                }
+        List<String>output = new ArrayList();
+        for(String t : transactions){
+            String[]split = t.split(",");
+            if(!isValid(split,map.get(split[0]))){
+                output.add(t);
             }
         }
         return output;
+    }
+    private boolean isValid(String []split,List<Transaction>list){
+        if(Integer.parseInt(split[2]) > 1000){
+            return false;
+        }
+        String city = split[3];
+        int time = Integer.parseInt(split[1]);
+        for(Transaction l : list){
+            if(!l.city.equals(city) && Math.abs(l.time-time) <= 60) return false;
+        }
+        return true;
     }
 }
