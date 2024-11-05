@@ -16,7 +16,7 @@ class Solution {
         for(int i=3;i<=100;i++){
             ar[i] = ar[i-1] + checkPrime(i);
             factorial[i] = (tillNow *i) % MOD;
-            tillNow = (tillNow*i)%MOD;
+            tillNow = factorial[i];
         }
     }
     private int checkPrime(int n){
@@ -26,10 +26,5 @@ class Solution {
             if(n%i == 0) return 0;
         }
         return 1;
-    }
-    private int factorial(int n){
-        int fac = 1;
-        for(int i=1;i<=n;i++) fac *= i;
-        return fac;
     }
 }
