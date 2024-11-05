@@ -4,8 +4,10 @@ class Solution {
         int time;
         int amount;
         String city;
+        String orginal;
 
         Transaction(String transaction){
+            orginal = transaction;
             String[]split = transaction.split(",");
             name = split[0];
             time = Integer.parseInt(split[1]);
@@ -15,16 +17,18 @@ class Solution {
     }
     public List<String> invalidTransactions(String[] transactions) {
         Map<String,List<Transaction>>map = new HashMap();
+        List<Transaction> allTransactions = new ArrayList();
+        List<String>output = new ArrayList();
+
         for(String t : transactions){
             Transaction trans = new Transaction(t);
+            allTransactions.add(trans);
             map.putIfAbsent(trans.name,new ArrayList());
             map.get(trans.name).add(trans);
         }
-        List<String>output = new ArrayList();
-        for(String t : transactions){
-            Transaction trans = new Transaction(t);
+        for(Transaction trans : allTransactions){
             if(!isValid(trans,map.get(trans.name))){
-                output.add(t);
+                output.add(trans.orginal);
             }
         }
         return output;
