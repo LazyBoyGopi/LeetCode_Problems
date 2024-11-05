@@ -25,13 +25,16 @@ class Solution {
         return output;
     }
     private int frequencyOfTheLexicographicallySmallestCharacter(String str){
-        int[]ar = new int[26];
+        char ch = str.charAt(0);
+        int count = 0;
         for(int i=0;i<str.length();i++){
-            ar[str.charAt(i) - 'a']++;
+            char curCh =  str.charAt(i);
+            if(ch == curCh) count++;
+            else if(ch > curCh){
+                ch = curCh;
+                count = 1;
+            }
         }
-        for(int ele : ar){
-            if(ele != 0) return ele;
-        }
-        return -1;
+        return count;
     }
 }
