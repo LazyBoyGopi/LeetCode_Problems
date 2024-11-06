@@ -28,7 +28,7 @@ class Solution {
     }
     public boolean canSortArray(int[] nums) {
         int len = nums.length;
-        if(len == 1 || isSorted(nums)) return true;
+        // if(len == 1 || isSorted(nums)) return true;
         int[]ar = new int[len];
 
         for(int i=0;i<len;i++){
@@ -46,7 +46,6 @@ class Solution {
                 leftLast = i+1;
             }
         }
-        System.out.println(Integer.bitCount(2));
         return true;
     }
 }
