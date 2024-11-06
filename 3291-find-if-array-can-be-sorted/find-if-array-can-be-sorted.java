@@ -32,7 +32,7 @@ class Solution {
         int[]ar = new int[len];
 
         for(int i=0;i<len;i++){
-            ar[i] = countSetBits(nums[i]);
+            ar[i] = Integer.bitCount(nums[i]);
         }
         int leftLast = 0;
         for(int i=0;i<len-1;i++){
