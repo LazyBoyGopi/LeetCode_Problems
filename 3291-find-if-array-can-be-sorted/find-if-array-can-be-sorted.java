@@ -7,12 +7,12 @@ class Solution {
         }
         return n == 1? count+1 : count;
     } */
-    /*private boolean isSorted(int[]nums){
+    private boolean isSorted(int[]nums){
         for(int i=0;i<nums.length-1;i++){
             if(nums[i] > nums[i+1]) return false;
         }
         return true;
-    } */
+    }
     private int maxFrom(int[]nums,int st,int end){
         int max = nums[st];
         for(int i=st+1;i<=end;i++) max = Math.max(max,nums[i]);
@@ -28,7 +28,7 @@ class Solution {
     }
     public boolean canSortArray(int[] nums) {
         int len = nums.length;
-        // if(len == 1 || isSorted(nums)) return true;
+        if(len == 1 || isSorted(nums)) return true;
         int[]ar = new int[len];
 
         for(int i=0;i<len;i++){
