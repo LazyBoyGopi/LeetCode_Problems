@@ -6,10 +6,8 @@ class Solution {
             int ele = candidates[i];
             int idx = 23;
             while(ele > 0){
-                if((ele & 1) == 1)
-                    ar[idx]++;
+                ar[idx--] += (ele & 1);
                 ele >>= 1;
-                idx--;
             }
         }
         int max = 0;
