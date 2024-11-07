@@ -3,7 +3,7 @@ class Solution {
         if(ans.equals("")) return true;
         int idx = 0, len = str.length();
         while(idx < len){
-            if(str.charAt(idx) > ans.charAt(idx)) return true;
+            if(str.charAt(idx) < ans.charAt(idx)) return true;
             idx++;
         }
         return false;
