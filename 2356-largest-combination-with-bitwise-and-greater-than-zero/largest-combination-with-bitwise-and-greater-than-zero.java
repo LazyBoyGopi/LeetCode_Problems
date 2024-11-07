@@ -29,7 +29,6 @@ class Solution {
         for(int ele : ar){
             max = Math.max(ele,max);
         }
-        System.out.println(Arrays.toString(ar));
         return max;
     }
 }
