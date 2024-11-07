@@ -9,7 +9,7 @@ class Solution {
     }
     private int getMax(int[]nums){
         int max = nums[0];
-        for(int ele : nums) max += ele;
+        for(int ele : nums) max |= ele;
         return max;
     }
     public int countMaxOrSubsets(int[] nums) {
