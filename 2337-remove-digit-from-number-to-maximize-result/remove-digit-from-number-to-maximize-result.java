@@ -12,7 +12,7 @@ class Solution {
         String ans = new String("");
         for(int i=0;i<number.length();i++){
             if(number.charAt(i) == digit){
-                String str = new StringBuilder(number).deleteCharAt(i).toString();
+                String str = number.substring(0,i)+number.substring(i+1);
                 if(ans.equals("") || ans.compareTo(str) < 0) ans = str;
             }
         }
