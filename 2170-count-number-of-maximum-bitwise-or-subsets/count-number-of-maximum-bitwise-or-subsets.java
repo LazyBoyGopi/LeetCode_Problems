@@ -1,27 +1,22 @@
 class Solution {
-    private void getAllSubsets(int []nums,int[]ar,int idx,int OR){
-        if(idx == nums.length){
-            ar[OR]++;
-            return;
+    int[]ar = new int[1];
+    private void getAllSubsets(int []nums,int idx,int OR,int maxOR){
+        if(OR == maxOR){
+            ar[0]++;
         }
-        getAllSubsets(nums,ar,idx+1,OR);
-        getAllSubsets(nums,ar,idx+1,OR | nums[idx]);
+        for(int i=idx;i<nums.length;i++){
+            getAllSubsets(nums,i+1,OR | nums[i],maxOR);
+        }
     }
-    private int getMax(int[]nums){
-        int max = nums[0];
+    private int getMaxOR(int[]nums){
+        int max = 0;
         for(int ele : nums) max |= ele;
         return max;
     }
     public int countMaxOrSubsets(int[] nums) {
-        int[]ar = new int[getMax(nums)+1];
-        getAllSubsets(nums,ar,0,0);
-        int max = Integer.MIN_VALUE;
-        int maxCount = 0;
-        for(int i=ar.length-1;i>=0;i--){
-            if(ar[i] != 0){
-                return ar[i];
-            }
-        }
-        return -1;
+        ar[0] = 0;
+        int maxOR = getMaxOR(nums);
+        getAllSubsets(nums,0,0,maxOR);
+        return ar[0];
     }
 }
