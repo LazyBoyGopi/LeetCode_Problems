@@ -1,26 +1,23 @@
 class Solution {
-    public void backtrack(int[] nums, int index, int currentOR, int maxOR, int[] count) {
-        if (currentOR == maxOR) {
-            count[0]++;
+    private void getAllSubsets(int []nums,Map<Integer,Integer>map,int idx,int OR){
+        if(idx == nums.length){
+            map.put(OR,map.getOrDefault(OR,0)+1);
+            return;
         }
-
-        for (int i = index; i < nums.length; i++) {
-            backtrack(nums, i + 1, currentOR | nums[i], maxOR, count);
-        }
+        getAllSubsets(nums,map,idx+1,OR);
+        getAllSubsets(nums,map,idx+1,OR | nums[idx]);
     }
-
     public int countMaxOrSubsets(int[] nums) {
-        int maxOR = 0;
-
-        // Step 1: Compute the maximum OR
-        for (int num : nums) {
-            maxOR |= num;
+        Map<Integer,Integer>map = new HashMap();
+        getAllSubsets(nums,map,0,0);
+        int max = Integer.MIN_VALUE;
+        int maxCount = 0;
+        for(Map.Entry<Integer,Integer>entry : map.entrySet()){
+            if(entry.getKey() > max){
+                max = entry.getKey();
+                maxCount = entry.getValue();
+            }
         }
-
-        int[] count = new int[1];
-        // Step 2: Backtrack to count the subsets
-        backtrack(nums, 0, 0, maxOR, count);
-
-        return count[0];
+        return maxCount;
     }
 }
