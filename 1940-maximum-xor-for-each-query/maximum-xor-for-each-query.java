@@ -1,19 +1,16 @@
 class Solution {
     public int[] getMaximumXor(int[] nums, int maximumBit) {
-        int maxBitValue = (1 << maximumBit) - 1;  // equivalent to 2^maximumBit - 1
-        int len = nums.length;
+     int max = (1<<maximumBit)-1;
+     int len = nums.length;
+     for(int i=1;i<len;i++){
+        nums[i] ^= nums[i-1]; 
+     }
+     int[]ar = new int[len];
+     for(int i=len-1;i>=0;i--){
         
-        // Step 1: Compute cumulative XOR
-        for (int i = 1; i < len; i++) {
-            nums[i] ^= nums[i - 1];
-        }
         
-        // Step 2: Compute the results in reverse order
-        int[] result = new int[len];
-        for (int i = 0; i < len; i++) {
-            result[i] = maxBitValue ^ nums[len - 1 - i];
-        }
-        
-        return result;
+        ar[len-i-1] = (nums[i]^max);
+     }
+     return ar;
     }
 }
