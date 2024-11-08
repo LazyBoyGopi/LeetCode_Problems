@@ -1,19 +1,20 @@
 class Solution {
-    private boolean isBigger(String str,String ans){
-        if(ans.equals("")) return true;
+    private int isBigger(String str,String ans){
         int idx = 0, len = str.length();
         while(idx < len){
-            if(str.charAt(idx) != ans.charAt(idx)) return true;
+            char c1 = ans.charAt(idx);
+            char c2 = str.charAt(idx);
+            if(c1 != c2) return c1-c2;
             idx++;
         }
-        return false;
+        return ans.length()-str.length();
     }
     public String removeDigit(String number, char digit) {
         String ans = new String("");
         for(int i=0;i<number.length();i++){
             if(number.charAt(i) == digit){
                 String str = number.substring(0,i)+number.substring(i+1);
-                if(ans.equals("") || ans.compareTo(str) < 0) ans = str;
+                if(ans.equals("") || isBigger(str,ans) < 0) ans = str;
             }
         }
         return ans;
