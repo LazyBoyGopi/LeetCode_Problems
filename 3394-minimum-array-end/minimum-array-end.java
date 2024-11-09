@@ -26,7 +26,7 @@ class Solution {
                 j--;
             }
             i--;
-            curValAtTheBit *= 2;
+            curValAtTheBit <<= 1;
         }
         return ans;
     }
