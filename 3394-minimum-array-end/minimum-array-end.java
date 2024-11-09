@@ -24,7 +24,6 @@ class Solution {
                     ans += curValAtTheBit;
                 }
                 j--;
-                
             }
             i--;
             curValAtTheBit *= 2;
