@@ -17,12 +17,10 @@ class Solution {
             max = Math.max(max,item[1]);
             map.put(item[0],max);
         }
-        // System.out.println(Arrays.deepToString(items));
         int[]ans = new int[queries.length];
         int i=0;
         for(int query : queries){
             int idx = getHighestBeautyIndex(items,query);
-            // System.out.println(idx);
             if(idx >= 0)
                 ans[i] = map.get(items[idx][0]);
             i++;
