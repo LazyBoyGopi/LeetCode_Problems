@@ -25,7 +25,6 @@ class Solution {
             int highestIdx = getLowerBound(nums,upper-nums[i]);
             int lowerIdx = getHigherBound(nums,lower-nums[i]);
             if(lowerIdx <= i) lowerIdx = i+1;
-            System.out.println(i +" "+highestIdx+" "+lowerIdx);
             if((highestIdx >= i && highestIdx < len) && (lowerIdx >= i && lowerIdx < len)){
                 fairPairCount += (highestIdx-lowerIdx+1);
             }
