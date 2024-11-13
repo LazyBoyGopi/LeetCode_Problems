@@ -1,34 +1,32 @@
+import java.util.Arrays;
+
 class Solution {
-    private int getLowerBound(int[]nums,int upper){
-        int st = 0, end = nums.length-1;
-        while(st <= end){
-            int mid = st+(end-st)/2;
-            if(nums[mid] > upper) end = mid-1;
-            else st = mid+1;
+    public long countFairPairs(int[] v, int lower, int upper) {
+        Arrays.sort(v);
+        long ans = 0;
+        for (int i = 0; i < v.length - 1; i++) {
+            int low = lowerBound(v, i + 1, v.length, lower - v[i]);
+            int up = upperBound(v, i + 1, v.length, upper - v[i]);
+            ans += up - low;
         }
-        return end;
+        return ans;
     }
-    private int getHigherBound(int[]nums,int lower){
-        int st = 0, end = nums.length-1;
-        while(st <= end){
-            int mid = st+(end-st)/2;
-            if(nums[mid] < lower) st = mid+1;
-            else end = mid-1;
+  
+    private int lowerBound(int[] v, int start, int end, int target) {
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (v[mid] >= target) end = mid;
+            else start = mid + 1;
         }
-        return st;
+        return start;
     }
-    public long countFairPairs(int[] nums, int lower, int upper) {
-        Arrays.sort(nums);
-        int len = nums.length;
-        long fairPairCount = 0;
-        for(int i=0;i<len;i++){
-            int highestIdx = getLowerBound(nums,upper-nums[i]);
-            int lowerIdx = getHigherBound(nums,lower-nums[i]);
-            if(lowerIdx <= i) lowerIdx = i+1;
-            if((highestIdx >= i && highestIdx < len) && (lowerIdx >= i && lowerIdx < len)){
-                fairPairCount += (highestIdx-lowerIdx+1);
-            }
+
+    private int upperBound(int[] v, int start, int end, int target) {
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (v[mid] > target) end = mid;
+            else start = mid + 1;
         }
-        return fairPairCount;
+        return start;
     }
 }
