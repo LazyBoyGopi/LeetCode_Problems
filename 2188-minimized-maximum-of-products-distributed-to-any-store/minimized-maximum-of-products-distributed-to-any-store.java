@@ -18,17 +18,16 @@ class Solution {
         return numberOfStores <= n;
     }
     public int minimizedMaximum(int n, int[] quantities) {
-        int st = 1, end = getMax(quantities), ans = end;
+        int st = 1, end = getMax(quantities);
         while(st <= end){
             int mid = st+(end-st)/2;
             if(isPossible(mid,n,quantities)){
-                ans = Math.min(ans,mid);
                 end = mid-1;
             }
             else {
                 st = mid+1;
             }
         }
-        return ans;
+        return st;
     }
 }
