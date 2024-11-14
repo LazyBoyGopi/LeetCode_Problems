@@ -1,11 +1,10 @@
 class Solution {
-    private int[] getMinAndMax(int[]quantities){
-        int max = quantities[0], min = max;
+    private int getMax(int[]quantities){
+        int max = quantities[0];
         for(int ele : quantities) {
             max = Math.max(max,ele);
-            min = Math.min(min,ele);
         }
-        return new int[]{min,max};
+        return max;
     }
     private boolean isPossible(int mid,int n,int[]quantities){
         int numberOfStores = 0, len = quantities.length;
@@ -19,15 +18,14 @@ class Solution {
         return numberOfStores <= n;
     }
     public int minimizedMaximum(int n, int[] quantities) {
-        int[] minAndMax = getMinAndMax(quantities); 
-        int st = 1, end = minAndMax[1], ans = end;
+        int st = 1, end = getMax(quantities), ans = end;
         while(st <= end){
             int mid = st+(end-st)/2;
             if(isPossible(mid,n,quantities)){
                 ans = Math.min(ans,mid);
                 end = mid-1;
-            }else 
-            {
+            }
+            else {
                 st = mid+1;
             }
         }
