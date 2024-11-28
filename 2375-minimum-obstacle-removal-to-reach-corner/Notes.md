@@ -1,1 +1,1 @@
-<h2>minimum-obstacle-removal-to-reach-corner Notes</h2><hr>[ Time taken: 9 m 59 s ]
+<h2>minimum-obstacle-removal-to-reach-corner Notes</h2><hr>[ Time taken: 17 m 2 s ]
