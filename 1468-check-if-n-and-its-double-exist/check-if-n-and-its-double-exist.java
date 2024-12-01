@@ -3,6 +3,8 @@ class Solution {
         Set<Integer>set = new HashSet();
         int zeroCount = 0;
         for(int ele : arr) {
+            int doubleVal = ele*2;
+            if(set.contains(doubleVal)) return true;
             set.add(ele);
             if(ele == 0) zeroCount++;
         }
