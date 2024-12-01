@@ -1,12 +1,17 @@
 class Solution {
     public boolean checkIfExist(int[] arr) {
-       Set<Integer> set = new HashSet();
-       for(int ele : arr){
-        if(set.contains(ele*2) || (ele %2 == 0 && set.contains(ele/2))) {
-            return true;
+        Set<Integer>set = new HashSet();
+        int zeroCount = 0;
+        for(int ele : arr) {
+            set.add(ele);
+            if(ele == 0) zeroCount++;
         }
-        set.add(ele);
-       }
-       return false;
+        if(zeroCount > 1) return true;
+        for(int ele : arr){
+            if(ele == 0) continue;
+            int doubleVal = ele*2;
+            if(set.contains(doubleVal)) return true;
+        }
+        return false;
     }
 }
