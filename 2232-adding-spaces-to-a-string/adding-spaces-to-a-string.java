@@ -8,10 +8,10 @@ class Solution {
                 sb.append(" ");
                 spacesIdx++;
             }
-            else{
+            // else{
                 sb.append(s.charAt(curIdx));
                 curIdx++;
-            }
+            // }
         }
         return sb.toString();
     }
