@@ -5,7 +5,7 @@ class Solution {
 
         while(curIdx < len){  
             if(spacesIdx < spacesLen && curIdx == spaces[spacesIdx]){
-                sb.append(' ');
+                sb.append(" ");
                 spacesIdx++;
             }
             sb.append(s.charAt(curIdx));
