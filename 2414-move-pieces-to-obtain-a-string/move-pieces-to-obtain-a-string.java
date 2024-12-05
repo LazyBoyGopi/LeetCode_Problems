@@ -33,7 +33,7 @@ class Solution {
         }
         for(int i=s.length-1;i>=0;i--){
             char cs = s[i], ct = t[i];
-            if(cs == ct || cs == 'L') continue;
+            if(cs == ct) continue;
             if(ct == 'R'){
                 int previousR = findPrevious(s,i,'R');
                 if(previousR != -1) swap(s,i,previousR);
