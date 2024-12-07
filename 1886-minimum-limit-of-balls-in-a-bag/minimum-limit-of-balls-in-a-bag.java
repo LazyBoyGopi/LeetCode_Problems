@@ -4,7 +4,7 @@ class Solution {
         for(int ele : nums) max = Math.max(max,ele);
         return max;
     }
-    private int findStart(int[]nums,int target){
+    /*private int findStart(int[]nums,int target){
         int st = 0, end = nums.length-1;
         while(st <= end){
             int mid = st+(end-st)/2;
@@ -12,10 +12,10 @@ class Solution {
             else end = mid-1;
         }
         return st;
-    }
+    } */
     private boolean isPossible(int maxBalls,int[]nums, int maxOperations){
         int operationsCount = 0;
-        int st = findStart(nums,maxBalls);
+        int st = 0;
         for(int i=st;i<nums.length;i++){
             int ele = nums[i];
             int operations = (ele-1)/maxBalls;
