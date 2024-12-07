@@ -26,7 +26,7 @@ class Solution {
     }
     public int minimumSize(int[] nums, int maxOperations) {
         int st = 1,end = findMax(nums);
-        Arrays.sort(nums);
+        // Arrays.sort(nums);
         while(st <= end){
             int mid = (st+end)/2;
             if(isPossible(mid,nums,maxOperations)){
