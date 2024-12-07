@@ -5,7 +5,7 @@ class Solution {
         return max;
     }
     private int findEle(int[]nums,int target){
-        int st = 0,end = nums.length;
+        int st = 0,end = nums.length-1;
         while(st <= end){
             int mid = st+(end-st)/2;
             if(nums[mid] < target) st = mid+1;
@@ -18,14 +18,14 @@ class Solution {
         int idx = findEle(nums,maxBalls);
         for(int i=idx;i<nums.length;i++){
             int ele = nums[i];
-            int operations = (int)Math.ceil(ele/(double)maxBalls)-1;
+            int operations = (ele-1)/maxBalls;
             operationsCount += operations;
             if(operationsCount > maxOperations) return false;
         }
         return true;
     }
     public int minimumSize(int[] nums, int maxOperations) {
-        int st = 0,end = findMax(nums);
+        int st = 1,end = findMax(nums);
         Arrays.sort(nums);
         while(st <= end){
             int mid = (st+end)/2;
