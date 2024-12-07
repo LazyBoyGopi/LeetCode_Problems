@@ -13,27 +13,25 @@ class Solution {
         }
         return st;
     } */
-    private boolean isPossible(int maxBalls,int[]nums, int maxOperations){
-        int operationsCount = 0;
-        int st = 0;
-        for(int i=st;i<nums.length;i++){
-            int ele = nums[i];
-            int operations = (ele-1)/maxBalls;
-            operationsCount += operations;
-            if(operationsCount > maxOperations) return false;
+    private boolean isPossible(int mb,int[]nums, int mo){
+        int c = 0;
+        for(int e : nums){
+            int o = (e-1)/mb;
+            c += o;
+            if(c > mo) return false;
         }
         return true;
     }
     public int minimumSize(int[] nums, int maxOperations) {
-        int st = 1,end = (int)Math.pow(10,9);
+        int l = 1,r = (int)Math.pow(10,9);
         // Arrays.sort(nums);
-        while(st <= end){
-            int mid = (st+end)/2;
-            if(isPossible(mid,nums,maxOperations)){
-                end = mid-1; 
+        while(l <= r){
+            int m = (l+r)/2;
+            if(isPossible(m,nums,maxOperations)){
+                r = m-1; 
             }
-            else st = mid+1;
+            else l = m+1;
         }
-        return st;
+        return l;
     }
 }
