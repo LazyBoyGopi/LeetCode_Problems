@@ -1,60 +1,26 @@
 class Solution {
-
     public boolean[] isArraySpecial(int[] nums, int[][] queries) {
-        boolean[] ans = new boolean[queries.length];
-        ArrayList<Integer> violatingIndices = new ArrayList<>();
-
-        for (int i = 1; i < nums.length; i++) {
-            // same parity, found violating index
-            if (nums[i] % 2 == nums[i - 1] % 2) {
-                violatingIndices.add(i);
-            }
+        int len = nums.length;
+        int[]maxLen = new int[len];
+        boolean isEven = nums[0]%2==0;
+        maxLen[0] = 1;
+        for(int i=1;i<len;i++){
+            boolean flag = true;
+            int lastBit = nums[i] & 1;
+            if(isEven){
+                if(lastBit == 0) flag = false;
+            }else if(lastBit == 1) flag = false;
+            maxLen[i] = flag ? maxLen[i-1]+1 : 1;
+            isEven = lastBit == 0;
         }
-
-        for (int i = 0; i < queries.length; i++) {
-            int[] query = queries[i];
-            int start = query[0];
-            int end = query[1];
-
-            boolean foundViolatingIndex = binarySearch(
-                start + 1,
-                end,
-                violatingIndices
-            );
-
-            if (foundViolatingIndex) {
-                ans[i] = false;
-            } else {
-                ans[i] = true;
-            }
+        len = queries.length;
+        boolean []ans = new boolean[len];
+        for(int i=0;i<len;i++){
+            int[]query = queries[i];
+            int longestLen = maxLen[query[1]];
+            ans[i] = query[1]-query[0]+1 <= longestLen;
         }
-
+        System.out.println(Arrays.toString(maxLen));
         return ans;
-    }
-
-    private boolean binarySearch(
-        int start,
-        int end,
-        ArrayList<Integer> violatingIndices
-    ) {
-        int left = 0;
-        int right = violatingIndices.size() - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            int violatingIndex = violatingIndices.get(mid);
-
-            if (violatingIndex < start) {
-                // check right half
-                left = mid + 1;
-            } else if (violatingIndex > end) {
-                // check left half
-                right = mid - 1;
-            } else {
-                // violatingIndex falls in between start and end
-                return true;
-            }
-        }
-
-        return false;
     }
 }
