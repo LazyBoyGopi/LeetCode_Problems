@@ -20,7 +20,6 @@ class Solution {
             int longestLen = maxLen[query[1]];
             ans[i] = query[1]-query[0]+1 <= longestLen;
         }
-        System.out.println(Arrays.toString(maxLen));
         return ans;
     }
 }
