@@ -1,68 +1,32 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class Solution {
     public int maximumLength(String s) {
-        int ans = -1;
-        Map<Pair, Integer> map = new HashMap<>(); // Map of (character, size) -> count
-        int n = s.length();
-        char[] chars = s.toCharArray();
-
-        // First pass: Populate the map with frequencies of contiguous substrings
-        map.put(new Pair(chars[0], 1), 1);
-        int currFreq = 1;
-        for (int i = 1; i < n; i++) {
-            if (chars[i] == chars[i - 1]) {
-                currFreq++;
-                map.put(new Pair(chars[i], currFreq), map.getOrDefault(new Pair(chars[i], currFreq), 0) + 1);
-            } else {
-                currFreq = 1;
-                map.put(new Pair(chars[i], currFreq), map.getOrDefault(new Pair(chars[i], currFreq), 0) + 1);
+        int len = s.length();
+        int[][]freqAr = new int[26][3];
+        int windowLen = 0;
+        char lastCh = '*';
+        for(int i=0;i<len;i++){
+            char curCh = s.charAt(i);
+            int curIdx = curCh-'a';
+            windowLen = (lastCh == curCh) ? windowLen+1 : 1;
+            int minIdxOfCurCh = getMinIdx(freqAr[curIdx]);
+            // System.out.println(minIdxOfCurCh);
+            if(windowLen > freqAr[curIdx][minIdxOfCurCh]){
+                freqAr[curIdx][minIdxOfCurCh] = windowLen;
             }
+            lastCh = curCh;
         }
-
-        // Second pass: Find the maximum length of a substring satisfying the condition
-        for (char c = 'a'; c <= 'z'; c++) {
-            for (int i = n; i > 0; i--) {
-                Pair key = new Pair(c, i);
-                if (map.containsKey(key)) {
-                    if (map.get(key) >= 3) {
-                        ans = Math.max(ans, i);
-                    }
-                    Pair smallerKey = new Pair(c, i - 1);
-                    map.put(smallerKey, map.getOrDefault(smallerKey, 0) + map.get(key));
-                }
-            }
+        int ans = Integer.MIN_VALUE;
+        for(int i=0;i<26;i++){
+            int curMin = freqAr[i][getMinIdx(freqAr[i])];
+            ans = Math.max(ans,curMin);
         }
-
-        return ans;
+        // System.out.println(Arrays.deepToString(freqAr));
+        return ans == 0 ? -1 : ans;
     }
-
-    // Helper class for the (character, size) pair
-    static class Pair {
-        char c;
-        int size;
-
-        Pair(char c, int size) {
-            this.c = c;
-            this.size = size;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Pair pair = (Pair) o;
-            return c == pair.c && size == pair.size;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = Character.hashCode(c);
-            result = 31 * result + Integer.hashCode(size);
-            return result;
-        }
+    private int getMinIdx(int[]ar){
+        int a = ar[0],b = ar[1],c = ar[2];
+        if(a <= b && a <= c) return 0;
+        if(b <= a && b <= c) return 1;
+        return 2;
     }
-
-    // Main method for testing
 }
