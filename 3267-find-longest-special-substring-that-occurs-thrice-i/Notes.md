@@ -1,1 +1,1 @@
-<h2>find-longest-special-substring-that-occurs-thrice-i Notes</h2><hr>[ Time taken: 12 m 33 s ]
+<h2>find-longest-special-substring-that-occurs-thrice-i Notes</h2><hr>[ Time taken: 11 m 34 s ]
