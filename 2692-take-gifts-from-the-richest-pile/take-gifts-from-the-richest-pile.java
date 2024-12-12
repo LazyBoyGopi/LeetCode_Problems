@@ -11,18 +11,20 @@ class Solution {
         return right;
     }
     public long pickGifts(int[] gifts, int k) {
-        Queue<Integer>queue = new PriorityQueue<Integer>(Comparator.reverseOrder());
-        for(int gift : gifts) queue.offer(gift);
+        Queue<Integer>queue = new PriorityQueue<Integer>((a,b)->b-a);
+        long sum = 0l;
+        for(int gift : gifts) {
+            queue.offer(gift);
+            sum += gift;
+        }
         while(k > 0){
             int curGift = queue.poll();
             int sqrt = getSqrt(curGift);
+            sum -= curGift-sqrt;
             queue.offer(sqrt);
             k--;
         }
-        long numberOfRemainingGifts = 0l;
-        for(int gift : queue){
-            numberOfRemainingGifts += gift;
-        }
-        return numberOfRemainingGifts;
+        
+        return sum;
     }
 }
