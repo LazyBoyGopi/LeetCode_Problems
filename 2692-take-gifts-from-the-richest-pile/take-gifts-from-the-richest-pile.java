@@ -19,7 +19,7 @@ class Solution {
         }
         while(k > 0){
             int curGift = queue.poll();
-            int sqrt = getSqrt(curGift);
+            int sqrt = (int)Math.sqrt(curGift);
             sum -= curGift-sqrt;
             queue.offer(sqrt);
             k--;
