@@ -1,18 +1,28 @@
 class Solution {
-    public long pickGifts(int[] gifts, int k) {
-        Queue<Integer>q = new PriorityQueue<Integer>((a,b)->b-a);
-        long sum = 0l;
-        for(int gift : gifts){
-            sum += gift;
-            q.offer(gift);
+    private int getSqrt(int num){
+        int left = 0, right = num;
+        while(left <= right){
+            int mid = left+(right-left)/2;
+            long mul = (long)mid * mid;
+            if(mul == num) return mid;
+            if(mul > num) right = mid-1;
+            else left = mid+1;
         }
+        return right;
+    }
+    public long pickGifts(int[] gifts, int k) {
+        Queue<Integer>queue = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        for(int gift : gifts) queue.offer(gift);
         while(k > 0){
-            int curEle = q.poll();
-            int sqrt = (int)Math.sqrt(curEle);
-            sum -= curEle-sqrt;
-            q.offer(sqrt);
+            int curGift = queue.poll();
+            int sqrt = getSqrt(curGift);
+            queue.offer(sqrt);
             k--;
         }
-        return sum;
+        long numberOfRemainingGifts = 0l;
+        for(int gift : queue){
+            numberOfRemainingGifts += gift;
+        }
+        return numberOfRemainingGifts;
     }
 }
