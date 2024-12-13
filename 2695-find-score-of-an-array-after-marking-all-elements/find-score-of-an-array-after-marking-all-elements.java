@@ -1,30 +1,24 @@
 class Solution {
-    private class Pair{
-        public int value;
-        public int index;
-        public Pair(int _value,int _index){
-            value = _value;
-            index = _index;
-        }
-    }
     public long findScore(int[] nums) {
         long score = 0l;
-        Set<Integer>checkedIndexes = new HashSet();
-        Queue<Pair>queue = new PriorityQueue<Pair>((a,b)->{
-            if(a.value == b.value) return a.index-b.index;
-            return a.value - b.value;
+        int len = nums.length;
+        boolean [] checkedIndexes = new boolean[len+2];
+        Queue<int[]>queue = new PriorityQueue<int[]>((a,b)->{
+            if(a[0] == b[0]) return a[1]-b[1];
+            return a[0] - b[0];
         });
-        for(int i=0;i<nums.length;i++){
-            Pair pair = new Pair(nums[i],i);
+        for(int i=0;i<len;i++){
+            int[] pair = new int[]{nums[i],i};
             queue.offer(pair);
         }
         while(!queue.isEmpty()){
-            Pair pair = queue.poll();
-            int idx = pair.index;
-            if(checkedIndexes.contains(idx)) continue;
-            score += pair.value;
-            checkedIndexes.add(idx+1);
-            checkedIndexes.add(idx-1);
+            int[] pair = queue.poll();
+            int idx = pair[1];
+            if(checkedIndexes[idx]) continue;
+            score += pair[0];
+            checkedIndexes[idx+1] = true;
+            if(idx != 0)
+            checkedIndexes[idx-1] = true;
         }
         return score;
     }
