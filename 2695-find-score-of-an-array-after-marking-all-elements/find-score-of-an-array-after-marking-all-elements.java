@@ -14,11 +14,10 @@ class Solution {
         while(!queue.isEmpty()){
             int[] pair = queue.poll();
             int idx = pair[1];
-            if(checkedIndexes[idx]) continue;
+            if(checkedIndexes[idx+1]  ) continue;
             score += pair[0];
-            checkedIndexes[idx+1] = true;
-            if(idx != 0)
-            checkedIndexes[idx-1] = true;
+            checkedIndexes[idx+1+1] = true;
+            checkedIndexes[idx-1+1] = true;
         }
         return score;
     }
