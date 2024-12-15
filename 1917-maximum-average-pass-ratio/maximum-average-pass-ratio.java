@@ -8,8 +8,8 @@ class Solution {
         }
     }
     private double calculateGain(double pass,double total){
-        double before = 1.0*pass/total;
-        double after = (1.0*pass+1)/(total+1);
+        double before = pass/total;
+        double after = (pass+1)/(total+1);
         return after-before;
     }
     public double maxAverageRatio(int[][] classes, int extraStudents) {
@@ -19,7 +19,8 @@ class Solution {
             int pass = classes[i][0];
             int total = classes[i][1];
             double gain = calculateGain(pass,total);
-            queue.offer(new Pair(gain,i));
+            Pair pair = new Pair(gain,i);
+            queue.offer(pair);
         }
         while(extraStudents > 0){
             Pair pair = queue.poll();
@@ -27,14 +28,15 @@ class Solution {
             int pass = classes[idx][0]++;
             int total = classes[idx][1]++;
             double gain = calculateGain(pass+1,total+1);
-            queue.offer(new Pair(gain,idx));
+            Pair newPair = new Pair(gain,idx);
+            queue.offer(newPair);
             extraStudents--;
         }
         double averageRatio = 0.0;
         for(int i=0;i<len;i++){
             averageRatio += (double)classes[i][0]/classes[i][1];
         }
-        averageRatio /= (double)len;
+        averageRatio /= len;
         return Math.round(averageRatio * 100000.0)/100000.0;
     }
 }
