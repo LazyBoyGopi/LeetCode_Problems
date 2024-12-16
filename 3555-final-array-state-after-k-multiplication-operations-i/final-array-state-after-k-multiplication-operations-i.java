@@ -7,8 +7,10 @@ class Solution {
             index = _index;
         }
     }
-    public int[] getFinalState(int[] nums, int k, int multiplier) {
-        int len = nums.length;
+
+    /**
+    Method - 1
+    int len = nums.length;
         Queue<Pair>queue = new PriorityQueue<>((a,b)->{
             if(a.value==b.value) return a.index-b.index;
             return a.value-b.value;
@@ -24,6 +26,21 @@ class Solution {
         }
         for(Pair pair : queue){
             nums[pair.index] = pair.value;
+        }
+        return nums;
+     */
+    private int getMin(int[]nums){
+        int minIdx = 0;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i] < nums[minIdx]) minIdx = i;
+        }
+        return minIdx;
+    }
+    public int[] getFinalState(int[] nums, int k, int multiplier) {
+        while(k > 0){
+            int minIdx = getMin(nums);
+            nums[minIdx] *= multiplier;
+            k--;
         }
         return nums;
     }
