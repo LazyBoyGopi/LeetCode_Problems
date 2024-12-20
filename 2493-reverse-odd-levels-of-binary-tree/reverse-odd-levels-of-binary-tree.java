@@ -14,27 +14,37 @@
  * }
  */
 class Solution {
-    private void traverseTree(TreeNode root,int level,Map<Integer,List<Integer>>map){
+    private class Pair{
+        int idx;
+        List<Integer>list;
+        public Pair(int idx,List<Integer>_list){
+            this.idx = idx;
+            list = _list;
+        }
+    }
+    private void traverseTree(TreeNode root,int level,Map<Integer,Pair>map){
         if(root == null) return;
         if((level & 1) == 1){
-            map.putIfAbsent(level,new LinkedList());
-            map.get(level).add(root.val);
+            map.putIfAbsent(level,new Pair(-1,new ArrayList()));
+            map.get(level).list.add(root.val);
         }
         traverseTree(root.left,level+1,map);
         traverseTree(root.right,level+1,map);
     }
-    private void buildTree(TreeNode root,int level,Map<Integer,List<Integer>>map){
+    private void buildTree(TreeNode root,int level,Map<Integer,Pair>map){
         if(root == null) return;
         if((level  & 1) == 1){
-            List<Integer>curList = map.get(level);
-            root.val = curList.get(curList.size()-1);
-            curList.remove(curList.size()-1);
+            Pair curPair = map.get(level);
+            List<Integer>curList = curPair.list;
+            int idx = curPair.idx != -1 ? curPair.idx : curList.size()-1;
+            root.val = curList.get(idx);
+            curPair.idx = idx-1;
         }
         buildTree(root.left,level+1,map);
         buildTree(root.right,level+1,map);
     }
     public TreeNode reverseOddLevels(TreeNode root) {
-        Map<Integer,List<Integer>>map = new HashMap();
+        Map<Integer,Pair>map = new HashMap();
         TreeNode rootOrg = root;
         traverseTree(root,0,map);
         buildTree(rootOrg,0,map);
