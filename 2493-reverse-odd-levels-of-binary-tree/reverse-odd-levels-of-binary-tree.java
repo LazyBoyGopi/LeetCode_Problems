@@ -17,37 +17,33 @@ class Solution {
     private class Pair{
         int idx;
         List<Integer>list;
-        public Pair(int idx,List<Integer>_list){
+        public Pair(int idx,List<Integer>list){
             this.idx = idx;
-            list = _list;
+            this.list = list;
         }
     }
-    private void traverseTree(TreeNode root,int level,Map<Integer,Pair>map){
+    private void traverseTree(TreeNode root,int level,Map<Integer,Pair>map,boolean isTraverseing){
         if(root == null) return;
         if((level & 1) == 1){
-            map.putIfAbsent(level,new Pair(-1,new ArrayList()));
-            map.get(level).list.add(root.val);
+            if(isTraverseing){
+                map.putIfAbsent(level,new Pair(-1,new ArrayList()));
+                map.get(level).list.add(root.val);
+            }else{
+                Pair curPair = map.get(level);
+                List<Integer>curList = curPair.list;
+                int idx = curPair.idx != -1 ? curPair.idx : curList.size()-1;
+                root.val = curList.get(idx);
+                curPair.idx = idx-1;
+            }
         }
-        traverseTree(root.left,level+1,map);
-        traverseTree(root.right,level+1,map);
-    }
-    private void buildTree(TreeNode root,int level,Map<Integer,Pair>map){
-        if(root == null) return;
-        if((level  & 1) == 1){
-            Pair curPair = map.get(level);
-            List<Integer>curList = curPair.list;
-            int idx = curPair.idx != -1 ? curPair.idx : curList.size()-1;
-            root.val = curList.get(idx);
-            curPair.idx = idx-1;
-        }
-        buildTree(root.left,level+1,map);
-        buildTree(root.right,level+1,map);
+        traverseTree(root.left,level+1,map,isTraverseing);
+        traverseTree(root.right,level+1,map,isTraverseing);
     }
     public TreeNode reverseOddLevels(TreeNode root) {
         Map<Integer,Pair>map = new HashMap();
         TreeNode rootOrg = root;
-        traverseTree(root,0,map);
-        buildTree(rootOrg,0,map);
+        traverseTree(root,0,map,true);
+        traverseTree(rootOrg,0,map,false);
         return rootOrg;
     }
 }
