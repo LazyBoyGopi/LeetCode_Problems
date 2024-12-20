@@ -16,8 +16,10 @@
 class Solution {
     private void traverseTree(TreeNode root,int level,Map<Integer,List<Integer>>map){
         if(root == null) return;
-        map.putIfAbsent(level,new LinkedList());
-        map.get(level).add(root.val);
+        if((level & 1) == 1){
+            map.putIfAbsent(level,new LinkedList());
+            map.get(level).add(root.val);
+        }
         traverseTree(root.left,level+1,map);
         traverseTree(root.right,level+1,map);
     }
