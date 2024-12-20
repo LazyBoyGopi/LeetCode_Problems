@@ -26,7 +26,7 @@ class Solution {
         if((level  & 1) == 1){
             List<Integer>curList = map.get(level);
             root.val = curList.get(curList.size()-1);
-            curList.remove((int)curList.size()-1);
+            curList.remove(curList.size()-1);
         }
         buildTree(root.left,level+1,map);
         buildTree(root.right,level+1,map);
