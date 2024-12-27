@@ -3,7 +3,6 @@ class Solution {
     /*
     int maxScore = Integer.MIN_VALUE;
         int len = values.length;
-        System.out.println(len);
         for(int i=0;i<len-1;i++){
             for(int j=i+1;j<len;j++){
                 int curScore = values[i]+values[j] + i-j;
@@ -35,15 +34,12 @@ class Solution {
     }
     */
     public int maxScoreSightseeingPair(int[] values) {
-
-        int maxTillNow = values[0];
-        int ans = Integer.MIN_VALUE;
-        int len = values.length;
+        int maxTillNow = values[0], len = values.length, maxScore = 0;
         for(int i=1;i<len;i++){
             int ele = values[i];
-            ans = Math.max(ans,maxTillNow+ele-i);
-            maxTillNow = Math.max(maxTillNow,ele+i);
+            if(maxTillNow + ele-i > maxScore) maxScore = maxTillNow + ele-i;
+            if(ele+i > maxTillNow) maxTillNow = ele+i;
         }
-        return ans;
+        return maxScore;
     }
 }
