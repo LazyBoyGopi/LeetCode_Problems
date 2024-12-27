@@ -12,33 +12,28 @@ class Solution {
         return maxScore;
     */
 
-    /*private class Pair{
-        int val;
-        int idx;
-        public Pair(int val,int idx){
-            this.val = val;
-            this.idx = idx;
-        }
-    Queue<Pair>queue = new PriorityQueue<Pair>((a,b) ->b.val-a.val);
-        for(int i=0;i<values.length;i++){
-            queue.offer(new Pair(values[i],i));
-        }
-        int maxScore = 0;
-        Pair maxElePair = queue.poll();
-        int maxEle = maxElePair.val, maxIdx = maxElePair.idx;
-        for(Pair pair : queue){
-            int curScore = maxEle + pair.val - Math.abs(maxIdx-pair.idx); 
-            maxScore = Math.max(maxScore,curScore);
+    /*
+        Queue<Integer>queue = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        int maxScore = 0,len = values.length;
+        queue.offer(values[0]);
+        for(int i=0;i<len;i++){
+            int ele = values[i];
+            int top = queue.peek();
+            if(top + ele-i > maxScore) maxScore = top+ele-i;
+            queue.offer(ele+i);
         }
         return maxScore;
     }
     */
     public int maxScoreSightseeingPair(int[] values) {
-        int maxTillNow = values[0], len = values.length, maxScore = 0;
+        Queue<Integer>queue = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        int maxScore = 0,len = values.length;
+        queue.offer(values[0]);
         for(int i=1;i<len;i++){
             int ele = values[i];
-            if(maxTillNow+ele-i > maxScore) maxScore = maxTillNow+ele-i;
-            if(maxTillNow < ele+i) maxTillNow = ele+i;
+            int top = queue.peek();
+            if(top + ele-i > maxScore) maxScore = top+ele-i;
+            queue.offer(ele+i);
         }
         return maxScore;
     }
