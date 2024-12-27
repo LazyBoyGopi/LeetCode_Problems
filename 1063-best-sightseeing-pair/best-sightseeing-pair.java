@@ -35,13 +35,10 @@ class Solution {
     */
     public int maxScoreSightseeingPair(int[] values) {
         int maxTillNow = values[0], len = values.length, maxScore = 0;
-        Queue<Integer>queue = new PriorityQueue<Integer>(Comparator.reverseOrder());
-        queue.offer(values[0]);
         for(int i=1;i<len;i++){
             int ele = values[i];
-            int top = queue.peek();
-            maxScore = Math.max(maxScore,top+ele-i);
-            queue.offer(ele+i);
+            if(maxTillNow+ele-i > maxScore) maxScore = maxTillNow+ele-i;
+            if(maxTillNow < ele+i) maxTillNow = ele+i;
         }
         return maxScore;
     }
