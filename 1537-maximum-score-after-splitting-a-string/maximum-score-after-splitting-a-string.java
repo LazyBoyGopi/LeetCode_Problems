@@ -1,21 +1,28 @@
 class Solution {
     public int maxScore(String s) {
+
         int len = s.length();
 
-        int[]preSum = new int[len];
-        preSum[0] = s.charAt(0) == '0' ? 1 : 0;
-        for(int i=1;i<len;i++){
-            preSum[i] = preSum[i-1] + (s.charAt(i) == '0' ? 1 : 0);
+        int totalZeroes = 0;
+
+        for(int i=0;i<len;i++){
+            totalZeroes +=  (s.charAt(i) == '0' ? 1 : 0);
         }
+
         int maxScore = 0;
-        int totalZeroes = preSum[len-1];
+        int leftZeroes = s.charAt(0) == '0' ? 1 : 0;
         for(int i=1;i<len;i++){
-            int leftZero = preSum[i-1];
+            
+            int rightZeroes = totalZeroes - leftZeroes;
+
             int rightLen = len-i;
-            int rightZeroes = totalZeroes - leftZero;
             int rightOnes = rightLen - rightZeroes;
-            int curScore = leftZero + rightOnes;
+
+            int curScore = leftZeroes + rightOnes;
+
             maxScore = Math.max(maxScore,curScore);
+
+            leftZeroes += (s.charAt(i) == '0' ? 1 : 0);
         }
         return maxScore;
     }
