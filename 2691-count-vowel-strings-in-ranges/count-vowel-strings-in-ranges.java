@@ -1,5 +1,5 @@
 class Solution {
-
+    Set<Character>set = new HashSet();
     /*
      * int qLen = queries.length, wLen = words.length;
      * int[]ans = new int[qLen];
@@ -21,19 +21,30 @@ class Solution {
      * return ans;
      */
     public int[] vowelStrings(String[] words, int[][] queries) {
+
+        set.add('a');
+        set.add('e');
+        set.add('i');
+        set.add('o');
+        set.add('u');
+
+
+
         int qLen = queries.length, wLen = words.length;
         int count = 0;
         int[] preSum = new int[wLen];
         int[] ans = new int[qLen];
 
         for (int i = 0; i < wLen; i++) {
+
             String word = words[i];
             char f = word.charAt(0);
             char l = word.charAt(word.length() - 1);
             boolean first = false, last = false;
-            if (f == 'a' || f == 'e' || f == 'i' || f == 'o' || f == 'u')
+
+            if (set.contains(f))
                 first = true;
-            if (l == 'a' || l == 'e' || l == 'i' || l == 'o' || l == 'u')
+            if (set.contains(l))
                 last = true;
 
             if (first & last)
@@ -47,6 +58,7 @@ class Solution {
             int curValue = preSum[end] - (st > 0 ? preSum[st-1] : 0); 
             ans[i] = curValue;
         }
+
         return ans;
     }
 }
