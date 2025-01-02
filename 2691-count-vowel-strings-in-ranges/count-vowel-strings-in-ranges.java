@@ -1,5 +1,5 @@
 class Solution {
-    Set<Character>set = new HashSet();
+
     /*
      * int qLen = queries.length, wLen = words.length;
      * int[]ans = new int[qLen];
@@ -20,15 +20,12 @@ class Solution {
      * }
      * return ans;
      */
+    String vowelString = "aeiou";
+
+     private boolean isVowelString(String s){
+        return ((vowelString.indexOf(s.charAt(0)) != -1) && (vowelString.indexOf(s.charAt(s.length()-1)) != -1));
+     }
     public int[] vowelStrings(String[] words, int[][] queries) {
-
-        set.add('a');
-        set.add('e');
-        set.add('i');
-        set.add('o');
-        set.add('u');
-
-
 
         int qLen = queries.length, wLen = words.length;
         int count = 0;
@@ -36,20 +33,7 @@ class Solution {
         int[] ans = new int[qLen];
 
         for (int i = 0; i < wLen; i++) {
-
-            String word = words[i];
-            char f = word.charAt(0);
-            char l = word.charAt(word.length() - 1);
-            boolean first = false, last = false;
-
-            if (set.contains(f))
-                first = true;
-            if (set.contains(l))
-                last = true;
-
-            if (first & last)
-                count++;
-            
+            if(isVowelString(words[i])) count++;
             preSum[i] = count;
         }
         
