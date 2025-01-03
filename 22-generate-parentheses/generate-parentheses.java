@@ -2,7 +2,7 @@ class Solution {
     List<String>ans;
     private void getAns(int opened,int closed,int n,StringBuilder str){
         if(closed == n){
-            ans.add(new StringBuilder(str).toString());
+            ans.add(str.toString());
             return;
         }
         if(opened > closed){
