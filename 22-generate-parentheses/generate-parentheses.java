@@ -17,7 +17,7 @@ class Solution {
         }
     }
     public List<String> generateParenthesis(int n) {
-        ans = new ArrayList<String>();
+        ans = new LinkedList<String>();
         getAns(0,0,n,new StringBuilder());
         return ans;
     }
