@@ -8,12 +8,12 @@ class Solution {
         if(opened > closed){
             str.append(')');
             getAns(opened,closed+1,n,str);
-            str.setLength(str.length()-1);
+            str.deleteCharAt(str.length()-1);
         }
         if(opened < n){
             str.append('(');
             getAns(opened+1,closed,n,str);
-            str.setLength(str.length()-1);
+            str.deleteCharAt(str.length()-1);
         }
     }
     public List<String> generateParenthesis(int n) {
