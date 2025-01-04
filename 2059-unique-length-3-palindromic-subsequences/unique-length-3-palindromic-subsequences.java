@@ -58,7 +58,7 @@ class Solution {
     public int countPalindromicSubsequence(String s) {
         int [] spForEachCh = new int[26];
         int [] indexes = new int[26];
-        Set<Character>checkedCharacters = new HashSet();
+        int [] checkedCharacters = new int[26];
         Arrays.fill(indexes,-1);
         int len = s.length();
         for(int i=0;i<len;i++){
@@ -72,9 +72,9 @@ class Solution {
             char ch = s.charAt(i);
             int curCh = ch-'a';
             int firstIdx = indexes[curCh];
-            if(firstIdx < i && !checkedCharacters.contains(ch)){
+            if(firstIdx < i && checkedCharacters[curCh] != -1){
                 ans += getCountUniqueCharacters(s,firstIdx+1,i-1);
-                checkedCharacters.add(ch);
+                checkedCharacters[curCh] = -1;
             }
         }
         return ans;
