@@ -67,17 +67,16 @@ class Solution {
                 indexes[(curCh)] = i;
             }
         }
+        int ans = 0;
         for(int i=len-1;i>=0;i--){
             char ch = s.charAt(i);
             int curCh = ch-'a';
             int firstIdx = indexes[curCh];
             if(firstIdx < i && !checkedCharacters.contains(ch)){
-                spForEachCh[curCh] = getCountUniqueCharacters(s,firstIdx+1,i-1);
+                ans += getCountUniqueCharacters(s,firstIdx+1,i-1);
                 checkedCharacters.add(ch);
             }
         }
-        int ans = 0;
-        for(int ele : spForEachCh) ans += ele;
         return ans;
     }
 }
