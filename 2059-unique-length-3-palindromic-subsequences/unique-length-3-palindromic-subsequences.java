@@ -67,7 +67,6 @@ class Solution {
                 indexes[(curCh)] = i;
             }
         }
-        System.out.println(Arrays.toString(indexes));
         for(int i=len-1;i>=0;i--){
             char ch = s.charAt(i);
             int curCh = ch-'a';
