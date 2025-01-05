@@ -89,7 +89,7 @@ class Solution {
     public String shiftingLetters(String s,int[][]shifts){
         int len = s.length();
         int[]ar = new int[len];
-        StringBuilder sb = new StringBuilder();
+        char[] sb = s.toCharArray();
         for(int[] shift : shifts){
             int dic = shift[2] == 0 ? -1 : 1;
             ar[shift[0]] += dic;
@@ -101,9 +101,8 @@ class Solution {
         for(int i=0;i<len;i++){
             cumulativeShift  += ar[i];
             int shift = (cumulativeShift % 26 + 26)%26;
-            char newChar = (char)('a'+(s.charAt(i)-'a'+shift)%26);
-            sb.append(newChar);
+            sb[i] = (char)('a'+(s.charAt(i)-'a'+shift)%26);
         }
-        return sb.toString();
+        return new StringBuilder().append(sb).toString();
     }
  }
