@@ -37,7 +37,7 @@ class Solution {
 
  */
 
-//Optmised
+//Accepted (but not optimised)
 class Solution {
     private void doShifting(int[]ar,int[]shift){
         int dif = shift[2] == 0 ? -1 : 1;
@@ -72,10 +72,10 @@ class Solution {
         for(int[] shift : shifts){
             doShifting(ar,shift);
         }
-        char[]sAr = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
         for(int i=0;i<len;i++){
-            sAr[i] = shiftCharacter(sAr[i],ar[i]);
+            sb.append(shiftCharacter(s.charAt(i),ar[i]));
         }
-        return new StringBuilder().append(sAr).toString();
+        return sb.toString();
     }
 }
