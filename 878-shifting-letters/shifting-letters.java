@@ -44,11 +44,11 @@ class Solution {
     public String shiftingLetters(String s, int[] shifts) {
         long shiftsTillNow = 0;
         int len = s.length();
-        char[]ar = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
         for(int i=len-1;i>=0;i--){
             shiftsTillNow += shifts[i];
-            ar[i] = shiftCurCharacter(ar[i],shiftsTillNow);
+            sb.append(shiftCurCharacter(s.charAt(i),shiftsTillNow));
         }
-        return new StringBuilder().append(ar).toString();
+        return sb.reverse().toString();
     }
 }
