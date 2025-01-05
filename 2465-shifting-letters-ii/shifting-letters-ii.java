@@ -38,6 +38,8 @@ class Solution {
  */
 
 //Accepted (but not optimised)
+/*
+
 class Solution {
     private void doShifting(int[]ar,int[]shift){
         int dif = shift[2] == 0 ? -1 : 1;
@@ -50,23 +52,21 @@ class Solution {
         boolean isPositive = times >= 0 ? true : false;
         times = Math.abs(times);
         times %= 26;
-        if(isPositive){
-            while(times > 0){
-                if(curCh == 'z')
-                    curCh = 'a';
-                else 
-                    curCh = (char)(curCh + 1);
+        while(times > 0){
+                if(isPositive){
+                    if(curCh == 'z')
+                        curCh = 'a';
+                    else 
+                        curCh = (char)(curCh + 1);
+                }
+                else{
+                    if(curCh == 'a')
+                        curCh = 'z'; 
+                    else 
+                        curCh = (char)(curCh - 1);
+                }
                 times--;
-            }
-        }else{
-            while(times > 0){
-                if(curCh == 'a')
-                    curCh = 'z';
-                else 
-                    curCh = (char)(curCh - 1);
-                times--;
-            }
-        }
+            }    
         return curCh;
     }
     public String shiftingLetters(String s, int[][] shifts) {
@@ -82,3 +82,49 @@ class Solution {
         return new StringBuilder().append(sAr).toString();
     }
 }
+
+ */
+
+ class Solution{
+    private char shiftCharacter(char curCh,int times){
+        boolean isPositive = times >= 0 ? true : false;
+        times = Math.abs(times);
+        times %= 26;
+        while(times > 0){
+                if(isPositive){
+                    if(curCh == 'z')
+                        curCh = 'a';
+                    else 
+                        curCh = (char)(curCh + 1);
+                }
+                else{
+                    if(curCh == 'a')
+                        curCh = 'z'; 
+                    else 
+                        curCh = (char)(curCh - 1);
+                }
+                times--;
+            }    
+        return curCh;
+    }
+    public String shiftingLetters(String s,int[][]shifts){
+        int len = s.length();
+        int[]ar = new int[len];
+        StringBuilder sb = new StringBuilder();
+        for(int[] shift : shifts){
+            if(shift[2] == 1){
+                ar[shift[0]]++;
+                if(shift[1] < len-1) ar[shift[1]+1]--;
+            }else{
+                ar[shift[0]]--;
+                if(shift[1] < len-1) ar[shift[1]+1]++;
+            }
+        }
+        int count = 0;
+        for(int i=0;i<len;i++){
+            count += ar[i];
+            sb.append(shiftCharacter(s.charAt(i),count));
+        }
+        return sb.toString();
+    }
+ }
