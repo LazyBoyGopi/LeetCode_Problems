@@ -50,20 +50,23 @@ class Solution {
         boolean isPositive = times >= 0 ? true : false;
         times = Math.abs(times);
         times %= 26;
-        while(times > 0){
-            if(isPositive){
+        if(isPositive){
+            while(times > 0){
                 if(curCh == 'z')
                     curCh = 'a';
                 else 
-                    curCh = (char)(curCh+ 1);
-            }else{
+                    curCh = (char)(curCh + 1);
+                times--;
+            }
+        }else{
+            while(times > 0){
                 if(curCh == 'a')
                     curCh = 'z';
                 else 
-                    curCh = (char)(curCh-1);
+                    curCh = (char)(curCh - 1);
+                times--;
             }
-            times--;
-        } 
+        }
         return curCh;
     }
     public String shiftingLetters(String s, int[][] shifts) {
@@ -72,10 +75,10 @@ class Solution {
         for(int[] shift : shifts){
             doShifting(ar,shift);
         }
-        StringBuilder sb = new StringBuilder();
+        char[]sAr = s.toCharArray();
         for(int i=0;i<len;i++){
-            sb.append(shiftCharacter(s.charAt(i),ar[i]));
+            sAr[i] = shiftCharacter(sAr[i],ar[i]);
         }
-        return sb.toString();
+        return new StringBuilder().append(sAr).toString();
     }
 }
