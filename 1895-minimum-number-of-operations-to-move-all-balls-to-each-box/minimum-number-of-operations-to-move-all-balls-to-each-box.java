@@ -6,37 +6,37 @@ class Solution {
     }
     public int[] minOperations(String boxes) {
         int len = boxes.length();
-        List<Integer>[] pre = new LinkedList[len];
-        List<Integer>[] suf = new LinkedList[len];
+        int countOfOnesOnLeft = 0,countOfOnesOnRight = 0;
+        int curVal = 0;
 
-        List<Integer>list = new LinkedList();
+        int[]pre = new int[len];
+        int[]suf = new int[len];
+
         for(int i=0;i<len;i++){
-            pre[i] = new LinkedList(list);
+            pre[i] = curVal;
+            curVal += countOfOnesOnLeft;
             if(boxes.charAt(i) == '1'){
-                list.add(i);
+                curVal++;
+                countOfOnesOnLeft++;
             }
         }
-        list = new LinkedList();
+        curVal = 0;
         for(int i=len-1;i>=0;i--){
-            suf[i] = new LinkedList(list);
+            suf[i] = curVal;
+            curVal += countOfOnesOnRight;
             if(boxes.charAt(i) == '1'){
-                list.add(i);
+                curVal++;
+                countOfOnesOnRight++;
             }
         }
-        int[]pre1 = new int[len];
-        int[]suf1 = new int[len];
-        for(int i=0;i<len;i++){
-            pre1[i] = sum(pre[i],i);
-        }
-        for(int i=len-1;i>=0;i--){
-            suf1[i] = sum(suf[i],i);
-        }
-        System.out.println(Arrays.toString(pre1)+"\n"+Arrays.toString(suf1));
+        
+        System.out.println(Arrays.toString(pre)+"\n"+Arrays.toString(suf));
+
         int[]ans = new int[len];
-        ans[0] = suf1[0];
-        ans[len-1] = pre1[len-1];
+        ans[0] = suf[0];
+        ans[len-1] = pre[len-1];
         for(int i=1;i<len-1;i++){
-            ans[i] = pre1[i] + suf1[i];
+            ans[i] = pre[i] + suf[i];
         }
         return ans;
     }
