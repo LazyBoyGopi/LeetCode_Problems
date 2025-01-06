@@ -30,8 +30,6 @@ class Solution {
             }
         }
         
-        System.out.println(Arrays.toString(pre)+"\n"+Arrays.toString(suf));
-
         int[]ans = new int[len];
         ans[0] = suf[0];
         ans[len-1] = pre[len-1];
