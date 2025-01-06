@@ -1,9 +1,4 @@
 class Solution {
-    private int sum(List<Integer>list,int curIdx){
-        int sum = 0;
-        for(int idx : list) sum += Math.abs(curIdx-idx);
-        return sum;
-    }
     public int[] minOperations(String boxes) {
         int len = boxes.length();
         int countOfOnesOnLeft = 0,countOfOnesOnRight = 0;
@@ -20,21 +15,17 @@ class Solution {
                 countOfOnesOnLeft++;
             }
         }
+        int[]ans = new int[len];
+        ans[len-1] = pre[len-1];
+
         curVal = 0;
         for(int i=len-1;i>=0;i--){
-            suf[i] = curVal;
+            ans[i] = pre[i] + curVal;
             curVal += countOfOnesOnRight;
             if(boxes.charAt(i) == '1'){
                 curVal++;
                 countOfOnesOnRight++;
             }
-        }
-        
-        int[]ans = new int[len];
-        ans[0] = suf[0];
-        ans[len-1] = pre[len-1];
-        for(int i=1;i<len-1;i++){
-            ans[i] = pre[i] + suf[i];
         }
         return ans;
     }
