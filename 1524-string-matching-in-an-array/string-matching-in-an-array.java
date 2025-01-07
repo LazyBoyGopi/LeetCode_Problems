@@ -59,21 +59,18 @@ class Solution {
         }
         return false;
     }
-    private boolean isSubString(String[]words,String cur,int includeIdx){
-        for(int i=0;i<words.length;i++){
-            if(i == includeIdx) continue;
-            String word = words[i];
-            if(word.contains(cur)) return true;
-        }
-        return false;
-    }
     public List<String> stringMatching(String[] words) {
         List<String>list = new ArrayList();
         int len = words.length;
         for(int i=0;i<len;i++){
-            String word = words[i];
-            if(isSubString(words,word,i)){
-                list.add(word);
+            String cur = words[i];
+            for(int j=0;j<len;j++){
+                if(i== j) continue;
+                String jStr = words[j];
+                if(jStr.contains(cur)){
+                    list.add(cur);
+                    break;
+                }
             }
         }
         return list;
