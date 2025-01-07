@@ -24,7 +24,7 @@ class Solution {
         for(int i=1;i<len;i++){
             char curCh = pattern.charAt(i);
             while(lspTillNow > 0 && pattern.charAt(lspTillNow) != curCh){
-                lspTillNow = lsp[lspTillNow-1];
+                lspTillNow--;
             }
             if(curCh == pattern.charAt(lspTillNow)) lspTillNow++;
             lsp[i] = lspTillNow;
