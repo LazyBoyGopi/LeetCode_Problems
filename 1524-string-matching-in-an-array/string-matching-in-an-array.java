@@ -6,7 +6,7 @@ class Solution {
             String cur = words[i];
             for(int j=0;j<len;j++){
                 String jStr = words[j];
-                if(i== j || jStr.length() < cur.length()) continue;
+                if(i== j) continue;
                 if(jStr.contains(cur)){
                     list.add(cur);
                     break;
