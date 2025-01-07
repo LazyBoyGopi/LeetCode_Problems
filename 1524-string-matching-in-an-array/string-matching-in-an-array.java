@@ -20,14 +20,22 @@ class Solution {
     private int[] getLSP(String pattern){
         int len = pattern.length();
         int[]lsp = new int[len];
-        int lspTillNow = 0;
-        for(int i=1;i<len;i++){
-            char curCh = pattern.charAt(i);
-            while(lspTillNow > 0 && pattern.charAt(lspTillNow) != curCh){
-                lspTillNow--;
+        int lspTillNow = 0, i=1;
+        while(i < len){
+            char curCh = pattern.charAt(i), chAtL = pattern.charAt(lspTillNow);
+            if(chAtL == curCh){
+                lspTillNow++;
+                lsp[i] = lspTillNow;
+                i++;
+            }else{
+                if(lspTillNow > 0){
+                    lspTillNow = lsp[lspTillNow-1];
+                }
+                else{
+                    lsp[i] = 0;
+                    i++;
+                }
             }
-            if(curCh == pattern.charAt(lspTillNow)) lspTillNow++;
-            lsp[i] = lspTillNow;
         }
         return lsp;
     }
