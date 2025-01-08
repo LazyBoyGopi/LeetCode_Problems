@@ -20,55 +20,57 @@ class Solution {
     private int[] getLSP(String pattern){
         int len = pattern.length();
         int[]lsp = new int[len];
-        int lspTillNow = 0, i=1;
-        while(i < len){
-            char curCh = pattern.charAt(i), chAtL = pattern.charAt(lspTillNow);
-            if(chAtL == curCh){
-                lspTillNow++;
-                lsp[i] = lspTillNow;
+        int curLen = 0, i = 1;
+        while(i<len){
+            if(pattern.charAt(i) == pattern.charAt(curLen)){
+                curLen++;
+                lsp[i] = curLen;
                 i++;
             }else{
-                if(lspTillNow > 0){
-                    lspTillNow = lsp[lspTillNow-1];
-                }
-                else{
-                    lsp[i] = 0;
-                    i++;
-                }
+                if(curLen > 0)
+                    curLen = lsp[curLen-1];
+                else
+                    {
+                        lsp[i] = 0;
+                        i++;
+                    }
             }
         }
         return lsp;
     }
-    private boolean contains(String pattern,String txt){
-        int[]lsp = getLSP(pattern);
-        int pLen = pattern.length(), tLen = txt.length();
-        int i=0, j=0;
+    private boolean isMatching(String txt,String pattern,int[]lsp){
+        int tLen = txt.length(), pLen = pattern.length(), i=0, j=0;
+        if(pLen > tLen) return false;
         while(i < tLen){
-            if(pattern.charAt(j) == txt.charAt(i)){
+            if(txt.charAt(i) == pattern.charAt(j)){
                 i++;
                 j++;
             }else{
-                if(j > 0)
+                if(j > 0){
                     j = lsp[j-1];
-                else 
+                }else{
                     i++;
+                }
             }
-            if(j == pLen){
-                return true;
-            }
+            if(j == pLen) return true;
         }
         return false;
     }
     public List<String> stringMatching(String[] words) {
-        List<String>list = new ArrayList();
         int len = words.length;
+        List<String>list = new ArrayList();
+        int[][]lsps = new int[len][];
         for(int i=0;i<len;i++){
-            String cur = words[i];
+            lsps[i] = getLSP(words[i]);
+        }
+
+        for(int i=0;i<len;i++){
+            String pattern = words[i];
             for(int j=0;j<len;j++){
                 if(i== j) continue;
-                String jStr = words[j];
-                if(jStr.contains(cur)){
-                    list.add(cur);
+                String txt = words[j];
+                if(isMatching(txt,pattern,lsps[i])){
+                    list.add(pattern);
                     break;
                 }
             }
