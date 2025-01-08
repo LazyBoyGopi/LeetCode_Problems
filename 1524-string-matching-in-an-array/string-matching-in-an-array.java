@@ -28,10 +28,10 @@ class Solution {
                 i++;
             }else{
                 if(curLen > 0)
-                    curLen = lsp[curLen-1];
+                    curLen--;
                 else
                     {
-                        lsp[i] = 0;
+                        lsp[i] = curLen;
                         i++;
                     }
             }
