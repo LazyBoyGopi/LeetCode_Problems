@@ -1,15 +1,15 @@
 class Solution {
     public int minimumRecolors(String blocks, int k) {
         int max = 0, len = blocks.length();
-        for(int i=0;i<len;i++){
-            int countOfBlacks = 0;
-            for(int j=i;j<len;j++){
-                if(blocks.charAt(j) == 'B') countOfBlacks++;
-                if(j - i+1 == k) {
-                    break;
-                }
-            }
-            max = Math.max(max,countOfBlacks);
+        int count = 0;
+        for(int i=0;i<k;i++){
+            if(blocks.charAt(i) == 'B') count++;
+        }
+        max = Math.max(max,count);
+        for(int i=k;i<len;i++){
+            if(blocks.charAt(i-k) == 'B') count--;
+            if(blocks.charAt(i) == 'B') count++;
+            max = Math.max(max,count);
         }
         return k-max;
     }
