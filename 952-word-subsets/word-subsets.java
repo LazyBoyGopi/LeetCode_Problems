@@ -46,7 +46,7 @@ class Solution {
     public List<String> wordSubsets(String[] words1, String[] words2) {
         maxCharacters = new int[26];
         addHighestCharactersCount(words2);
-        ans = new ArrayList<>();
+        ans = new LinkedList<>();
         checkAllUniversalString(words1);
         return ans;
     }
