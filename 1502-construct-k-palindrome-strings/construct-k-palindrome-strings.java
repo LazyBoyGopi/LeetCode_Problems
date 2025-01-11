@@ -7,7 +7,8 @@ class Solution {
         int countOfOdd = 0;
         for(int i=0;i<len;i++){
             int idx = s.charAt(i)-'a';
-            map[idx] = !map[idx];
+            boolean val = map[idx];
+            map[idx] = !val;
         }
         for(boolean val : map) if(val) countOfOdd++;
         return countOfOdd > k ? false : true;
