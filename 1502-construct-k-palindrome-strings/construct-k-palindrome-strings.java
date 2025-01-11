@@ -6,9 +6,8 @@ class Solution {
         boolean[]map = new boolean[26];
         int countOfOdd = 0;
         for(int i=0;i<len;i++){
-            int idx = s.charAt(i)-'a';
-            boolean val = map[idx];
-            map[idx] = !val;
+            boolean val = map[s.charAt(i)-'a'];
+            map[s.charAt(i)-'a'] = !val;
         }
         for(boolean val : map) if(val) countOfOdd++;
         return countOfOdd > k ? false : true;
