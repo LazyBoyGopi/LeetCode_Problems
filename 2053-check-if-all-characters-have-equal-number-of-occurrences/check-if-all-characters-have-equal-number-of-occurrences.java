@@ -1,12 +1,13 @@
 class Solution {
     public boolean areOccurrencesEqual(String s) {
-        Map<Character,Integer>map = new HashMap();
+        int[]ar = new int[26];
+        int highCount = 0;
         for(char ch : s.toCharArray()){
-            map.put(ch,map.getOrDefault(ch,0)+1);
+           int count = ++ar[ch-'a'];
+           highCount = Math.max(highCount,count);
         }
-        int occu = map.get(s.charAt(0));
-        for(int value : map.values()){
-            if(value != occu) return false;
+        for(int value : ar){
+            if(value != 0 && value != highCount) return false;
         }
         return true;
     }
