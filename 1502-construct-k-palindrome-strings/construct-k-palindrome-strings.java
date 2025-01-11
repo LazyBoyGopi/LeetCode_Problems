@@ -8,8 +8,8 @@ class Solution {
 
         for(int i=0;i<len;i++){
             int idx = s.charAt(i)-'a';
-            map[idx]++;
-            if((map[idx] & 1) == 1) countOfOdd++;
+            int ele = ++map[idx];
+            if((ele & 1) == 1) countOfOdd++;
             else countOfOdd--;
         }
         return countOfOdd > k ? false : true;
