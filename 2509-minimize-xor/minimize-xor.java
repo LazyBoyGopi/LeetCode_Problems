@@ -3,7 +3,7 @@ class Solution {
         int setBits = 0;
         while(num > 0){
             setBits += (num&1);
-            num /= 2;
+            num >>= 1;
         }
         return setBits;
     }
@@ -11,8 +11,8 @@ class Solution {
         boolean[]binary = new boolean[32];
         int idx = 31;
         while(num > 0){
-            binary[idx--] = ((num&1) == 1); 
-            num /= 2;
+            binary[idx--] = ((num&1) == 1);
+            num >>= 1;
         }
         return binary;
     }
@@ -27,7 +27,7 @@ class Solution {
                 ans += pow;
                 setBits--;
             }
-            pow /= 2;
+            pow >>= 1;
         }
         i=31;
         pow = 1;
@@ -37,7 +37,7 @@ class Solution {
                 setBits--;
             }
             i--;
-            pow *= 2;
+            pow <<= 1;
         }
         return ans;
     }
