@@ -7,7 +7,10 @@ class Solution {
         return (curBit ^ derived[len-1]) == firstBit;
     }
     public boolean doesValidArrayExist(int[] derived) {
-        if(derived.length == 1) return derived[0] == 0;
-        return checkWith(derived,0) || checkWith(derived,1);
+        int xor = 0;
+        for(int ele : derived) xor ^= ele;
+        return xor == 0;
+        // if(derived.length == 1) return derived[0] == 0;
+        // return checkWith(derived,0) || checkWith(derived,1);
     }
 }
