@@ -119,8 +119,6 @@ class Solution {
                 }else {
                     if(aliveCells == 3){
                         board[i][j] = 4;
-                    }else{
-                        board[i][j] = 5;
                     }
                 }
             }
