@@ -107,19 +107,14 @@ class Solution {
             for(int j=0;j<n;j++){ 
                 int aliveCells = getNeighborsAliveCells(i,j,board);
                 if(board[i][j] == 1){
-                    if(aliveCells < 2){
+                    if(aliveCells < 2 || aliveCells > 3){
                         board[i][j] = 3;
                     }
                     else if(aliveCells == 2 || aliveCells == 3){
                         board[i][j] = 2;
                     }
-                    else if(aliveCells > 3){
-                        board[i][j] = 3;
-                    }
-                }else {
-                    if(aliveCells == 3){
-                        board[i][j] = 4;
-                    }
+                }else if(aliveCells == 3){
+                    board[i][j] = 4;
                 }
             }
         }
