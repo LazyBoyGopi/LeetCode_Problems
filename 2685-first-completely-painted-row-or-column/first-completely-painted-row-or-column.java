@@ -48,25 +48,6 @@ class Solution {
 
 
 class Solution {
-    private boolean isFullyFilled(int row,int col,int[][]mat){
-        int m = mat.length, n = mat[0].length;
-        boolean isFilled = true;
-        for(int i=0;i<m;i++){
-            if(mat[i][col] != -1){
-                isFilled = false;
-                break;
-            }
-        }
-        if(isFilled) return true;
-        isFilled = true;
-        for(int i=0;i<n;i++){
-            if(mat[row][i] != -1){
-                isFilled = false;
-                break;
-            }
-        }
-        return isFilled;
-    }
     private int[][] convertToMap(int[][]mat){
         int m = mat.length, n = mat[0].length;
         int[][]map = new int[(m*n)+1][2];
@@ -78,13 +59,19 @@ class Solution {
         return map;
     }
     public int firstCompleteIndex(int[] arr, int[][] mat) {
+        int arrLength = arr.length, m = mat.length, n = mat[0].length;
+
         int[][]map = convertToMap(mat);
-        int arrLength = arr.length;
+
+        int[]rows = new int[m];
+        int[]cols = new int[n];
+
         for(int i=0;i<arrLength;i++){
             int[]indexes = map[arr[i]];
             mat[indexes[0]][indexes[1]] = -1;
-            boolean isRowOrColFilled = isFullyFilled(indexes[0],indexes[1],mat);
-            if(isRowOrColFilled) return i;
+            int col = ++rows[indexes[0]];
+            int row = ++cols[indexes[1]];
+            if(col == n || row == m) return i;
         }
         return -1;
     }
