@@ -67,21 +67,21 @@ class Solution {
         }
         return isFilled;
     }
-    private Map<Integer,int[]> convertToMap(int[][]mat){
-        Map<Integer,int[]>map = new HashMap();
+    private int[][] convertToMap(int[][]mat){
         int m = mat.length, n = mat[0].length;
+        int[][]map = new int[(m*n)+1][2];
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                map.put(mat[i][j],new int[]{i,j});
+                map[mat[i][j]] = new int[]{i,j};
             }
         }
         return map;
     }
     public int firstCompleteIndex(int[] arr, int[][] mat) {
-        Map<Integer,int[]>map = convertToMap(mat);
+        int[][]map = convertToMap(mat);
         int arrLength = arr.length;
         for(int i=0;i<arrLength;i++){
-            int[]indexes = map.get(arr[i]);
+            int[]indexes = map[arr[i]];
             mat[indexes[0]][indexes[1]] = -1;
             boolean isRowOrColFilled = isFullyFilled(indexes[0],indexes[1],mat);
             if(isRowOrColFilled) return i;
