@@ -175,28 +175,19 @@ class Solution {
 }
 
 **/
+
 class Solution {
     public long gridGame(int[][] grid) {
+        long topHalf = 0l, minMaxSum = Long.MAX_VALUE, bottomHalf = 0l;
         int n = grid[0].length;
-        long topSum = 0, bottomSum = 0, minMaxSum = Long.MAX_VALUE;
 
-        // Calculate the initial total sum of the top row
-        for (int ele : grid[0]) {
-            topSum += ele;
+        for(int ele : grid[0]) topHalf += ele;
+
+        for(int i=0;i<n;i++){
+            topHalf -= grid[0][i];
+            minMaxSum = Math.min(minMaxSum,Math.max(topHalf,bottomHalf));
+            bottomHalf += grid[1][i];
         }
-
-        // Iterate through each column to calculate the maximum path sum for the robot
-        for (int i = 0; i < n; i++) {
-            // Exclude the current column from the topSum (prefix sum for the top row)
-            topSum -= grid[0][i];
-
-            // Calculate the maximum possible score the first robot can leave for the second robot
-            minMaxSum = Math.min(minMaxSum, Math.max(topSum, bottomSum));
-
-            // Include the current column in the bottomSum (prefix sum for the bottom row)
-            bottomSum += grid[1][i];
-        }
-
         return minMaxSum;
     }
 }
