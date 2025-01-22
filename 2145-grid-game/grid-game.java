@@ -184,7 +184,6 @@ class Solution {
     }
     public long gridGame(int[][] grid) {
         long firstSum = getSufSum(grid), maxSum = Long.MAX_VALUE, secondHalf = 0l;
-        System.out.println(firstSum);
         int n = grid[0].length;
         for(int i=0;i<n;i++){
             firstSum -= grid[0][i];
