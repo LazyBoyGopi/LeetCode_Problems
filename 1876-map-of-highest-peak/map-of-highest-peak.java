@@ -78,41 +78,41 @@
 
 class Solution {
     public int[][] highestPeak(int[][] isWater) {
-        int R = isWater.length;
-        int C = isWater[0].length;
-        int[][] height = new int[R][C];
+        int R = isWater.length, C = isWater[0].length, RC = R+C;
+        int[][]height = new int[R][C];
 
-        // Initialize height array
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
-                if (isWater[i][j] == 1) {
-                    height[i][j] = 0; // Water cell has height 0
-                } else {
-                    height[i][j] = R + C; // A large value as sentinel
+        for(int i=0;i<R;i++){
+            for(int j=0;j<C;j++){
+                if(isWater[i][j] == 1){
+                    height[i][j] = 0;
+                }else{
+                    height[i][j] = RC;
                 }
             }
         }
 
-        // First pass: propagate height from top-left to bottom-right
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
-                if (height[i][j] != 0) {
-                    if (i > 0) 
-                        height[i][j] = Math.min(height[i][j], height[i - 1][j] + 1); // Check from top
-                    if (j > 0) 
-                        height[i][j] = Math.min(height[i][j], height[i][j - 1] + 1); // Check from left
+        for(int i=0;i<R;i++){
+            for(int j=0;j<C;j++){
+                if(height[i][j] != 0){
+                    if(i > 0){
+                        height[i][j] = Math.min(height[i][j],height[i-1][j]+1);
+                    }
+                    if(j > 0){
+                        height[i][j] = Math.min(height[i][j],height[i][j-1]+1);
+                    }
                 }
             }
         }
 
-        // Second pass: propagate height from bottom-right to top-left
-        for (int i = R - 1; i >= 0; i--) {
-            for (int j = C - 1; j >= 0; j--) {
-                if (height[i][j] != 0) {
-                    if (i < R - 1) 
-                        height[i][j] = Math.min(height[i][j], height[i + 1][j] + 1); // Check from bottom
-                    if (j < C - 1) 
-                        height[i][j] = Math.min(height[i][j], height[i][j + 1] + 1); // Check from right
+        for(int i=R-1;i>=0;i--){
+            for(int j=C-1;j>=0;j--){
+                if(height[i][j] != 0){
+                    if(i < R-1){
+                        height[i][j] = Math.min(height[i][j],height[i+1][j]+1);
+                    }
+                    if(j < C-1){
+                        height[i][j] = Math.min(height[i][j],height[i][j+1]+1);
+                    }
                 }
             }
         }
