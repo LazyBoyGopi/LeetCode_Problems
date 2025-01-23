@@ -11,18 +11,30 @@ class Solution {
         }
         return false;
     }
+    private int[][] preCompute(int[][]grid){
+        int m = grid.length, n = grid[0].length;
+        int[]rows = new int[m];
+        int[]cols = new int[n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j] == 1){
+                    rows[i]++;
+                    cols[j]++;
+                }
+            }
+        }
+        return new int[][]{rows,cols};
+    }
     public int countServers(int[][] grid) {
 
         int totalCommuicateServers = 0, r = grid.length, c = grid[0].length;
-        boolean[]rows = new boolean[r];
-        boolean[]cols = new boolean[c];
+        int[][]isRowOrColsPresent = preCompute(grid);
+        System.out.println(Arrays.deepToString(isRowOrColsPresent));
 
         for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
                 if(grid[i][j] == 1){
-                    if(rows[i] || cols[j] || isRowOrColsPresent(grid,i,j)){
-                        rows[i] = true;
-                        cols[j] = true;
+                    if(isRowOrColsPresent[0][i] > 1 || isRowOrColsPresent[1][j] > 1){
                         totalCommuicateServers++;
                     }
                 }
@@ -31,3 +43,5 @@ class Solution {
         return totalCommuicateServers;
     }
 }
+
+
