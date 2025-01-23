@@ -1,33 +1,28 @@
 class Solution {
-    private int[][] getPreSum(int[][]grid){
-        int r = grid.length, c = grid[0].length, idx = 0;
-        int[]row = new int[r];
-        int[]col = new int[c];
-        for(int i=0;i<r;i++){
-            int rowServerCount = 0;
-            for(int j=0;j<c;j++){
-                rowServerCount += grid[i][j];
-            }
-            row[idx++] = rowServerCount;
+    private boolean isRowOrColsPresent(int[][]grid,int i,int j){
+        int m = grid.length, n = grid[0].length; 
+        for(int row = 0;row<m;row++){
+            if(row == i) continue;
+            if(grid[row][j] == 1) return true;
         }
-        idx = 0;
-        for(int i=0;i<c;i++){
-            int rowServerCount = 0;
-            for(int j=0;j<r;j++){
-                rowServerCount += grid[j][i];
-            }
-            col[idx++] = rowServerCount;
+        for(int col = 0;col<n;col++){
+            if(col == j) continue;
+            if(grid[i][col] == 1) return true;
         }
-        return new int[][]{row,col};
+        return false;
     }
     public int countServers(int[][] grid) {
-        int[][]rowsCols = getPreSum(grid);
+
         int totalCommuicateServers = 0, r = grid.length, c = grid[0].length;
+        boolean[]rows = new boolean[r];
+        boolean[]cols = new boolean[c];
+
         for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
                 if(grid[i][j] == 1){
-                    int row = rowsCols[0][i]-1, col = rowsCols[1][j]-1;
-                    if(row != 0 || col != 0){
+                    if(rows[i] || cols[j] || isRowOrColsPresent(grid,i,j)){
+                        rows[i] = true;
+                        cols[j] = true;
                         totalCommuicateServers++;
                     }
                 }
