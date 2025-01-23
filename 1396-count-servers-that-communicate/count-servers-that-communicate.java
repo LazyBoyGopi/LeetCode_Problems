@@ -23,7 +23,6 @@ class Solution {
     public int countServers(int[][] grid) {
         int[][]rowsCols = getPreSum(grid);
         int totalCommuicateServers = 0, r = grid.length, c = grid[0].length;
-        System.out.println(Arrays.deepToString(rowsCols));
         for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
                 if(grid[i][j] == 1){
