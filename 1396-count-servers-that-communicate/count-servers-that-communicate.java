@@ -29,7 +29,6 @@ class Solution {
 
         int totalCommuicateServers = 0, r = grid.length, c = grid[0].length;
         int[][]isRowOrColsPresent = preCompute(grid);
-        System.out.println(Arrays.deepToString(isRowOrColsPresent));
 
         for(int i=0;i<r;i++){
             for(int j=0;j<c;j++){
