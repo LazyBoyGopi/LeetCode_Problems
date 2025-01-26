@@ -4,10 +4,7 @@ class Solution {
         if(len == 1) return true;
         for(int i=0;i<len;i++){
             if(longJump < i) return false;
-            int curJump = i+nums[i];
-            if(curJump > longJump){
-                longJump = curJump;
-            }
+            longJump = Math.max(longJump,i+nums[i]);
             if(longJump >= len-1) return true;
         }
         return false;
