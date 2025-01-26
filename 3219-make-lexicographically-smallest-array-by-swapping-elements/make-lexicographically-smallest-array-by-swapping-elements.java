@@ -1,43 +1,38 @@
 class Solution {
-
     public int[] lexicographicallySmallestArray(int[] nums, int limit) {
-        int[] numsSorted = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) numsSorted[i] = nums[i];
-        Arrays.sort(numsSorted);
+        int n = nums.length;
 
-        int currGroup = 0;
-        HashMap<Integer, Integer> numToGroup = new HashMap<>();
-        numToGroup.put(numsSorted[0], currGroup);
-
-        HashMap<Integer, LinkedList<Integer>> groupToList = new HashMap<>();
-        groupToList.put(
-            currGroup,
-            new LinkedList<Integer>(Arrays.asList(numsSorted[0]))
-        );
-
-        for (int i = 1; i < nums.length; i++) {
-            if (Math.abs(numsSorted[i] - numsSorted[i - 1]) > limit) {
-                // new group
-                currGroup++;
-            }
-
-            // assign current element to group
-            numToGroup.put(numsSorted[i], currGroup);
-
-            // add element to sorted group list
-            if (!groupToList.containsKey(currGroup)) {
-                groupToList.put(currGroup, new LinkedList<Integer>());
-            }
-            groupToList.get(currGroup).add(numsSorted[i]);
+        // Step-1: Find location of each number
+        List<int[]> copy = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            copy.add(new int[]{nums[i], i});
         }
 
-        // iterate through input and overwrite each element with the next element in its corresponding group
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
-            int group = numToGroup.get(num);
-            nums[i] = groupToList.get(group).pop();
-        }
+        // Step-2: Get ordered array with their original array index
+        copy.sort(Comparator.comparingInt(a -> a[0]));
 
+        // Step-3: Find groups and place ordered values
+        int left = 0, right = 1;
+        while (right < n) {
+            // Find group and get their original array indices
+            List<Integer> pos = new ArrayList<>();
+            pos.add(copy.get(left)[1]);
+            while (right < n && Math.abs(copy.get(right)[0] - copy.get(right - 1)[0]) <= limit) {
+                pos.add(copy.get(right)[1]);
+                right++;
+            }
+
+            // Order indices
+            Collections.sort(pos);
+
+            // Place ordered values to ordered indices in original array
+            for (int i = 0; i < right - left; i++) {
+                nums[pos.get(i)] = copy.get(left + i)[0];
+            }
+
+            left = right;
+            right++;
+        }
         return nums;
     }
 }
