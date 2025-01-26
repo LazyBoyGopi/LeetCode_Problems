@@ -5,8 +5,7 @@ class Solution {
         for(int i=0;i<len;i++){
             if(longJump < i) return false;
             longJump = Math.max(longJump,i+nums[i]);
-            if(longJump >= len-1) return true;
         }
-        return false;
+        return true;
     }
 }
