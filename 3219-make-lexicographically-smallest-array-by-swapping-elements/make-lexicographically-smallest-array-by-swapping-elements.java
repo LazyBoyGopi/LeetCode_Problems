@@ -1,24 +1,25 @@
 class Solution {
     public int[] lexicographicallySmallestArray(int[] nums, int limit) {
-        int n = nums.length;
-        List<int[]>copy = new ArrayList<int[]>(n);
-        for(int i=0;i<n;i++){
-            copy.add(new int[]{nums[i],i});
+        int len = nums.length;
+        int[][]sortedCopy = new int[len][2];
+        for(int i=0;i<len;i++){
+            sortedCopy[i] = new int[]{nums[i],i};
         }
-        copy.sort(Comparator.comparingInt(a->a[0]));
+        Arrays.sort(sortedCopy,(a,b)->a[0]-b[0]);
 
-        int l = 0, r = 1;
-        while(r < n){
-            List<Integer>pos = new ArrayList<Integer>();
-            pos.add(copy.get(l)[1]);
-            while(r < n && Math.abs(copy.get(r-1)[0] - copy.get(r)[0]) <= limit){
-                pos.add(copy.get(r++)[1]);
+        int left = 0, right = 1;
+        while(right < len){
+            List<Integer> positions = new ArrayList();
+            positions.add(sortedCopy[left][1]);
+            while(right < len && Math.abs(sortedCopy[right][0] - sortedCopy[right-1][0]) <= limit){
+                positions.add(sortedCopy[right++][1]);
             }
-            Collections.sort(pos);
-            for(int i=0;i<pos.size();i++){
-                nums[pos.get(i)] = copy.get(l++)[0];
+
+            Collections.sort(positions);
+            for(int i=0;i<positions.size();i++){
+                nums[positions.get(i)] = sortedCopy[left++][0];
             }
-            r++;
+            right++;
         }
         return nums;
     }
