@@ -1,37 +1,25 @@
 class Solution {
     public int[] lexicographicallySmallestArray(int[] nums, int limit) {
-        int n = nums.length;
-
-        // Step-1: Find location of each number
-        List<int[]> copy = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            copy.add(new int[]{nums[i], i});
+        int len = nums.length;
+        List<int[]>copySorted = new ArrayList<>();
+        for(int i=0;i<len;i++){
+            copySorted.add(new int[]{nums[i],i});
         }
-
-        // Step-2: Get ordered array with their original array index
-        copy.sort(Comparator.comparingInt(a -> a[0]));
-
-        // Step-3: Find groups and place ordered values
-        int left = 0, right = 1;
-        while (right < n) {
-            // Find group and get their original array indices
-            List<Integer> pos = new ArrayList<>();
-            pos.add(copy.get(left)[1]);
-            while (right < n && Math.abs(copy.get(right)[0] - copy.get(right - 1)[0]) <= limit) {
-                pos.add(copy.get(right)[1]);
-                right++;
+        copySorted.sort(Comparator.comparingInt(a->a[0]));
+        int l = 0, r = 1;
+        while(r < len){
+            List<Integer>sortedIndexes = new ArrayList();
+            sortedIndexes.add(copySorted.get(l)[1]);
+            while(r < len && Math.abs(copySorted.get(r)[0]-copySorted.get(r-1)[0]) <= limit){
+                sortedIndexes.add(copySorted.get(r++)[1]);
             }
-
-            // Order indices
-            Collections.sort(pos);
-
-            // Place ordered values to ordered indices in original array
-            for (int i = 0; i < right - left; i++) {
-                nums[pos.get(i)] = copy.get(left + i)[0];
+            Collections.sort(sortedIndexes);
+            for(int i=0;i<r-l;i++){
+                nums[sortedIndexes.get(i)] = copySorted.get(i+l)[0];
             }
+            l = r;
+            r++;
 
-            left = right;
-            right++;
         }
         return nums;
     }
