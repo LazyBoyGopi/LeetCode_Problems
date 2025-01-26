@@ -1,7 +1,7 @@
 class Solution {
     public int[] lexicographicallySmallestArray(int[] nums, int limit) {
         int len = nums.length;
-        List<int[]>copySorted = new ArrayList<>();
+        List<int[]>copySorted = new ArrayList();
         for(int i=0;i<len;i++){
             copySorted.add(new int[]{nums[i],i});
         }
@@ -14,12 +14,10 @@ class Solution {
                 sortedIndexes.add(copySorted.get(r++)[1]);
             }
             Collections.sort(sortedIndexes);
-            for(int i=0;i<r-l;i++){
-                nums[sortedIndexes.get(i)] = copySorted.get(i+l)[0];
+            for(int i=0;i<sortedIndexes.size();i++){
+                nums[sortedIndexes.get(i)] = copySorted.get(l++)[0];
             }
-            l = r;
             r++;
-
         }
         return nums;
     }
