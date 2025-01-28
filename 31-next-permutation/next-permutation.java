@@ -1,8 +1,7 @@
 class Solution {
-    void reverse(int[]nums,int st,int end)
-    {
-        while(st <= end)
-        {
+    private void reverse(int[]nums,int st){
+        int end = nums.length-1;
+        while(st < end){
             int temp = nums[st];
             nums[st] = nums[end];
             nums[end] = temp;
@@ -11,33 +10,20 @@ class Solution {
         }
     }
     public void nextPermutation(int[] nums) {
-        int i , idx = -1;;
-        for(i=nums.length-2;i>=0;i--)
-        {
-            if(nums[i] < nums[i+1])
-            {
-                idx = i;
-                break;
+        int len = nums.length, r = len-2;
+        if(len == 1) return;
+        while(r >= 0 && nums[r] >= nums[r+1]) r--;
+        if(r >= 0){
+            int i=len-1;
+            for(;i>r;i--){
+                if(nums[i] > nums[r]) break;
             }
-        }
-        if(idx == -1)
-        {
-            reverse(nums,0,nums.length-1);
-        }
-        else{
-            int j=nums.length-1;
-            while(j >= idx)
-            {
-                if(nums[j] > nums[idx])
-                {
-                    int temp = nums[idx];
-                    nums[idx] = nums[j];
-                    nums[j] = temp;
-                    break;
-                }
-                j--;
-            }
-            reverse(nums,idx+1,nums.length-1);
+            int temp = nums[r];
+            nums[r] = nums[i];
+            nums[i] = temp;
+            reverse(nums,r+1);
+        }else{
+            reverse(nums,r+1);
         }
     }
 }
