@@ -32,8 +32,9 @@ class Solution {
 } */
 
 class Solution {
-    int[][]max;
+    int max;
     int[][]dir = {{0,1},{0,-1},{1,0},{-1,0}};
+    
     boolean[][]visted;
     private int getMax(int i,int j,int[][]grid,int cur){
         int m = grid.length, n = grid[0].length;
@@ -48,24 +49,17 @@ class Solution {
             int r = i+d[0], c = j+d[1];
             curMax += getMax(r,c,grid,0);
         }
-        max[i][j] = curMax;
+        max = Math.max(max,curMax);
         return curMax;
     }
     public int findMaxFish(int[][] grid) {
         int m = grid.length, n = grid[0].length;
-        max = new int[m][n];
         visted = new boolean[m][n];
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 getMax(i,j,grid,0);
             }
         }
-        int ans = 0;
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                ans = Math.max(ans,max[i][j]);
-            }
-        }
-        return ans;
+        return max;
     }
 }
