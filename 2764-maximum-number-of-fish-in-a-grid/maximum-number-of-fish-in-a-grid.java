@@ -36,18 +36,16 @@ class Solution {
     int[][]dir = {{0,1},{0,-1},{1,0},{-1,0}};
 
     boolean[][]visted;
-    private int getMax(int i,int j,int[][]grid,int cur){
+    private int getMax(int i,int j,int[][]grid){
         int m = grid.length, n = grid[0].length;
-        int[]cell = {i,j};
 
-        if(i < 0 || j <0 || i >=m  || j >= n || grid[i][j] == 0 || visted[i][j]) return cur;
+        if(i < 0 || j <0 || i >=m  || j >= n || grid[i][j] == 0 || visted[i][j]) return 0;
         visted[i][j] = true;
         
-        int cellVal = grid[i][j];
-        int curMax = cellVal;
+        int curMax = grid[i][j];
         for(int []d : dir){
             int r = i+d[0], c = j+d[1];
-            curMax += getMax(r,c,grid,0);
+            curMax += getMax(r,c,grid);
         }
         max = Math.max(max,curMax);
         return curMax;
@@ -58,7 +56,7 @@ class Solution {
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(!visted[i][j])
-                    getMax(i,j,grid,0);
+                    getMax(i,j,grid);
             }
         }
         return max;
