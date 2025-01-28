@@ -34,7 +34,7 @@ class Solution {
 class Solution {
     int max;
     int[][]dir = {{0,1},{0,-1},{1,0},{-1,0}};
-    
+
     boolean[][]visted;
     private int getMax(int i,int j,int[][]grid,int cur){
         int m = grid.length, n = grid[0].length;
@@ -57,7 +57,8 @@ class Solution {
         visted = new boolean[m][n];
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                getMax(i,j,grid,0);
+                if(!visted[i][j])
+                    getMax(i,j,grid,0);
             }
         }
         return max;
