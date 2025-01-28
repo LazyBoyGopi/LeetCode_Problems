@@ -32,14 +32,13 @@ class Solution {
 } */
 
 class Solution {
-    int max;
     int[][]dir = {{0,1},{0,-1},{1,0},{-1,0}};
 
     boolean[][]visted;
     private int getMax(int i,int j,int[][]grid){
         int m = grid.length, n = grid[0].length;
 
-        if(i < 0 || j <0 || i >=m  || j >= n || grid[i][j] == 0 || visted[i][j]) return 0;
+        if(i < 0 || j < 0 || i >= m  || j >= n || grid[i][j] == 0 || visted[i][j]) return 0;
         visted[i][j] = true;
         
         int curMax = grid[i][j];
@@ -47,16 +46,16 @@ class Solution {
             int r = i+d[0], c = j+d[1];
             curMax += getMax(r,c,grid);
         }
-        max = Math.max(max,curMax);
+
         return curMax;
     }
     public int findMaxFish(int[][] grid) {
-        int m = grid.length, n = grid[0].length;
+        int m = grid.length, n = grid[0].length, max = 0;
         visted = new boolean[m][n];
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                if(!visted[i][j])
-                    getMax(i,j,grid);
+                if(grid[i][j] != 0 && !visted[i][j])
+                    max = Math.max(max,getMax(i,j,grid));
             }
         }
         return max;
