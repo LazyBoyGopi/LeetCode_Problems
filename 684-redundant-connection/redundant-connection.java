@@ -13,7 +13,6 @@ class Solution {
             int[]edge = edges[i];
             int p1 = dsuf(edge[0]);
             int p2 = dsuf(edge[1]);
-            System.out.println(i+" "+p1+" "+p2);
             if(p1 == p2){
                 ans = edge;
             }else
