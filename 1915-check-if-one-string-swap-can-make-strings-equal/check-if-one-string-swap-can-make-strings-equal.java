@@ -1,18 +1,16 @@
 class Solution {
     public boolean areAlmostEqual(String s1, String s2) {
-        int count = 0;
-        int[]freq = new int[26];
-        for(int i=0;i<s2.length();i++){
-            char ch1 = s1.charAt(i);
-            char ch2 = s2.charAt(i);
-            freq[ch1-'a']++;
-            freq[ch2-'a']--;
-            if(ch1 != ch2) count++;
-            if(count > 2) return false;
+        int len = s1.length(), diffChar = 0, idx1 = -1, idx2 = -1;
+        for(int i=0;i<len;i++){
+            if(s1.charAt(i) != s2.charAt(i)){
+                diffChar++;
+                if(diffChar == 1) idx1 = i;
+                else if(diffChar == 2) idx2 = i;
+                else return false;
+            }
         }
-        int count2 = 0;
-        for(int ele : freq) if(ele != 0) return false;
-        if(count == 2 || count == 0) return true;
-        return false;
+        if(diffChar == 1) return false;
+        char c1 = (idx1 != -1) ? s1.charAt(idx1) : '*', c2 = (idx2 != -1) ? s1.charAt(idx2) : '*', c3 = (idx1 != -1) ? s2.charAt(idx1) : '*', c4 = (idx2 != -1) ? s2.charAt(idx2) : '*';
+        return (c1 == c4) && (c2 == c3);
     }
 }
