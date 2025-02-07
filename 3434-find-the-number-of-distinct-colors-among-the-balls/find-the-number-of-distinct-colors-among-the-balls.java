@@ -1,10 +1,11 @@
 class Solution {
     public int[] queryResults(int limit, int[][] queries) {
-        int len = queries.length;
+        int len = queries.length, idx = 0;
         int[]ans = new int[len];
-        int idx = 0;
+        
         Map<Integer,Integer>colors = new HashMap();
         Map<Integer,Integer>freq = new HashMap();
+
         for(int[]query : queries){
 
             int o = query[0], t = query[1];
@@ -21,7 +22,6 @@ class Solution {
                     freq.put(curColor,times-1);
                 }
             }
-            
             ans[idx++] = freq.size();
         }
         return ans;
