@@ -1,31 +1,24 @@
-import java.util.*;
-import java.util.Collections;
-
 class NumberContainers {
-
-    Map<Integer,Integer>numbersAtIndexes;
-    Map<Integer,PriorityQueue<Integer>> indexesOfNumbers;
-
+    Map<Integer,Integer> res;
+    Map<Integer,PriorityQueue<Integer>> indexes;
     public NumberContainers() {
-        numbersAtIndexes = new HashMap();
-        indexesOfNumbers = new HashMap();
+        res = new HashMap();
+        indexes = new HashMap();
     }
     
     public void change(int index, int number) {
-        if(numbersAtIndexes.containsKey(index)){
-            int ele = numbersAtIndexes.get(index);
-            if(ele == number){
-                return;
-            }
-            indexesOfNumbers.get(ele).remove(index);
+        if(res.containsKey(index)){
+            int num = res.get(index);
+            if(num == number) return;
+            indexes.get(num).remove(index);
         }
-        indexesOfNumbers.computeIfAbsent(number,k->new PriorityQueue<Integer>()).offer(index);
-        numbersAtIndexes.put(index,number);
+        indexes.computeIfAbsent(number,k->new PriorityQueue<Integer>()).offer(index);
+        res.put(index,number);
     }
     
     public int find(int number) {
-        PriorityQueue<Integer> pq = indexesOfNumbers.getOrDefault(number,new PriorityQueue<Integer>());
-        return pq.size() == 0 ? -1 : pq.peek();
+        Queue<Integer>q = indexes.getOrDefault(number,new PriorityQueue<Integer>());
+        return q.isEmpty() ? -1 : q.peek();
     }
 }
 
