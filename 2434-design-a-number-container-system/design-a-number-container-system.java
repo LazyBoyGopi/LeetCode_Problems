@@ -17,7 +17,7 @@ class NumberContainers {
     }
     
     public int find(int number) {
-        Queue<Integer>q = indexes.getOrDefault(number,new PriorityQueue<Integer>());
+        PriorityQueue<Integer>q = indexes.getOrDefault(number,new PriorityQueue<Integer>());
         return q.isEmpty() ? -1 : q.peek();
     }
 }
