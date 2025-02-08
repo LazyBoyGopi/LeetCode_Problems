@@ -2,34 +2,30 @@ import java.util.*;
 import java.util.Collections;
 
 class NumberContainers {
+
     Map<Integer,Integer>numbersAtIndexes;
-    Map<Integer,TreeSet<Integer>> indexesOfNumbers;
+    Map<Integer,PriorityQueue<Integer>> indexesOfNumbers;
+
     public NumberContainers() {
         numbersAtIndexes = new HashMap();
         indexesOfNumbers = new HashMap();
     }
     
     public void change(int index, int number) {
-        int curNum = numbersAtIndexes.containsKey(index) ? numbersAtIndexes.get(index) : -1;
-        if(curNum != -1){
-            indexesOfNumbers.get(curNum).remove(index);
-            if(indexesOfNumbers.get(curNum).isEmpty()){
-                indexesOfNumbers.remove(curNum);
+        if(numbersAtIndexes.containsKey(index)){
+            int ele = numbersAtIndexes.get(index);
+            if(ele == number){
+                return;
             }
+            indexesOfNumbers.get(ele).remove(index);
         }
+        indexesOfNumbers.computeIfAbsent(number,k->new PriorityQueue<Integer>()).offer(index);
         numbersAtIndexes.put(index,number);
-
-        // TreeSet ts = new TreeSet(); 
-        // Set syncSet = Collections.synchronziedSet(ts);
-        indexesOfNumbers.putIfAbsent(number,new TreeSet());
-        indexesOfNumbers.get(number).add(index);
     }
     
     public int find(int number) {
-        TreeSet<Integer> curQ = indexesOfNumbers.get(number);
-        if(curQ == null || curQ.isEmpty()) return -1;
-        return curQ.ceiling(-1);
-        // return (curQ == null || curQ.isEmpty()) ? -1 : curQ.peek();
+        PriorityQueue<Integer> pq = indexesOfNumbers.getOrDefault(number,new PriorityQueue<Integer>());
+        return pq.size() == 0 ? -1 : pq.peek();
     }
 }
 
