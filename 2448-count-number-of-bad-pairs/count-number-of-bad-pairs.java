@@ -18,7 +18,7 @@ class Solution {
 
 class Solution {
     public long countBadPairs(int[] nums) {
-        long totalGoodPairs = 0;
+        long goodPairs =0l;
         int len = nums.length;
         Map<Long,Long>map = new HashMap();
         for(int i=0;i<len;i++){
@@ -26,10 +26,8 @@ class Solution {
             map.put(ele,map.getOrDefault(ele,0l)+1);
         }
         for(long value : map.values()){
-            if(value > 1){
-                totalGoodPairs += (value)*(value-1)/2;
-            }
+            goodPairs += (value)*(value-1)/2;
         }
-        return (((long)len*(len-1))/2)-totalGoodPairs;
+        return (((long)len)*(len-1)/2) - goodPairs;
     }
 }
