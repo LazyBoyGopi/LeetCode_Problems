@@ -7,7 +7,7 @@ class Solution {
         int numOfOper = 0;
         while(pq.size() >= 2 && pq.peek() < k){
             long f = pq.poll(), s = pq.poll();
-            long n = Math.min(f,s)*2+Math.max(f,s);
+            long n = f*2+s;
             pq.offer(n);
             numOfOper++;
         }
