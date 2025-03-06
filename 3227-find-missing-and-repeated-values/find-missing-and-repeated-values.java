@@ -1,18 +1,18 @@
 class Solution {
     public int[] findMissingAndRepeatedValues(int[][] grid) {
-        Set<Integer>set = new HashSet();
+        int len = grid.length, max = len*len;
+        boolean freq[] = new boolean[max+1];
         int[]ans = new int[2];
         for(int [] g : grid){
             for(int ele : g){
-                if(set.contains(ele)){
+                if(freq[ele]){
                     ans[0] = ele;
                 }
-                set.add(ele);
+                freq[ele] = true;
             }
         }
-        int max = grid.length*grid.length;
         for(int i=1;i<=max;i++){
-            if(!set.contains(i)){
+            if(!freq[i]){
                 ans[1] = i;
                 break;
             }
