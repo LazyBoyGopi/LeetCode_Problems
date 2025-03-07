@@ -22,8 +22,10 @@ class Solution {
                         ans[0] = last;
                         ans[1] = i;
                     }
+                    if(curMin == 2 || curMin == 1) return ans;
                 }
                 last = i;
+                
             }
         }
         return ans;
