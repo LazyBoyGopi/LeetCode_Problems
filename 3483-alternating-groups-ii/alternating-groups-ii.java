@@ -41,19 +41,20 @@ class Solution {
         for(int i=0;i<len;i++){
             col[i] = col[i+len] = colors[i];
         }
-        len += k-1;
+        len += --k;
         int totCount = 0, curAlternating = 0, last = col[0];
         for(int i=1;i<len;i++){
-            if(last == col[i]){
+            int curEle = col[i];
+            if(last == curEle){
                 curAlternating = 0;
             }else{
                 curAlternating++;
-                if(curAlternating == k-1){
+                if(curAlternating == k){
                     curAlternating--;
                     totCount++;
                 }
             }
-            last = col[i];
+            last = curEle;
         }
         return totCount;
     }
