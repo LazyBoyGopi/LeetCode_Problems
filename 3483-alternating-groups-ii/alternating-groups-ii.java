@@ -46,16 +46,19 @@ class Solution {
         for(int i=1;i<len;i++){
             int curEle = col[i];
             if(last == curEle){
+                int curCount = curAlternating - k+1;
+                if(curCount > 0)
+                    totCount += curCount;
                 curAlternating = 0;
+                
             }else{
                 curAlternating++;
-                if(curAlternating == k){
-                    curAlternating--;
-                    totCount++;
-                }
             }
             last = curEle;
         }
+        int curCount = curAlternating - k+1;
+                if(curCount > 0)
+                    totCount += curCount;
         return totCount;
     }
 }
