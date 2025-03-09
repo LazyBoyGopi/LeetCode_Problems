@@ -1,5 +1,5 @@
 /*
-//Brute Force
+//Brute Force(Time Limit exceeded)
 class Solution {
     private static boolean isAlternate(int[]col,int st,int k){
         int end = st+k;
@@ -33,7 +33,7 @@ class Solution {
     }
 }
  */
-
+//Better code (beats - 86%)
 class Solution {
     public int numberOfAlternatingGroups(int[] colors, int k) {
         int len = colors.length;
