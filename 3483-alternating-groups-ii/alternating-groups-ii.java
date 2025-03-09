@@ -37,28 +37,20 @@ class Solution {
 class Solution {
     public int numberOfAlternatingGroups(int[] colors, int k) {
         int len = colors.length;
-        int[]col = new int[len*2];
-        for(int i=0;i<len;i++){
-            col[i] = col[i+len] = colors[i];
-        }
-        len += --k;
-        int totCount = 0, curAlternating = 0, last = col[0];
-        for(int i=1;i<len;i++){
-            int curEle = col[i];
+        int totCount = 0, curAlternating = 0, last = colors[0];
+        for(int i=1;i<len+k-1;i++){
+            int curEle = colors[i%len];
             if(last == curEle){
-                int curCount = curAlternating - k+1;
-                if(curCount > 0)
-                    totCount += curCount;
                 curAlternating = 0;
-                
             }else{
                 curAlternating++;
+                if(curAlternating == k-1){
+                    curAlternating--;
+                    totCount++;
+                }
             }
             last = curEle;
         }
-        int curCount = curAlternating - k+1;
-                if(curCount > 0)
-                    totCount += curCount;
         return totCount;
     }
 }
