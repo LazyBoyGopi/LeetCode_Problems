@@ -9,9 +9,10 @@ class Solution {
         int consonantCount = 0;
 
         // compute index of next consonant for all indices
-        int[] nextConsonant = new int[word.length()];
-        int nextConsonantIndex = word.length();
-        for (int i = word.length() - 1; i >= 0; i--) {
+        int len = word.length();
+        int[] nextConsonant = new int[len];
+        int nextConsonantIndex = len;
+        for (int i = len - 1; i >= 0; i--) {
             nextConsonant[i] = nextConsonantIndex;
             if (!isVowel(word.charAt(i))) {
                 nextConsonantIndex = i;
@@ -19,7 +20,7 @@ class Solution {
         }
 
         // start sliding window
-        while (end < word.length()) {
+        while (end < len) {
             // insert new letter
             char newLetter = word.charAt(end);
 
