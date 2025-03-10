@@ -1,86 +1,55 @@
 class Solution {
-
     public long countOfSubstrings(String word, int k) {
-        long numValidSubstrings = 0;
-        int start = 0;
-        int end = 0;
-        // keep track of counts of vowels and consonants
-        HashMap<Character, Integer> vowelCount = new HashMap<>();
-        int consonantCount = 0;
 
-        // compute index of next consonant for all indices
-        int len = word.length();
-        int[] nextConsonant = new int[len];
-        int nextConsonantIndex = len;
-        for (int i = len - 1; i >= 0; i--) {
-            nextConsonant[i] = nextConsonantIndex;
-            if (!isVowel(word.charAt(i))) {
-                nextConsonantIndex = i;
+        long numOfSubstring = 0;
+        int left = 0, right = 0, len = word.length(), nextConIdx = len, constantCount = 0;
+
+        int[]nextConsonentIndex = new int[len];
+        Map<Character,Integer>vowelCount = new HashMap();
+
+        for(int i=len-1;i>=0;i--){
+            nextConsonentIndex[i] = nextConIdx;
+            if(!isVowel(word.charAt(i))){
+                nextConIdx = i;
             }
         }
-
-        // start sliding window
-        while (end < len) {
-            // insert new letter
-            char newLetter = word.charAt(end);
-
-            // update counts
-            if (isVowel(newLetter)) {
-                vowelCount.put(
-                    newLetter,
-                    vowelCount.getOrDefault(newLetter, 0) + 1
-                );
-            } else {
-                consonantCount++;
+        while(right < len){
+            char rightCh = word.charAt(right);
+            if(isVowel(rightCh)){
+                vowelCount.put(rightCh,vowelCount.getOrDefault(rightCh,0)+1);
+            }else{
+                constantCount++;
             }
-
-            // shrink window if too many consonants in our window
-            while (consonantCount > k) {
-                char startLetter = word.charAt(start);
-                if (isVowel(startLetter)) {
-                    vowelCount.put(
-                        startLetter,
-                        vowelCount.get(startLetter) - 1
-                    );
-                    if (vowelCount.get(startLetter) == 0) {
-                        vowelCount.remove(startLetter);
+            while(constantCount > k){
+                char leftCh = word.charAt(left);
+                if(isVowel(leftCh)){
+                    vowelCount.put(leftCh,vowelCount.get(leftCh)-1);
+                    if(vowelCount.get(leftCh) == 0){
+                        vowelCount.remove(leftCh);
                     }
-                } else {
-                    consonantCount--;
+                }else{
+                    constantCount--;
                 }
-                start++;
+                left++;
             }
-
-            // while we have a valid window, try to shrink it
-            while (
-                start < word.length() &&
-                vowelCount.keySet().size() == 5 &&
-                consonantCount == k
-            ) {
-                // count the current valid substring, as well as valid substrings produced by appending more vowels
-                numValidSubstrings += nextConsonant[end] - end;
-                char startLetter = word.charAt(start);
-                if (isVowel(startLetter)) {
-                    vowelCount.put(
-                        startLetter,
-                        vowelCount.get(startLetter) - 1
-                    );
-                    if (vowelCount.get(startLetter) == 0) {
-                        vowelCount.remove(startLetter);
+            while(left < len && constantCount == k && vowelCount.size() == 5){
+                char ch = word.charAt(left);
+                numOfSubstring += nextConsonentIndex[right]-right;
+                if(isVowel(ch)){
+                    vowelCount.put(ch,vowelCount.get(ch)-1);
+                    if(vowelCount.get(ch) == 0){
+                        vowelCount.remove(ch);
                     }
-                } else {
-                    consonantCount--;
+                }else{
+                    constantCount--;
                 }
-
-                start++;
+                left++;
             }
-            end++;
+            right++;
         }
-
-        return numValidSubstrings;
+        return numOfSubstring;
     }
-
-    private boolean isVowel(char c) {
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    private boolean isVowel(char ch){
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
     }
 }
