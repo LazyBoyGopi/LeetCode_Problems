@@ -12,7 +12,6 @@ class Solution {
        for(int i=len-1;i>=len-2;i--){
         if(nums[i] == 0) zCount++;
        }
-       System.out.println(zCount+" "+minOperations);
        return zCount == 0 ? minOperations : -1;
     }
 }
