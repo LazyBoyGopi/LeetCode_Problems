@@ -1,26 +1,34 @@
 class Solution {
-    private boolean isPalindrome(String s,int st,int end){
-        while(st <= end){
-            if(s.charAt(st++) != s.charAt(end--)) return false;
+    private List<List<String>>ans;
+    private int len;
+    private boolean isPalindrome(String str){
+        int l = 0, r = str.length()-1;
+        while(l <= r){
+            if(str.charAt(l++) != str.charAt(r--))
+                return false;
         }
         return true;
     }
-    private void getAns(String s, List<List<String>> list, List<String>temp,int idx){
-        if(idx == s.length()){
-            list.add(new LinkedList(temp));
+    private void getAllPartitioningPalindromes(String s, int curIdx, List<String>curList){
+        if(curIdx == len){
+            ans.add(new ArrayList(curList));
             return;
         }
-        for(int i=idx;i<s.length();i++){
-            if(isPalindrome(s,idx,i)){
-                temp.add(s.substring(idx,i+1));
-                getAns(s,list,temp,i+1);
-                temp.remove(temp.size()-1);
+        for(int i=curIdx;i<len;i++){
+            String curStr = s.substring(curIdx,i+1);
+            if(isPalindrome(curStr)){
+                curList.add(curStr);
+                getAllPartitioningPalindromes(s,i+1,curList);
+                curList.remove(curList.size()-1);
             }
+            
         }
+
     }
     public List<List<String>> partition(String s) {
-        List<List<String>> list = new LinkedList<>();
-        getAns(s,list,new LinkedList(),0);
-        return list;
+        ans = new ArrayList();
+        len = s.length();
+        getAllPartitioningPalindromes(s,0,new ArrayList());
+        return ans;
     }
 }
