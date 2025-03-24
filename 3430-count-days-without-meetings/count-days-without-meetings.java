@@ -1,24 +1,29 @@
 class Solution {
     public int countDays(int days, int[][] meetings) {
-       Arrays.sort(meetings,(a,b) -> Integer.compare(a[0],b[0]));
-       int last = meetings[0][0] ,count = 0;
-       count += meetings[0][0] != 1 ? meetings[0][0]-1 : 0;
-       for(int i=0;i<meetings.length;i++){
-            int ar[] = new int[2];
-            ar[0] = meetings[i][0];
-            ar[1] = meetings[i][1];
-            int j;
-            for(j=i+1;j<meetings.length;j++){
-                if(meetings[j][0] <= ar[1])
-                    ar[1] = Math.max( meetings[j][1],ar[1]);
-                else 
-                    break;
+        Arrays.sort(meetings,(a,b)->{
+            if(a[0]==b[0])
+                return Integer.compare(a[1],b[1]);
+            return Integer.compare(a[0],b[0]);
+        });
+        int len = meetings.length;
+        int totalAvailableDays = 0;
+        totalAvailableDays += meetings[0][0]-1;
+        int left = meetings[0][0], right = meetings[0][1];
+        for(int i=1;i<len;i++){
+            int[]meeting = meetings[i];
+            int curStartDate = meeting[0], curEndDate = meeting[1];
+            if(curStartDate >= left && curStartDate <= right){
+                right = Math.max(right,curEndDate);
             }
-            i=j-1;
-            count += (ar[0]-last-1) > 0 ? ar[0]-last-1 : 0;
-            last = ar[1];
-       } 
-        count += (days != last) ? days-last : 0;
-        return count;  
+            else{
+                System.out.println(i+" "+(curEndDate-right-1)+" "+curEndDate+" "+right);
+                // System.out.println();
+                totalAvailableDays += (curStartDate-right-1);
+                left = curStartDate;
+                right = curEndDate;
+            }
+        }
+        totalAvailableDays += (days-right);
+        return totalAvailableDays;
     }
 }
