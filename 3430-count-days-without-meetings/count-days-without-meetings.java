@@ -16,8 +16,6 @@ class Solution {
                 right = Math.max(right,curEndDate);
             }
             else{
-                System.out.println(i+" "+(curEndDate-right-1)+" "+curEndDate+" "+right);
-                // System.out.println();
                 totalAvailableDays += (curStartDate-right-1);
                 left = curStartDate;
                 right = curEndDate;
