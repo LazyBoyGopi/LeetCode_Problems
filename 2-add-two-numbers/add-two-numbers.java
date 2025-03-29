@@ -9,32 +9,79 @@
  * }
  */
 class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int rem = 0;
-        ListNode ans = new ListNode(),org = ans;
-
-        while(l1 != null || l2 != null){
-            int n1 = l1 != null ? l1.val : 0;
-            int n2 = l2 != null ? l2.val : 0;
-            int n = n1+n2+rem , cur;
-            if(n > 9) {
-                cur = n%10;
-                n/=10;
-                rem = n;
-            }
-            else {
-                cur = n;
+    private int ifOneEmpty(ListNode l1, ListNode ans, int rem) {
+        ListNode newNode = null;
+        int curVal = 0, last = 0;
+        while (l1 != null) {
+            curVal = l1.val + rem;
+            last = curVal % 10;
+            if (curVal > 9) {
+                curVal /= 10;
+                rem = curVal % 10;
+            } else {
                 rem = 0;
             }
-            ans.next = new ListNode(cur);
-            ans = ans.next;
-            l1 = l1 == null ? l1 : l1.next;
-            l2 = l2 == null ? l2 : l2.next;
+            newNode = new ListNode(last);
+            newNode.next = ans;
+            ans = newNode;
         }
-        if(rem != 0){
-            ans.next = new ListNode(rem);
-            ans = ans.next;
-        } 
+        return rem;
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode ans = new ListNode(), org = ans, newNode = null;
+        int rem = 0, curVal = 0, last = 0;
+        while (l1 != null && l2 != null) {
+            curVal = l1.val + l2.val + rem;
+            last = curVal % 10;
+            if (curVal > 9) {
+                curVal /= 10;
+                rem = curVal % 10;
+            } else {
+                rem = 0;
+            }
+            newNode = new ListNode(last);
+            ans.next = newNode;
+            ans = newNode;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        if (l1 != null) {
+            while (l1 != null) {
+                curVal = l1.val + rem;
+                last = curVal % 10;
+                if (curVal > 9) {
+                    curVal /= 10;
+                    rem = curVal % 10;
+                } else {
+                    rem = 0;
+                }
+                newNode = new ListNode(last);
+                ans.next = newNode;
+                ans = newNode;
+                l1 = l1.next;
+            }
+        } else if (l2 != null) {
+            while (l2 != null) {
+                curVal = l2.val + rem;
+                last = curVal % 10;
+                if (curVal > 9) {
+                    curVal /= 10;
+                    rem = curVal % 10;
+                } else {
+                rem = 0;
+                }
+                newNode = new ListNode(last);
+                ans.next = newNode;
+                ans = newNode;
+                l2 = l2.next;
+            }
+        }
+        if (rem != 0) {
+            newNode = new ListNode(rem);
+            ans.next = newNode;
+            ans = newNode;
+        }
         return org.next;
     }
 }
