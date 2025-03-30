@@ -3,7 +3,7 @@ class Solution {
         if(s.length() == 0)
             return 0;
         int includeIdx = 0, len = s.length(), maxLenWithoutRepeatingChar = 1, firstCount = 0, firstChIdx = s.charAt(0);
-        int[]map = new int[256];
+        int[]map = new int[128];
         for(int i=0;i<len;i++){
             int idx = s.charAt(i), lastChIdx = map[idx];
             map[idx] = i;
