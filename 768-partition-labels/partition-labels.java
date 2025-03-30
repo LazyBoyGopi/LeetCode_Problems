@@ -6,7 +6,6 @@ class Solution {
             r[0] = -1;
         }
         int len = s.length();
-        System.out.println(len);
         for(int i=0;i<len;i++){
             int curIdx = s.charAt(i)-'a';
             if(range[curIdx][0] != -1){
@@ -18,11 +17,9 @@ class Solution {
         int preIdx = 0;
         int lastIdxTillNow = range[s.charAt(0)-'a'][1];
         int i = 0;
-        System.out.println(Arrays.deepToString(range));
         while(i < len){
             while(i <= lastIdxTillNow){
                 lastIdxTillNow = Math.max(lastIdxTillNow,range[s.charAt(i)-'a'][1]);
-                System.out.println(i+" "+lastIdxTillNow);
                 i++;
             }
             ans.add(lastIdxTillNow-preIdx+1);
