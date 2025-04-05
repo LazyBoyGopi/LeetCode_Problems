@@ -1,16 +1,18 @@
 class Solution {
-    private int getXor(int []nums){
-        int xor = 0, len = nums.length;
-        for(int i=0;i<len;i++){
-            xor ^= nums[i];
-        }
+    private int getXOR(int[]nums){
+        int xor = 0;
+        for(int ele : nums)
+            xor ^= ele;
         return xor;
     }
     public int xorAllNums(int[] nums1, int[] nums2) {
-        int n1 = nums1.length, n2 = nums2.length;
-        int xor = 0;
-        if((n2 & 1) == 1) xor ^= getXor(nums1);
-        if((n1 & 1) == 1) xor ^= getXor(nums2);
-        return xor;
+        int l1 = nums1.length, l2 = nums2.length, xor = 0;
+        if(l1 % 2 == 0 && l2 % 2 == 0)
+            return 0;
+        else if(l2 % 2 == 0)
+            return getXOR(nums2);
+        else if(l1 % 2 == 0)
+            return getXOR(nums1);
+        return getXOR(nums1) ^ getXOR(nums2);
     }
 }
