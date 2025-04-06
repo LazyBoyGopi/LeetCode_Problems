@@ -3,7 +3,6 @@ class Solution {
         Arrays.sort(nums);
         int len = nums.length;
         List<Integer>[] dp = new ArrayList[len];
-        System.out.println(Arrays.toString(nums));
         for(int i=len-1;i>=0;i--){
             int maxElements = 1;
             int idx = i;
