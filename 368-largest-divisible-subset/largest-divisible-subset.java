@@ -17,9 +17,7 @@ class Solution {
             }
             dp[i].add(nums[i]);
             if (i != idx) {
-                for (int k : dp[idx]) {
-                    dp[i].add(k);
-                }
+                dp[i].addAll(dp[idx]);
             }
             if(totalMaxEle < dp[i].size()){
                 totalMaxEle = dp[i].size();
