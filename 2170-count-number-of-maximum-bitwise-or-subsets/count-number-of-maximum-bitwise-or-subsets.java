@@ -1,22 +1,21 @@
 class Solution {
-    int[]ar = new int[1];
-    private void getAllSubsets(int []nums,int idx,int OR,int maxOR){
-        if(OR == maxOR){
-            ar[0]++;
+    int maxORSubsetsCount, maxOR;
+    private void getSubsets(int[]nums,int idx,int or){
+        if(idx == nums.length){
+            if(or > maxOR){
+                maxOR = or;
+                maxORSubsetsCount = 1;
+            }
+            else if(or == maxOR){
+                maxORSubsetsCount++;
+            }
+            return;
         }
-        for(int i=idx;i<nums.length;i++){
-            getAllSubsets(nums,i+1,OR | nums[i],maxOR);
-        }
-    }
-    private int getMaxOR(int[]nums){
-        int max = 0;
-        for(int ele : nums) max |= ele;
-        return max;
+        getSubsets(nums,idx+1,or | nums[idx]);
+        getSubsets(nums,idx+1,or);
     }
     public int countMaxOrSubsets(int[] nums) {
-        ar[0] = 0;
-        int maxOR = getMaxOR(nums);
-        getAllSubsets(nums,0,0,maxOR);
-        return ar[0];
+        getSubsets(nums,0,0);
+        return maxORSubsetsCount;
     }
 }
