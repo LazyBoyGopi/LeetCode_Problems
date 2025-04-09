@@ -8,6 +8,6 @@ class Solution {
         if(min < k)
             return -1;
        }
-       return min < k ? -1 : min == k ? set.size()-1 : set.size();   
+       return min == k ? set.size()-1 : set.size();   
     }
 }
