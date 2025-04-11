@@ -24,7 +24,6 @@ class Solution {
             }
             dp[i] = max+1;
         }
-        System.out.println(Arrays.toString(dp));
         return isPos == 0 ? dp[0] : -1;
     }
 }
