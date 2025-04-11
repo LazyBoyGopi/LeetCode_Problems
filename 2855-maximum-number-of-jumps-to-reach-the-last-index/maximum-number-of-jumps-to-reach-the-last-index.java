@@ -1,6 +1,6 @@
 class Solution {
     public int maximumJumps(int[] nums, int target) {
-        int len = nums.length, isPos = -1;
+        int len = nums.length, stPos = -1;
         int[] dp = new int[len];
         Arrays.fill(dp, -1);
         dp[len - 1] = 0;
@@ -14,10 +14,10 @@ class Solution {
                 }
             }
             if (idx != -1) {
-                isPos = i;
+                stPos = i;
                 dp[i] = max+1;
             }
         }
-        return isPos == 0 ? dp[0] : -1;
+        return stPos == 0 ? dp[0] : -1;
     }
 }
