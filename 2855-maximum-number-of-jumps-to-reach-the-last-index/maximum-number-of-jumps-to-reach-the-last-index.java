@@ -2,8 +2,6 @@ class Solution {
     public int maximumJumps(int[] nums, int target) {
         int len = nums.length;
         int[]dp = new int[len];
-        boolean[]isPossible = new boolean[len];
-        isPossible[len-1] = true;
         Arrays.fill(dp,-1);
         dp[len-1] = 0;
         int isPos = len-1;
@@ -12,7 +10,7 @@ class Solution {
             int idx = -1;
             for(int j=i+1;j<len;j++){
                 int t = nums[j]-nums[i];
-                if(-target <= t && t <= target && isPossible[j])
+                if(dp[j] != -1 && -target <= t && t <= target)
                    {
                         idx = j;
                         max = Math.max(max,dp[j]);
@@ -20,9 +18,8 @@ class Solution {
             }
             if(idx != -1){
                 isPos = i;
-                isPossible[i] = true;
             }
-            dp[i] = max+1;
+            dp[i] = idx == -1 ? -1 : max+1;
         }
         return isPos == 0 ? dp[0] : -1;
     }
