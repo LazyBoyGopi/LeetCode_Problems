@@ -15,8 +15,8 @@ class Solution {
             }
             if (idx != -1) {
                 isPos = i;
+                dp[i] = max+1;
             }
-            dp[i] = idx == -1 ? -1 : max + 1;
         }
         return isPos == 0 ? dp[0] : -1;
     }
