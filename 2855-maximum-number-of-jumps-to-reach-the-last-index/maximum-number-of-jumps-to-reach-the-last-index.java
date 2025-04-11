@@ -6,8 +6,7 @@ class Solution {
         for (int i = len - 2; i >= 0; i--) {
             int max = -1;
             for (int j = i + 1; j < len; j++) {
-                int t = nums[j] - nums[i];
-                if (-target <= t && t <= target) {
+                if (Math.abs(nums[j] - nums[i]) <= target) {
                     max = Math.max(max, dp[j]);
                 }
             }
