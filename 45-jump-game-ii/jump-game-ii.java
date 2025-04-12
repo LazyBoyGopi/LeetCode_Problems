@@ -28,7 +28,6 @@ class Solution {
             }
             dp[i] = steps;
         }
-        System.out.println(Arrays.toString(dp));
         return dp[0];
     }
 }
